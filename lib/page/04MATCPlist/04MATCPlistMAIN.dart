@@ -41,13 +41,21 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
     List<MATCPlistClass> _data = [];
     if (MATCPlistMAINvar.Search != '') {
       for (var i = 0; i < _datainput.length; i++) {
-        if (_datainput[i].CP.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].FG.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].CUSTOMER.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].PART.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].PARTNAME.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].MATERIAL.contains(MATCPlistMAINvar.Search) ||
-            _datainput[i].STATUS.contains(MATCPlistMAINvar.Search)) {
+        String CP_S = _datainput[i].CP.toUpperCase();
+        String FG_S = _datainput[i].FG.toUpperCase();
+        String CUS_S = _datainput[i].CUSTOMER.toUpperCase();
+        String PAT_S = _datainput[i].PART.toUpperCase();
+        String PATN_S = _datainput[i].PARTNAME.toUpperCase();
+        String MAT_S = _datainput[i].MATERIAL.toUpperCase();
+        String ST_S = _datainput[i].STATUS.toUpperCase();
+
+        if (CP_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            FG_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            CUS_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            PAT_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            PATN_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            MAT_S.contains(MATCPlistMAINvar.Search.toUpperCase()) ||
+            ST_S.contains(MATCPlistMAINvar.Search.toUpperCase())) {
           _data.add(_datainput[i]);
         }
       }

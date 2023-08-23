@@ -509,7 +509,7 @@ class _CALCULATEACTIONState extends State<CALCULATEACTION> {
                     FINALMASTERvar.iscontrol = input;
                   });
                 },
-                sValue: FINALMASTERvar.masterID_CALCULATE_ACTION,
+                // sValue: FINALMASTERvar.masterID_CALCULATE_ACTION,
                 returnfunc: (String s) {
                   FINALMASTERvar.masterID_CALCULATE_ACTION = s;
                 },

@@ -335,7 +335,7 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
               height: 40,
               width: 400,
               isContr: FINALMASTERvar.iscontrol,
-              isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
+              // isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
               fnContr: (input) {
                 setState(() {
                   FINALMASTERvar.iscontrol = input;
@@ -375,7 +375,6 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
   }
 }
 
-
 // SizedBox(
 //               height: 64,
 //               width: 400,
@@ -400,3 +399,5 @@ class _ITEMSACTIONState extends State<ITEMSACTION> {
 //                 width: 400,
 //               ),
 //             ),
+
+

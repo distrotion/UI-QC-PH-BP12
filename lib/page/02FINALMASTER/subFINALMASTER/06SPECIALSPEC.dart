@@ -18,7 +18,7 @@ class SPECIALSPECtable extends StatelessWidget {
     super.key,
     this.data,
   });
-  List<dataset>? data;
+  final List<dataset>? data;
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +218,7 @@ class _SPECIALSPECACTIONState extends State<SPECIALSPECACTION> {
             height: 40,
             width: 400,
             isContr: FINALMASTERvar.iscontrol,
-            isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
+            // isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
             fnContr: (input) {
               setState(() {
                 FINALMASTERvar.iscontrol = input;

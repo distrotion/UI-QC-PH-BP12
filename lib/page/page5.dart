@@ -4,7 +4,6 @@ import '../bloc/BlocEvent/05-1-FINSPECTIONget.dart';
 import '../bloc/BlocEvent/05-4-UPLOADSPEC.dart';
 import '../bloc/cubit/Rebuild.dart';
 
-import '../bloc/BlocEvent/05-3-STEP-INSPECTIONquery.dart';
 import '05INSPECTIONstd/INSPECTIONstdMAIN.dart';
 
 class Page5 extends StatelessWidget {

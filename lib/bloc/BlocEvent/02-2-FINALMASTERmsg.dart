@@ -1,9 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 import '../../page/02FINALMASTER/FINALMASTERmain.dart';
 import '../../page/02FINALMASTER/FINALMASTERvar.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/01TYPES.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/02UNIT.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/03ITEMs.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/04MACHINENAME.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/05METHODE.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/06SPECIALSPEC.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/07CALCULATE.dart';
 import '02-1-FINALMASTERget.dart';
 
 //-------------------------------------------------
@@ -229,6 +237,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
       },
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_TYPEget());
+    Navigator.pop(TYPEStableContext);
     emit(output);
   }
 
@@ -245,6 +254,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
       },
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_UNITget());
+    Navigator.pop(UNITStablecontext);
     emit(output);
   }
 
@@ -265,6 +275,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
       },
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>().add(FINALMASTER_ITEMSget());
+    Navigator.pop(ITEMStablecontext);
     emit(output);
   }
 
@@ -282,6 +293,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_MACHINENAMEget());
+    Navigator.pop(MACHINENAMEtablecontext);
     emit(output);
   }
 
@@ -299,6 +311,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_METHODEget());
+    Navigator.pop(METHODtablecontext);
     emit(output);
   }
 
@@ -315,6 +328,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_SPECIALSPECget());
+    Navigator.pop(SPECIALSPECtablecontext);
     emit(output);
   }
 
@@ -345,6 +359,7 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_CALCULATEget());
+    Navigator.pop(CALCULATEtablecontext);
     emit(output);
   }
 

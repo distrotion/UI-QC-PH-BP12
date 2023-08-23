@@ -350,10 +350,10 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               output = 'Actual';
             } else if (data['condition'] != null &&
                 data['condition'] == "LOL(<)") {
-              output = '${data['LOL_H']} <  ';
+              output = ' ≤ ${data['LOL_H']}';
             } else if (data['condition'] != null &&
                 data['condition'] == "HIM(>)") {
-              output = ' > ${data['HIM_L']}';
+              output = ' ≥ ${data['HIM_L']}';
             }
           } else {
             output = input;
@@ -384,10 +384,10 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               output = 'Actual';
             } else if (data['condition'] != null &&
                 data['condition'] == "LOL(<)") {
-              output = '${data['LOL_H']} <  ';
+              output = ' ≤ ${data['LOL_H']}';
             } else if (data['condition'] != null &&
                 data['condition'] == "HIM(>)") {
-              output = ' > ${data['HIM_L']}';
+              output = ' ≥ ${data['HIM_L']}';
             }
           } else {
             output = input;
@@ -399,6 +399,22 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
       if (databuff[0]['FINAL'] != null) {
         for (var i = 0; i < databuff[0]['FINAL'].length; i++) {
           //
+          final rest = await Dio().post(
+            serverGB + "GET_FINAL_DOCUMENT",
+            data: {
+              "METHODid": databuff[0]['FINAL'][i]['METHOD'] != null
+                  ? databuff[0]['FINAL'][i]['METHOD'].toString()
+                  : '',
+            },
+          );
+          String DOCUMENT = '';
+          if (rest.statusCode == 200) {
+            var databuff = rest.data;
+            // print(databuff);
+            DOCUMENT = databuff['DOCUMENT'] != null
+                ? databuff['DOCUMENT'].toString()
+                : "";
+          }
           output.FINAL.add(
             speckSTD(
               seq: databuff[0]['FINAL'][i]['SEQ'] != null
@@ -426,9 +442,11 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               INTERSECTION: databuff[0]['FINAL'][i]['INTERSECTION'] != null
                   ? databuff[0]['FINAL'][i]['INTERSECTION'].toString()
                   : '',
-              DOCUMENT: databuff[0]['FINAL'][i]['DOCUMENT'] != null
-                  ? databuff[0]['FINAL'][i]['DOCUMENT'].toString()
-                  : '',
+              // DOCUMENT: databuff[0]['FINAL'][i]['DOCUMENT'] != null
+              //     ? databuff[0]['FINAL'][i]['DOCUMENT'].toString()
+              //     : '',
+
+              DOCUMENT: DOCUMENT,
               SCMARK: databuff[0]['FINAL'][i]['SCMARK'] != null
                   ? databuff[0]['FINAL'][i]['SCMARK'].toString()
                   : '',
@@ -575,6 +593,16 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
                   : '',
               LOAD: databuff[0]['FINAL'][i]['LOAD'] != null
                   ? databuff[0]['FINAL'][i]['LOAD'].toString()
+                  : '',
+
+              SWreport: databuff[0]['FINAL'][i]['SWreport'] != null
+                  ? databuff[0]['FINAL'][i]['SWreport'].toString()
+                  : '',
+              K1b: databuff[0]['FINAL'][i]['K1b'] != null
+                  ? databuff[0]['FINAL'][i]['K1b'].toString()
+                  : '',
+              K1v: databuff[0]['FINAL'][i]['K1v'] != null
+                  ? databuff[0]['FINAL'][i]['K1v'].toString()
                   : '',
             ),
           );
@@ -891,6 +919,9 @@ class speckSTD {
     this.MODE = '',
     this.REMARK = '',
     this.LOAD = '',
+    this.SWreport = '',
+    this.K1b = '',
+    this.K1v = '',
   });
 
   String seq;
@@ -929,6 +960,10 @@ class speckSTD {
   String MODE;
   String REMARK;
   String LOAD;
+
+  String SWreport;
+  String K1b;
+  String K1v;
 }
 
 class BasicBodyData {

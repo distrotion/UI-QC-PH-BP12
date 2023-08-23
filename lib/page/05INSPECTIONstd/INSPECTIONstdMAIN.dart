@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:html';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,6 +61,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
 
     int millis = 978296400000;
     DateTime dt = DateTime.fromMillisecondsSinceEpoch(millis);
+    print(INSPECTIONstdVAR.FINAL_RESULTFORMAT);
 
     return SingleChildScrollView(
       child: Padding(
@@ -145,1664 +147,6 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
             SizedBox(
               height: 15,
             ),
-            // Container(
-            //   decoration: BoxDecoration(
-            //     border: Border.all(color: Colors.black),
-            //     borderRadius: const BorderRadius.all(Radius.circular(8)),
-            //   ),
-            //   // height: 300,
-            //   // width: 1000,
-            //   child: Column(
-            //     children: [
-            //       SizedBox(
-            //         height: 24,
-            //       ),
-            //       Row(
-            //         children: [
-            //           SizedBox(
-            //             width: 15,
-            //           ),
-            //           Text("INCOMING PATTERN"),
-            //           Spacer(),
-            //           InkWell(
-            //             onTap: () {
-            //               INSPECTION_INCOMING_GET_STEP1(INSPECTIONstdVAR.CP)
-            //                   .then((dynamic result) {
-            //                 // print(result);
-            //                 clearINCOMING();
-            //                 if (result['ITEMs'] != null) {
-            //                   if (result['ITEMs'].length > 0) {
-            //                     for (int i = 0;
-            //                         i < result['ITEMs'].length;
-            //                         i++) {
-            //                       INSPECTIONstdVAR.List_INCOMING_ITEMs.add(
-            //                           MapEntry(
-            //                               result['ITEMs'][i]['ITEMs']
-            //                                   .toString(),
-            //                               result['ITEMs'][i]['masterID']
-            //                                   .toString()));
-
-            //                       INSPECTIONstdVAR.List_INCOMING_ITEMs_set.add(
-            //                           List_INCOMING_ITEMs_set_Class(
-            //                         ITEMs: result['ITEMs'][i]['ITEMs'] != null
-            //                             ? result['ITEMs'][i]['ITEMs'].toString()
-            //                             : '',
-            //                         RESULTFORMAT: result['ITEMs'][i]
-            //                                     ['RESULTFORMAT'] !=
-            //                                 null
-            //                             ? result['ITEMs'][i]['RESULTFORMAT']
-            //                                 .toString()
-            //                             : '',
-            //                         TYPE: result['ITEMs'][i]['TYPE'] != null
-            //                             ? result['ITEMs'][i]['TYPE'].toString()
-            //                             : '',
-            //                         GRAPHTYPE:
-            //                             result['ITEMs'][i]['GRAPHTYPE'] != null
-            //                                 ? result['ITEMs'][i]['GRAPHTYPE']
-            //                                     .toString()
-            //                                 : '',
-            //                         INTERSECTION: result['ITEMs'][i]
-            //                                     ['INTERSECTION'] !=
-            //                                 null
-            //                             ? result['ITEMs'][i]['INTERSECTION']
-            //                                 .toString()
-            //                             : '',
-            //                         masterID:
-            //                             result['ITEMs'][i]['masterID'] != null
-            //                                 ? result['ITEMs'][i]['masterID']
-            //                                     .toString()
-            //                                 : '',
-            //                       ));
-            //                     }
-            //                   }
-            //                 }
-
-            //                 setState(() {
-            //                   newdataINCOMING();
-            //                 });
-            //               });
-            //             },
-            //             child: Container(
-            //               color: Colors.blue,
-            //               height: 40,
-            //               width: 100,
-            //               child: Center(
-            //                 child: Text(
-            //                   "NEW",
-            //                   style: TextStyle(
-            //                     color: Colors.white,
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             width: 15,
-            //           ),
-            //         ],
-            //       ),
-            //       SizedBox(
-            //         height: 15,
-            //       ),
-            //       Scrollbar(
-            //         controller: controllerIN01,
-            //         thumbVisibility: true,
-            //         interactive: true,
-            //         thickness: 10,
-            //         radius: Radius.circular(20),
-            //         child: SingleChildScrollView(
-            //           controller: controllerIN01,
-            //           // keyboardDismissBehavior:
-            //           //     ScrollViewKeyboardDismissBehavior.manual,
-            //           scrollDirection: Axis.horizontal,
-            //           child: SizedBox(
-            //             // height: 40,
-            //             width: 2500,
-            //             child: Padding(
-            //               padding: const EdgeInsets.all(8.0),
-            //               child: Column(
-            //                 children: [
-            //                   SizedBox(
-            //                     height: 40,
-            //                     child: PATTERNtable(
-            //                       BGColorMain: Colors.grey.shade400,
-            //                       seq: "seq",
-            //                       ITEMs: "ITEMs",
-            //                       CORStype: "CORStype",
-            //                       FORMULA: "FORMULA",
-            //                       SCMARK: "SCMARK",
-            //                       SCMARKtype: "SCMARKtype",
-            //                       DOCUMENT: "DOCUMENT",
-            //                       METHOD: "METHOD",
-            //                       IMGreaddata: "IMGreaddata",
-            //                       IMGno: "IMGno",
-            //                       LOAD: "LOAD",
-            //                       GT: "GT",
-            //                       SPECIFICATIONve: "SPECIFICATIONve",
-            //                       CALCULATE: "CALCULATE",
-            //                       UNIT: "UNIT",
-            //                       CONVERSE: "CONVERSE",
-            //                       POSITION: "POSITION",
-            //                       PCS: "PCS",
-            //                       FREQUENCY: "FREQUENCY",
-            //                       REMARK: "REMARK",
-            //                       SWreport: "SWreport",
-            //                       ACTION: "ACTION",
-            //                       isACTION: false,
-            //                     ),
-            //                   ),
-            //                   for (int i = 0;
-            //                       i < _Mdata.INCOMING.length;
-            //                       i++) ...[
-            //                     Container(
-            //                       constraints: BoxConstraints(minHeight: 100),
-            //                       child: PATTERNtable(
-            //                         BGColorMain: i.isEven
-            //                             ? Colors.grey.shade50
-            //                             : Colors.grey.shade200,
-            //                         seq: _Mdata.INCOMING[i].seq,
-            //                         ITEMs: _Mdata.INCOMING[i].ITEMsname,
-            //                         CORStype: "-",
-            //                         FORMULA: "-",
-            //                         SCMARK: _Mdata.INCOMING[i].SCMARK,
-            //                         SCMARKtype: "-",
-            //                         DOCUMENT: _Mdata.INCOMING[i].DOCUMENT,
-            //                         METHOD: _Mdata.INCOMING[i].METHODname,
-            //                         IMGreaddata: "-",
-            //                         IMGno: "-",
-            //                         LOAD: _Mdata.INCOMING[i].LOAD,
-            //                         GT: "-",
-            //                         SPECIFICATIONve:
-            //                             _Mdata.INCOMING[i].SPECIFICATIONvename,
-            //                         CALCULATE: "-",
-            //                         UNIT: _Mdata.INCOMING[i].UNITname,
-            //                         CONVERSE: _Mdata.INCOMING[i].CONVERSEname,
-            //                         POSITION: _Mdata.INCOMING[i].POINT,
-            //                         PCS: _Mdata.INCOMING[i].PCS,
-            //                         FREQUENCY: _Mdata.INCOMING[i].FREQUENCY,
-            //                         REMARK: _Mdata.INCOMING[i].REMARK,
-            //                         SWreport: "-",
-            //                         ACTION: "ACTION",
-            //                         EditFN: (v) {
-            //                           //
-            //                           // print(_Mdata.INCOMING[i].ITEMsname);
-            //                           clearINCOMING();
-            //                           INSPECTIONstdVAR.INCOMING_seq =
-            //                               _Mdata.INCOMING[i].seq;
-            //                           //---------------------
-            //                           INSPECTIONstdVAR.List_INCOMING_ITEMs = [
-            //                             MapEntry("-", "-")
-            //                           ];
-            //                           INSPECTIONstdVAR.List_INCOMING_ITEMs.add(
-            //                               MapEntry(_Mdata.INCOMING[i].ITEMsname,
-            //                                   _Mdata.INCOMING[i].ITEMs));
-
-            //                           INSPECTION_INCOMING_GET_STEP1(
-            //                                   INSPECTIONstdVAR.CP)
-            //                               .then((dynamic result) {
-            //                             // print(result);
-
-            //                             if (result['ITEMs'] != null) {
-            //                               if (result['ITEMs'].length > 0) {
-            //                                 for (int i = 0;
-            //                                     i < result['ITEMs'].length;
-            //                                     i++) {
-            //                                   INSPECTIONstdVAR
-            //                                           .List_INCOMING_ITEMs
-            //                                       .add(MapEntry(
-            //                                           result['ITEMs'][i]
-            //                                                   ['ITEMs']
-            //                                               .toString(),
-            //                                           result['ITEMs'][i]
-            //                                                   ['masterID']
-            //                                               .toString()));
-
-            //                                   INSPECTIONstdVAR
-            //                                           .List_INCOMING_ITEMs_set
-            //                                       .add(
-            //                                           List_INCOMING_ITEMs_set_Class(
-            //                                     ITEMs: result['ITEMs'][i]
-            //                                                 ['ITEMs'] !=
-            //                                             null
-            //                                         ? result['ITEMs'][i]
-            //                                                 ['ITEMs']
-            //                                             .toString()
-            //                                         : '',
-            //                                     RESULTFORMAT: result['ITEMs'][i]
-            //                                                 ['RESULTFORMAT'] !=
-            //                                             null
-            //                                         ? result['ITEMs'][i]
-            //                                                 ['RESULTFORMAT']
-            //                                             .toString()
-            //                                         : '',
-            //                                     TYPE: result['ITEMs'][i]
-            //                                                 ['TYPE'] !=
-            //                                             null
-            //                                         ? result['ITEMs'][i]['TYPE']
-            //                                             .toString()
-            //                                         : '',
-            //                                     masterID: result['ITEMs'][i]
-            //                                                 ['masterID'] !=
-            //                                             null
-            //                                         ? result['ITEMs'][i]
-            //                                                 ['masterID']
-            //                                             .toString()
-            //                                         : '',
-            //                                   ));
-            //                                 }
-            //                               }
-            //                             }
-            //                             //
-            //                             INSPECTIONstdVAR.INCOMING_ITEMs =
-            //                                 _Mdata.INCOMING[i].ITEMs;
-
-            //                             for (int j = 0;
-            //                                 j <
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set
-            //                                         .length;
-            //                                 j++) {
-            //                               if (INSPECTIONstdVAR
-            //                                       .List_INCOMING_ITEMs_set[j]
-            //                                       .masterID ==
-            //                                   _Mdata.INCOMING[i].ITEMs) {
-            //                                 INSPECTIONstdVAR.INCOMING_TYPE =
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set[j]
-            //                                         .TYPE;
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMAT =
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set[j]
-            //                                         .RESULTFORMAT;
-            //                                 break;
-            //                               }
-            //                             }
-
-            //                             if (_Mdata.INCOMING[i].ITEMs != '-') {
-            //                               INSPECTION_INCOMING_GET_STEP2(
-            //                                       _Mdata.INCOMING[i].ITEMs)
-            //                                   .then((dynamic result) {
-            //                                 setState(() {
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_RESULTFORMATdata =
-            //                                       result['RESULTFORMATdata'] !=
-            //                                               null
-            //                                           ? result[
-            //                                                   'RESULTFORMATdata']
-            //                                               .toString()
-            //                                           : '-';
-            //                                   if (result['METHOD'] != null &&
-            //                                       result['METHOD'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['METHOD'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_METHOD
-            //                                           .add(MapEntry(
-            //                                               result['METHOD'][i]
-            //                                                       ['METHOD']
-            //                                                   .toString(),
-            //                                               result['METHOD'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['LOAD'] != null &&
-            //                                       result['LOAD'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['LOAD'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_LOAD
-            //                                           .add(
-            //                                               MapEntry(
-            //                                                   result['LOAD'][i]
-            //                                                           ['LOAD']
-            //                                                       .toString(),
-            //                                                   result['LOAD'][i][
-            //                                                           'masterID']
-            //                                                       .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['CORETYPE'] != null &&
-            //                                       result['CORETYPE'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['CORETYPE']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_CORETYPE
-            //                                           .add(MapEntry(
-            //                                               result['CORETYPE'][i]
-            //                                                       ['CORETYPE']
-            //                                                   .toString(),
-            //                                               result['CORETYPE'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                   if (result['GT'] != null &&
-            //                                       result['GT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['GT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_GT
-            //                                           .add(MapEntry(
-            //                                               result['GT'][i]['GT']
-            //                                                   .toString(),
-            //                                               result['GT'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['UNIT'] != null &&
-            //                                       result['UNIT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['UNIT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_UNIT
-            //                                           .add(
-            //                                               MapEntry(
-            //                                                   result['UNIT'][i]
-            //                                                           ['UNIT']
-            //                                                       .toString(),
-            //                                                   result['UNIT'][i][
-            //                                                           'masterID']
-            //                                                       .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['UNIT'] != null &&
-            //                                       result['UNIT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['UNIT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_UNIT_CONVERST
-            //                                           .add(MapEntry(
-            //                                               result['UNIT'][i]
-            //                                                       ['UNIT']
-            //                                                   .toString(),
-            //                                               result['UNIT'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['FREQUENCY'] != null &&
-            //                                       result['FREQUENCY'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['FREQUENCY']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_FREQUENCY
-            //                                           .add(MapEntry(
-            //                                               result['FREQUENCY'][i]
-            //                                                       ['FREQUENCY']
-            //                                                   .toString(),
-            //                                               result['FREQUENCY'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                   if (result['CALCULATE'] != null &&
-            //                                       result['CALCULATE'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['CALCULATE']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_CALCULATE
-            //                                           .add(MapEntry(
-            //                                               result['CALCULATE'][i]
-            //                                                       ['CALCULATE']
-            //                                                   .toString(),
-            //                                               result['CALCULATE'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['SPECIFICATION'] !=
-            //                                           null &&
-            //                                       result['SPECIFICATION']
-            //                                               .length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['SPECIFICATION']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_SPECIFICATIONt
-            //                                           .add(MapEntry(
-            //                                               result['SPECIFICATION']
-            //                                                           [i][
-            //                                                       'SPECIFICATION']
-            //                                                   .toString(),
-            //                                               result['SPECIFICATION']
-            //                                                           [i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                 });
-
-            //                                 INSPECTIONstdVAR.INCOMING_COREtype =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_FORMULA =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_SCMARK =
-            //                                     _Mdata.INCOMING[i].SCMARK;
-            //                                 INSPECTIONstdVAR
-            //                                     .INCOMING_SCMARKtype = "-";
-            //                                 INSPECTIONstdVAR.INCOMING_DOCUMENT =
-            //                                     _Mdata.INCOMING[i].DOCUMENT;
-
-            //                                 if (_Mdata.INCOMING[i].METHOD !=
-            //                                     '-') {
-            //                                   // INSPECTIONstdVAR.List_INCOMING_METHOD = [
-            //                                   //   MapEntry("-", "-"),
-            //                                   //   MapEntry(_Mdata.INCOMING[i].METHODname,
-            //                                   //       _Mdata.INCOMING[i].METHOD)
-            //                                   // ];
-
-            //                                   INSPECTIONstdVAR.INCOMING_METHOD =
-            //                                       _Mdata.INCOMING[i].METHOD;
-            //                                 }
-
-            //                                 INSPECTIONstdVAR
-            //                                     .INCOMING_IMGreaddata = "-";
-            //                                 INSPECTIONstdVAR.INCOMING_IMGno =
-            //                                     "-";
-
-            //                                 INSPECTIONstdVAR.INCOMING_LOAD =
-            //                                     _Mdata.INCOMING[i].LOAD;
-
-            //                                 INSPECTIONstdVAR.INCOMING_GT = "-";
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATION =
-            //                                     _Mdata
-            //                                         .INCOMING[i].SPECIFICATION;
-
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONstr =
-            //                                     _Mdata.INCOMING[i]
-            //                                         .SPECIFICATIONstr;
-
-            //                                 INSPECTIONstdVAR
-            //                                     .INCOMING_SPECIFICATIONve = "-";
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB =
-            //                                     veOB();
-
-            //                                 // INSPECTIONstdVAR
-            //                                 //         .INCOMING_SPECIFICATIONveOB
-            //                                 //         .condition =
-            //                                 //     _Mdata.INCOMING[i]
-            //                                 //         .SPECIFICATIONcondition;
-
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB =
-            //                                     veOB(
-            //                                         condition: _Mdata
-            //                                             .INCOMING[i]
-            //                                             .SPECIFICATIONcondition,
-            //                                         BTW_HI: _Mdata.INCOMING[i]
-            //                                             .SPECIFICATIONBTW_HI,
-            //                                         BTW_LOW: _Mdata.INCOMING[i]
-            //                                             .SPECIFICATIONBTW_LOW,
-            //                                         HIM_L: _Mdata.INCOMING[i]
-            //                                             .SPECIFICATIONHIM_L,
-            //                                         LOL_H: _Mdata.INCOMING[i]
-            //                                             .SPECIFICATIONLOL_H,
-            //                                         TARGET: _Mdata.INCOMING[i]
-            //                                             .SPECIFICATIONTARGET);
-            //                                 if (_Mdata.INCOMING[i].UNIT !=
-            //                                     '-') {
-            //                                   // INSPECTIONstdVAR.List_INCOMING_UNIT = [
-            //                                   //   MapEntry("-", "-"),
-            //                                   //   MapEntry(_Mdata.INCOMING[i].UNITname,
-            //                                   //       _Mdata.INCOMING[i].UNIT)
-            //                                   // ];
-
-            //                                   INSPECTIONstdVAR.INCOMING_UNIT =
-            //                                       _Mdata.INCOMING[i].UNIT;
-            //                                 } else {
-            //                                   INSPECTIONstdVAR.INCOMING_UNIT =
-            //                                       "-";
-            //                                 }
-
-            //                                 if (_Mdata.INCOMING[i].CONVERSE !=
-            //                                     '-') {
-            //                                   // INSPECTIONstdVAR
-            //                                   //     .List_INCOMING_UNIT_CONVERST = [
-            //                                   //   MapEntry("-", "-"),
-            //                                   //   MapEntry(_Mdata.INCOMING[i].CONVERSEname,
-            //                                   //       _Mdata.INCOMING[i].CONVERSE)
-            //                                   // ];
-
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_UNIT_CONVERST =
-            //                                       _Mdata.INCOMING[i].CONVERSE;
-            //                                 } else {
-            //                                   INSPECTIONstdVAR
-            //                                       .INCOMING_UNIT_CONVERST = "-";
-            //                                 }
-
-            //                                 INSPECTIONstdVAR.INCOMING_POINT =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_POINT =
-            //                                     _Mdata.INCOMING[i].POINT;
-            //                                 INSPECTIONstdVAR.INCOMING_PCS =
-            //                                     _Mdata.INCOMING[i].PCS;
-            //                                 // INSPECTIONstdVAR.INCOMING_FREQUENCY =
-            //                                 //     _Mdata.INCOMING[i].FREQUENCY;
-
-            //                                 if (_Mdata.INCOMING[i].FREQUENCY !=
-            //                                     '-') {
-            //                                   // INSPECTIONstdVAR.List_INCOMING_FREQUENCY =
-            //                                   //     [
-            //                                   //   MapEntry("-", "-"),
-            //                                   //   MapEntry(_Mdata.INCOMING[i].FREQUENCY,
-            //                                   //       _Mdata.INCOMING[i].FREQUENCY)
-            //                                   // ];
-
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_FREQUENCY =
-            //                                       _Mdata.INCOMING[i].FREQUENCY;
-            //                                 } else {
-            //                                   INSPECTIONstdVAR
-            //                                       .INCOMING_FREQUENCY = "-";
-            //                                 }
-            //                                 INSPECTIONstdVAR.INCOMING_REMARK =
-            //                                     _Mdata.INCOMING[i].REMARK;
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMATdata =
-            //                                     _Mdata.INCOMING[i].RESULTFORMAT;
-            //                                 INSPECTIONstdVAR.INCOMING_SWreport =
-            //                                     "-";
-
-            //                                 INSPECTIONstdVAR
-            //                                     .INCOMING_CALCULATE = "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K1 =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K2 =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K3 =
-            //                                     "-";
-
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K1_N =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K2_N =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K3_N =
-            //                                     "-";
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K1b =
-            //                                     false;
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K2b =
-            //                                     false;
-            //                                 INSPECTIONstdVAR.INCOMING_CAL_K3b =
-            //                                     false;
-            //                               });
-            //                             }
-
-            //                             if (INSPECTIONstdVAR.INCOMING_POP) {
-            //                               setState(() {
-            //                                 INSPECTIONstdVAR.INCOMING_POP =
-            //                                     false;
-            //                               });
-            //                             } else {
-            //                               setState(() {
-            //                                 INSPECTIONstdVAR.INCOMING_POP =
-            //                                     true;
-            //                               });
-            //                             }
-            //                           });
-
-            //                           // //
-            //                         },
-            //                         DeleteFN: (s) {
-            //                           INSPECTIONstdVAR.INCOMING_ITEMs =
-            //                               _Mdata.INCOMING[i].ITEMs;
-            //                           context
-            //                               .read<UPLOADSPEC_Bloc>()
-            //                               .add(DELETESPEC_INCOMING());
-            //                         },
-            //                         isACTION: true,
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       if (INSPECTIONstdVAR.INCOMING_POP) ...[
-            //         Scrollbar(
-            //           controller: controllerIN02,
-            //           thumbVisibility: true,
-            //           interactive: true,
-            //           thickness: 10,
-            //           radius: Radius.circular(20),
-            //           child: SingleChildScrollView(
-            //             controller: controllerIN02,
-            //             // keyboardDismissBehavior:
-            //             //     ScrollViewKeyboardDismissBehavior.manual,
-            //             scrollDirection: Axis.horizontal,
-            //             child: SizedBox(
-            //               // height: 40,
-            //               width: 2500,
-            //               child: Padding(
-            //                 padding: const EdgeInsets.all(8.0),
-            //                 child: Column(
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   children: [
-            //                     InkWell(
-            //                       onLongPress: () {
-            //                         clearINCOMING();
-            //                         INSPECTION_INCOMING_GET_STEP1(
-            //                                 INSPECTIONstdVAR.CP)
-            //                             .then((dynamic result) {
-            //                           // print(result);
-
-            //                           if (result['ITEMs'] != null) {
-            //                             if (result['ITEMs'].length > 0) {
-            //                               for (int i = 0;
-            //                                   i < result['ITEMs'].length;
-            //                                   i++) {
-            //                                 INSPECTIONstdVAR.List_INCOMING_ITEMs
-            //                                     .add(
-            //                                   MapEntry(
-            //                                       result['ITEMs'][i]['ITEMs']
-            //                                           .toString(),
-            //                                       result['ITEMs'][i]['masterID']
-            //                                           .toString()),
-            //                                 );
-            //                                 INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set
-            //                                     .add(
-            //                                         List_INCOMING_ITEMs_set_Class(
-            //                                   ITEMs: result['ITEMs'][i]
-            //                                               ['ITEMs'] !=
-            //                                           null
-            //                                       ? result['ITEMs'][i]['ITEMs']
-            //                                           .toString()
-            //                                       : '',
-            //                                   RESULTFORMAT: result['ITEMs'][i]
-            //                                               ['RESULTFORMAT'] !=
-            //                                           null
-            //                                       ? result['ITEMs'][i]
-            //                                               ['RESULTFORMAT']
-            //                                           .toString()
-            //                                       : '',
-            //                                   TYPE: result['ITEMs'][i]
-            //                                               ['TYPE'] !=
-            //                                           null
-            //                                       ? result['ITEMs'][i]['TYPE']
-            //                                           .toString()
-            //                                       : '',
-            //                                   masterID: result['ITEMs'][i]
-            //                                               ['masterID'] !=
-            //                                           null
-            //                                       ? result['ITEMs'][i]
-            //                                               ['masterID']
-            //                                           .toString()
-            //                                       : '',
-            //                                 ));
-            //                               }
-            //                             }
-            //                           }
-
-            //                           setState(() {});
-            //                         });
-            //                       },
-            //                       child: Container(
-            //                         height: 40,
-            //                         color: Colors.red,
-            //                         child: Center(
-            //                           child: Text(
-            //                             "CLEAR",
-            //                             style: TextStyle(
-            //                               color: Colors.white,
-            //                             ),
-            //                           ),
-            //                         ),
-            //                       ),
-            //                     ),
-            //                     SizedBox(
-            //                       height: 40,
-            //                       child: PATTERNtable(
-            //                         BGColorMain: Colors.grey.shade400,
-            //                         seq: "seq",
-            //                         ITEMs: "ITEMs",
-            //                         CORStype: "CORStype",
-            //                         FORMULA: "FORMULA",
-            //                         SCMARK: "SCMARK",
-            //                         SCMARKtype: "SCMARKtype",
-            //                         ShowSCMARKtype: false,
-            //                         DOCUMENT: "DOCUMENT",
-            //                         METHOD: "METHOD",
-            //                         IMGreaddata: "IMGreaddata",
-            //                         IMGno: "IMGno",
-            //                         LOAD: "LOAD",
-            //                         GT: "GT",
-            //                         SPECIFICATIONve: "SPECIFICATIONve",
-            //                         CALCULATE: "CALCULATE",
-            //                         UNIT: "UNIT",
-            //                         CONVERSE: "CONVERSE",
-            //                         POSITION: "POSITION",
-            //                         PCS: "PCS",
-            //                         FREQUENCY: "FREQUENCY",
-            //                         REMARK: "REMARK",
-            //                         SWreport: "SWreport",
-            //                         ACTION: "ACTION",
-            //                         isACTION: false,
-            //                       ),
-            //                     ),
-            //                     Container(
-            //                       constraints: BoxConstraints(minHeight: 80),
-            //                       child: PATTERNtable(
-            //                         BGColorMain: Colors.white,
-            //                         seq: INSPECTIONstdVAR.INCOMING_seq,
-            //                         ITEMs: "ITEMs",
-            //                         WIDGETITEMs: AdvanceDropDown(
-            //                           isEnable:
-            //                               INSPECTIONstdVAR.INCOMING_ITEMs !=
-            //                                   '-',
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown:
-            //                               INSPECTIONstdVAR.List_INCOMING_ITEMs,
-            //                           onChangeinside: (d, k) {
-            //                             // print(d);
-            //                             INSPECTIONstdVAR.INCOMING_ITEMs = d;
-            //                             for (var i = 0;
-            //                                 i <
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set
-            //                                         .length;
-            //                                 i++) {
-            //                               if (INSPECTIONstdVAR
-            //                                       .List_INCOMING_ITEMs_set[i]
-            //                                       .masterID ==
-            //                                   d) {
-            //                                 INSPECTIONstdVAR.INCOMING_TYPE =
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set[i]
-            //                                         .TYPE;
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMAT =
-            //                                     INSPECTIONstdVAR
-            //                                         .List_INCOMING_ITEMs_set[i]
-            //                                         .RESULTFORMAT;
-            //                                 break;
-            //                               }
-            //                             }
-
-            //                             if (d != '-') {
-            //                               INSPECTION_INCOMING_GET_STEP2(d)
-            //                                   .then((dynamic result) {
-            //                                 // print(result);
-
-            //                                 setState(() {
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_RESULTFORMATdata =
-            //                                       result['RESULTFORMATdata'] !=
-            //                                               null
-            //                                           ? result[
-            //                                                   'RESULTFORMATdata']
-            //                                               .toString()
-            //                                           : '-';
-            //                                   if (result['METHOD'] != null &&
-            //                                       result['METHOD'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['METHOD'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_METHOD
-            //                                           .add(MapEntry(
-            //                                               result['METHOD'][i]
-            //                                                       ['METHOD']
-            //                                                   .toString(),
-            //                                               result['METHOD'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['LOAD'] != null &&
-            //                                       result['LOAD'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['LOAD'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_LOAD
-            //                                           .add(
-            //                                               MapEntry(
-            //                                                   result['LOAD'][i]
-            //                                                           ['LOAD']
-            //                                                       .toString(),
-            //                                                   result['LOAD'][i][
-            //                                                           'masterID']
-            //                                                       .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['CORETYPE'] != null &&
-            //                                       result['CORETYPE'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['CORETYPE']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_CORETYPE
-            //                                           .add(MapEntry(
-            //                                               result['CORETYPE'][i]
-            //                                                       ['CORETYPE']
-            //                                                   .toString(),
-            //                                               result['CORETYPE'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                   if (result['GT'] != null &&
-            //                                       result['GT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['GT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_GT
-            //                                           .add(MapEntry(
-            //                                               result['GT'][i]['GT']
-            //                                                   .toString(),
-            //                                               result['GT'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['UNIT'] != null &&
-            //                                       result['UNIT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['UNIT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_UNIT
-            //                                           .add(
-            //                                               MapEntry(
-            //                                                   result['UNIT'][i]
-            //                                                           ['UNIT']
-            //                                                       .toString(),
-            //                                                   result['UNIT'][i][
-            //                                                           'masterID']
-            //                                                       .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['UNIT'] != null &&
-            //                                       result['UNIT'].length > 0) {
-            //                                     for (int i = 0;
-            //                                         i < result['UNIT'].length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_UNIT_CONVERST
-            //                                           .add(MapEntry(
-            //                                               result['UNIT'][i]
-            //                                                       ['UNIT']
-            //                                                   .toString(),
-            //                                               result['UNIT'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-
-            //                                   if (result['FREQUENCY'] != null &&
-            //                                       result['FREQUENCY'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['FREQUENCY']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_FREQUENCY
-            //                                           .add(MapEntry(
-            //                                               result['FREQUENCY'][i]
-            //                                                       ['FREQUENCY']
-            //                                                   .toString(),
-            //                                               result['FREQUENCY'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                   if (result['CALCULATE'] != null &&
-            //                                       result['CALCULATE'].length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['CALCULATE']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_CALCULATE
-            //                                           .add(MapEntry(
-            //                                               result['CALCULATE'][i]
-            //                                                       ['CALCULATE']
-            //                                                   .toString(),
-            //                                               result['CALCULATE'][i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                   if (result['SPECIFICATION'] !=
-            //                                           null &&
-            //                                       result['SPECIFICATION']
-            //                                               .length >
-            //                                           0) {
-            //                                     for (int i = 0;
-            //                                         i <
-            //                                             result['SPECIFICATION']
-            //                                                 .length;
-            //                                         i++) {
-            //                                       INSPECTIONstdVAR
-            //                                               .List_INCOMING_SPECIFICATIONt
-            //                                           .add(MapEntry(
-            //                                               result['SPECIFICATION']
-            //                                                           [i][
-            //                                                       'SPECIFICATION']
-            //                                                   .toString(),
-            //                                               result['SPECIFICATION']
-            //                                                           [i]
-            //                                                       ['masterID']
-            //                                                   .toString()));
-            //                                     }
-            //                                   }
-            //                                 });
-            //                               });
-            //                             }
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_ITEMs,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         CORStype: "CORStype",
-            //                         WIDGETCORStype: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown: INSPECTIONstdVAR
-            //                               .List_INCOMING_CORETYPE,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_COREtype = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_COREtype,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         FORMULA: "NO USE",
-            //                         //                   if (INSPECTIONstdVAR.INCOMING_RESULTFORMATdata ==
-            //                         //  'Calculate')
-            //                         WIDGETFORMULA: INSPECTIONstdVAR
-            //                                     .INCOMING_RESULTFORMATdata ==
-            //                                 'Calculate'
-            //                             ? Column(
-            //                                 children: [
-            //                                   AdvanceDropDown(
-            //                                     imgpath:
-            //                                         'assets/icons/icon-down_4@3x.png',
-            //                                     listdropdown: INSPECTIONstdVAR
-            //                                         .List_INCOMING_CALCULATE,
-            //                                     onChangeinside: (d, k) {
-            //                                       INSPECTIONstdVAR
-            //                                           .INCOMING_CALCULATE = d;
-            //                                     },
-            //                                     value: INSPECTIONstdVAR
-            //                                         .INCOMING_CALCULATE,
-            //                                     height: 40,
-            //                                     width: 400,
-            //                                   ),
-            //                                   if (INSPECTIONstdVAR
-            //                                       .INCOMING_CAL_K1b)
-            //                                     ComInputText(
-            //                                       nLimitedChar: 100,
-            //                                       sLabel: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K1_N,
-
-            //                                       height: 40,
-            //                                       width: 200,
-            //                                       isContr: INSPECTIONstdVAR
-            //                                           .iscontrol,
-            //                                       // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                       fnContr: (input) {
-            //                                         setState(() {
-            //                                           INSPECTIONstdVAR
-            //                                               .iscontrol = input;
-            //                                         });
-            //                                       },
-            //                                       sValue: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K1,
-            //                                       returnfunc: (String s) {
-            //                                         INSPECTIONstdVAR
-            //                                             .INCOMING_CAL_K1 = s;
-            //                                       },
-            //                                     ),
-            //                                   if (INSPECTIONstdVAR
-            //                                       .INCOMING_CAL_K2b)
-            //                                     ComInputText(
-            //                                       nLimitedChar: 100,
-            //                                       sLabel: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K2_N,
-            //                                       height: 40,
-            //                                       width: 200,
-            //                                       isContr: INSPECTIONstdVAR
-            //                                           .iscontrol,
-            //                                       // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                       fnContr: (input) {
-            //                                         setState(() {
-            //                                           INSPECTIONstdVAR
-            //                                               .iscontrol = input;
-            //                                         });
-            //                                       },
-            //                                       sValue: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K2,
-            //                                       returnfunc: (String s) {
-            //                                         INSPECTIONstdVAR
-            //                                             .INCOMING_CAL_K2 = s;
-            //                                       },
-            //                                     ),
-            //                                   if (INSPECTIONstdVAR
-            //                                       .INCOMING_CAL_K3b)
-            //                                     ComInputText(
-            //                                       nLimitedChar: 100,
-            //                                       sLabel: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K3_N,
-            //                                       height: 40,
-            //                                       width: 200,
-            //                                       isContr: INSPECTIONstdVAR
-            //                                           .iscontrol,
-            //                                       // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                       fnContr: (input) {
-            //                                         setState(() {
-            //                                           INSPECTIONstdVAR
-            //                                               .iscontrol = input;
-            //                                         });
-            //                                       },
-            //                                       sValue: INSPECTIONstdVAR
-            //                                           .INCOMING_CAL_K3,
-            //                                       returnfunc: (String s) {
-            //                                         INSPECTIONstdVAR
-            //                                             .INCOMING_CAL_K3 = s;
-            //                                       },
-            //                                     ),
-            //                                 ],
-            //                               )
-            //                             : null,
-            //                         SCMARK: "SCMARK",
-            //                         WIDGETSCMARK: Column(
-            //                           children: [
-            //                             AdvanceDropDown(
-            //                               imgpath:
-            //                                   'assets/icons/icon-down_4@3x.png',
-            //                               listdropdown: INSPECTIONstdVAR
-            //                                   .List_INCOMING_SCMARK,
-            //                               onChangeinside: (d, k) {
-            //                                 setState(() {
-            //                                   INSPECTIONstdVAR.INCOMING_SCMARK =
-            //                                       d;
-            //                                 });
-            //                               },
-            //                               value:
-            //                                   INSPECTIONstdVAR.INCOMING_SCMARK,
-            //                               height: 40,
-            //                               width: 400,
-            //                             ),
-            //                             if (INSPECTIONstdVAR.INCOMING_SCMARK ==
-            //                                 'YES')
-            //                               AdvanceDropDown(
-            //                                 imgpath:
-            //                                     'assets/icons/icon-down_4@3x.png',
-            //                                 listdropdown: [
-            //                                   MapEntry("-", "-"),
-            //                                   MapEntry("1", "1"),
-            //                                   MapEntry("2", "2")
-            //                                 ],
-            //                                 onChangeinside: (d, k) {
-            //                                   INSPECTIONstdVAR
-            //                                       .INCOMING_SCMARKtype = d;
-            //                                 },
-            //                                 value: INSPECTIONstdVAR
-            //                                     .INCOMING_SCMARKtype,
-            //                                 height: 40,
-            //                                 width: 400,
-            //                               ),
-            //                           ],
-            //                         ),
-            //                         SCMARKtype: "SCMARKtype",
-            //                         ShowSCMARKtype: false,
-            //                         DOCUMENT: "DOCUMENT",
-            //                         WIDGETDOCUMENT: ComInputText(
-            //                           nLimitedChar: 100,
-            //                           height: 40,
-            //                           width: 400,
-            //                           isContr: INSPECTIONstdVAR.iscontrol,
-            //                           isEnabled:
-            //                               INSPECTIONstdVAR.ACTION_isEnabled,
-            //                           fnContr: (input) {
-            //                             setState(() {
-            //                               INSPECTIONstdVAR.iscontrol = input;
-            //                             });
-            //                           },
-            //                           sValue:
-            //                               INSPECTIONstdVAR.INCOMING_DOCUMENT,
-            //                           returnfunc: (String s) {
-            //                             INSPECTIONstdVAR.INCOMING_DOCUMENT = s;
-            //                           },
-            //                         ),
-            //                         METHOD: "METHOD",
-            //                         WIDGETMETHOD: Column(
-            //                           children: [
-            //                             AdvanceDropDown(
-            //                               imgpath:
-            //                                   'assets/icons/icon-down_4@3x.png',
-            //                               listdropdown: INSPECTIONstdVAR
-            //                                   .List_INCOMING_METHOD,
-            //                               onChangeinside: (d, k) {
-            //                                 INSPECTIONstdVAR.INCOMING_METHOD =
-            //                                     d;
-            //                               },
-            //                               value:
-            //                                   INSPECTIONstdVAR.INCOMING_METHOD,
-            //                               height: 40,
-            //                               width: 400,
-            //                             ),
-            //                             if (INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMATdata ==
-            //                                     'Picture' ||
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMATdata ==
-            //                                     'OCR') ...[
-            //                               AdvanceDropDown(
-            //                                 imgpath:
-            //                                     'assets/icons/icon-down_4@3x.png',
-            //                                 listdropdown: INSPECTIONstdVAR
-            //                                     .List_INCOMING_IMGreaddata,
-            //                                 onChangeinside: (d, k) {
-            //                                   INSPECTIONstdVAR
-            //                                       .INCOMING_IMGreaddata = d;
-            //                                 },
-            //                                 value: INSPECTIONstdVAR
-            //                                     .INCOMING_IMGreaddata,
-            //                                 height: 40,
-            //                                 width: 400,
-            //                               ),
-            //                               AdvanceDropDown(
-            //                                 imgpath:
-            //                                     'assets/icons/icon-down_4@3x.png',
-            //                                 listdropdown: INSPECTIONstdVAR
-            //                                     .List_INCOMING_IMGno,
-            //                                 onChangeinside: (d, k) {
-            //                                   INSPECTIONstdVAR.INCOMING_IMGno =
-            //                                       d;
-            //                                 },
-            //                                 value:
-            //                                     INSPECTIONstdVAR.INCOMING_IMGno,
-            //                                 height: 40,
-            //                                 width: 400,
-            //                               )
-            //                             ],
-            //                           ],
-            //                         ),
-            //                         IMGreaddata: "IMGreaddata",
-            //                         WIDGETIMGreaddata: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown: INSPECTIONstdVAR
-            //                               .List_INCOMING_IMGreaddata,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_IMGreaddata =
-            //                                 d;
-            //                           },
-            //                           value:
-            //                               INSPECTIONstdVAR.INCOMING_IMGreaddata,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         IMGno: "IMGno",
-            //                         WIDGETIMGno: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown:
-            //                               INSPECTIONstdVAR.List_INCOMING_IMGno,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_IMGno = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_IMGno,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         LOAD: "LOAD",
-            //                         WIDGETLOAD: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown:
-            //                               INSPECTIONstdVAR.List_INCOMING_LOAD,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_LOAD = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_LOAD,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         GT: "GT",
-            //                         WIDGETGT: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown:
-            //                               INSPECTIONstdVAR.List_INCOMING_GT,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_GT = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_GT,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         CALCULATE: "CALCULATE",
-            //                         SPECIFICATIONve: "SPECIFICATIONve",
-            //                         WIDGETSPECIFICATIONve: Column(
-            //                           children: [
-            //                             if (INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMAT !=
-            //                                     'Text' &&
-            //                                 INSPECTIONstdVAR
-            //                                         .INCOMING_RESULTFORMAT !=
-            //                                     'Picture') ...[
-            //                               SizedBox(
-            //                                 width: 200,
-            //                                 child: AdvanceDropDown(
-            //                                   imgpath:
-            //                                       'assets/icons/icon-down_4@3x.png',
-            //                                   listdropdown: [
-            //                                     const MapEntry("-", "-"),
-            //                                     const MapEntry("BTW", "BTW"),
-            //                                     const MapEntry(
-            //                                         "LOL(<)", "LOL(<)"),
-            //                                     const MapEntry(
-            //                                         "HIM(>)", "HIM(>)"),
-            //                                     const MapEntry(
-            //                                         "Actual", "Actual"),
-            //                                   ],
-            //                                   onChangeinside: (d, k) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .condition = d;
-            //                                     context
-            //                                         .read<BlocPageRebuild>()
-            //                                         .rebuildPage();
-            //                                   },
-            //                                   value: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .condition,
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                 ),
-            //                               ),
-            //                               if (INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .condition ==
-            //                                   'BTW') ...[
-            //                                 ComInputText(
-            //                                   nLimitedChar: 100,
-            //                                   sLabel: "BTW_HI",
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                   isContr:
-            //                                       INSPECTIONstdVAR.iscontrol,
-            //                                   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                   fnContr: (input) {
-            //                                     setState(() {
-            //                                       INSPECTIONstdVAR.iscontrol =
-            //                                           input;
-            //                                     });
-            //                                   },
-            //                                   sValue: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .BTW_HI,
-            //                                   returnfunc: (String s) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .BTW_HI = s;
-            //                                   },
-            //                                 ),
-            //                                 ComInputText(
-            //                                   nLimitedChar: 100,
-            //                                   sLabel: "BTW_LOW",
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                   isContr:
-            //                                       INSPECTIONstdVAR.iscontrol,
-            //                                   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                   fnContr: (input) {
-            //                                     setState(() {
-            //                                       INSPECTIONstdVAR.iscontrol =
-            //                                           input;
-            //                                     });
-            //                                   },
-            //                                   sValue: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .BTW_LOW,
-            //                                   returnfunc: (String s) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .BTW_LOW = s;
-            //                                   },
-            //                                 ),
-            //                               ],
-            //                               if (INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .condition ==
-            //                                   'HIM(>)') ...[
-            //                                 ComInputText(
-            //                                   nLimitedChar: 100,
-            //                                   sLabel: "HIM_L",
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                   isContr:
-            //                                       INSPECTIONstdVAR.iscontrol,
-            //                                   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                   fnContr: (input) {
-            //                                     setState(() {
-            //                                       INSPECTIONstdVAR.iscontrol =
-            //                                           input;
-            //                                     });
-            //                                   },
-            //                                   sValue: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .HIM_L,
-            //                                   returnfunc: (String s) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .HIM_L = s;
-            //                                   },
-            //                                 ),
-            //                               ],
-            //                               if (INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .condition ==
-            //                                   'LOL(<)') ...[
-            //                                 ComInputText(
-            //                                   nLimitedChar: 100,
-            //                                   sLabel: "LOL_H",
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                   isContr:
-            //                                       INSPECTIONstdVAR.iscontrol,
-            //                                   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                   fnContr: (input) {
-            //                                     setState(() {
-            //                                       INSPECTIONstdVAR.iscontrol =
-            //                                           input;
-            //                                     });
-            //                                   },
-            //                                   sValue: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .LOL_H,
-            //                                   returnfunc: (String s) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .LOL_H = s;
-            //                                   },
-            //                                 ),
-            //                               ],
-            //                               if (INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.condition == 'HIM(>)' ||
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_SPECIFICATIONveOB
-            //                                           .condition ==
-            //                                       'LOL(<)' ||
-            //                                   INSPECTIONstdVAR
-            //                                           .INCOMING_SPECIFICATIONveOB
-            //                                           .condition ==
-            //                                       'BTW') ...[
-            //                                 ComInputText(
-            //                                   nLimitedChar: 100,
-            //                                   sLabel: "TARGET",
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                   isContr:
-            //                                       INSPECTIONstdVAR.iscontrol,
-            //                                   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                                   fnContr: (input) {
-            //                                     setState(() {
-            //                                       INSPECTIONstdVAR.iscontrol =
-            //                                           input;
-            //                                     });
-            //                                   },
-            //                                   sValue: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATIONveOB
-            //                                       .TARGET,
-            //                                   returnfunc: (String s) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONveOB
-            //                                         .TARGET = s;
-            //                                   },
-            //                                 ),
-            //                               ],
-            //                             ] else ...[
-            //                               SizedBox(
-            //                                 width: 200,
-            //                                 child: AdvanceDropDown(
-            //                                   imgpath:
-            //                                       'assets/icons/icon-down_4@3x.png',
-            //                                   listdropdown: INSPECTIONstdVAR
-            //                                       .List_INCOMING_SPECIFICATIONt,
-            //                                   onChangeinside: (d, k) {
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATION = d;
-            //                                     INSPECTIONstdVAR
-            //                                         .INCOMING_SPECIFICATIONstr = k;
-            //                                   },
-            //                                   value: INSPECTIONstdVAR
-            //                                       .INCOMING_SPECIFICATION,
-            //                                   height: 40,
-            //                                   width: 200,
-            //                                 ),
-            //                               ),
-            //                             ],
-            //                           ],
-            //                         ),
-            //                         UNIT: "UNIT",
-            //                         WIDGETUNIT: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown:
-            //                               INSPECTIONstdVAR.List_INCOMING_UNIT,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_UNIT = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_UNIT,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         CONVERSE: "CONVERSE",
-            //                         WIDGETCONVERSE: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown: INSPECTIONstdVAR
-            //                               .List_INCOMING_UNIT_CONVERST,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR
-            //                                 .INCOMING_UNIT_CONVERST = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR
-            //                               .INCOMING_UNIT_CONVERST,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         POSITION: "POSITION",
-            //                         WIDGETPOSITION: ComInputText(
-            //                           nLimitedChar: 100,
-
-            //                           height: 40,
-            //                           width: 400,
-            //                           isContr: INSPECTIONstdVAR.iscontrol,
-            //                           // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                           fnContr: (input) {
-            //                             print(input);
-            //                             setState(() {
-            //                               setState(() {
-            //                                 INSPECTIONstdVAR.iscontrol = input;
-            //                               });
-            //                             });
-            //                           },
-            //                           sValue: INSPECTIONstdVAR.INCOMING_POINT,
-            //                           returnfunc: (String s) {
-            //                             INSPECTIONstdVAR.INCOMING_POINT = s;
-            //                           },
-            //                         ),
-            //                         PCS: "PCS",
-            //                         WIDGETPCS: ComInputText(
-            //                           nLimitedChar: 100,
-
-            //                           height: 40,
-            //                           width: 400,
-            //                           isContr: INSPECTIONstdVAR.iscontrol,
-            //                           // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                           fnContr: (input) {
-            //                             setState(() {
-            //                               INSPECTIONstdVAR.iscontrol = input;
-            //                             });
-            //                           },
-            //                           sValue: INSPECTIONstdVAR.INCOMING_PCS,
-            //                           returnfunc: (String s) {
-            //                             INSPECTIONstdVAR.INCOMING_PCS = s;
-            //                           },
-            //                         ),
-            //                         FREQUENCY: "FREQUENCY",
-            //                         WIDGETFREQUENCY: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown: INSPECTIONstdVAR
-            //                               .List_INCOMING_FREQUENCY,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_FREQUENCY = d;
-            //                           },
-            //                           value:
-            //                               INSPECTIONstdVAR.INCOMING_FREQUENCY,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         REMARK: "REMARK",
-            //                         WIDGETREMARK: ComInputText(
-            //                           nLimitedChar: 100,
-
-            //                           height: 40,
-            //                           width: 400,
-            //                           isContr: INSPECTIONstdVAR.iscontrol,
-            //                           // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-            //                           fnContr: (input) {
-            //                             setState(() {
-            //                               INSPECTIONstdVAR.iscontrol = input;
-            //                             });
-            //                           },
-            //                           sValue: INSPECTIONstdVAR.INCOMING_REMARK,
-            //                           returnfunc: (String s) {
-            //                             INSPECTIONstdVAR.INCOMING_REMARK = s;
-            //                           },
-            //                         ),
-            //                         SWreport: "SWreport",
-            //                         WIDGETSWreport: AdvanceDropDown(
-            //                           imgpath:
-            //                               'assets/icons/icon-down_4@3x.png',
-            //                           listdropdown: INSPECTIONstdVAR
-            //                               .List_INCOMING_SWreport,
-            //                           onChangeinside: (d, k) {
-            //                             INSPECTIONstdVAR.INCOMING_SWreport = d;
-            //                           },
-            //                           value: INSPECTIONstdVAR.INCOMING_SWreport,
-            //                           height: 40,
-            //                           width: 400,
-            //                         ),
-            //                         ACTION: "ACTION",
-            //                         isACTION: true,
-            //                         ACTIONMODE: 1,
-            //                         SAVEFN: (v) {
-            //                           print(INSPECTIONstdVAR
-            //                               .INCOMING_RESULTFORMAT);
-            //                           if (INSPECTIONstdVAR
-            //                                       .INCOMING_RESULTFORMAT ==
-            //                                   'Text' ||
-            //                               INSPECTIONstdVAR
-            //                                       .INCOMING_RESULTFORMAT ==
-            //                                   'Picture') {
-            //                             context
-            //                                 .read<UPLOADSPEC_Bloc>()
-            //                                 .add(UPLOADSPEC_INCOMING_TEXT());
-            //                           } else if (INSPECTIONstdVAR
-            //                                       .INCOMING_RESULTFORMAT ==
-            //                                   'OCR' ||
-            //                               INSPECTIONstdVAR
-            //                                       .INCOMING_RESULTFORMAT ==
-            //                                   'Number' ||
-            //                               INSPECTIONstdVAR
-            //                                       .INCOMING_RESULTFORMAT ==
-            //                                   'Graph') {
-            //                             context
-            //                                 .read<UPLOADSPEC_Bloc>()
-            //                                 .add(UPLOADSPEC_INCOMING_NUM());
-            //                           }
-            //                         },
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //         )
-            //       ] else ...[
-            //         // InkWell(
-            //         //   onTap: () {
-            //         //     newdata();
-            //         //   },
-            //         //   child: Container(
-            //         //     color: Colors.blue,
-            //         //     height: 40,
-            //         //     // width: 100,
-            //         //     child: Center(
-            //         //       child: Text(
-            //         //         "NEW",
-            //         //         style: TextStyle(
-            //         //           color: Colors.white,
-            //         //         ),
-            //         //       ),
-            //         //     ),
-            //         //   ),
-            //         // ),
-            //       ],
-            //       SizedBox(
-            //         height: 24,
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
@@ -1923,12 +267,18 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                               SizedBox(
                                 height: 40,
                                 child: PATTERNtable(
+                                  ShowCORStype: false,
+                                  ShowLOAD: false,
+                                  ShowGT: false,
+                                  ShowCONVERSE: false,
+                                  // ShowFORMULA: false,
                                   BGColorMain: Colors.grey.shade400,
                                   seq: "seq",
-                                  ITEMs: "ITEMs",
+                                  ITEMs: "ITEM",
+                                  K1CALDATA: "Constant",
                                   CORStype: "CORStype",
                                   FORMULA: "FORMULA",
-                                  SCMARK: "SCMARK",
+                                  SCMARK: "SC MARK",
                                   SCMARKtype: "SCMARKtype",
                                   DOCUMENT: "DOCUMENT",
                                   METHOD: "METHOD",
@@ -1936,7 +286,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                   IMGno: "IMGno",
                                   LOAD: "LOAD",
                                   GT: "GT",
-                                  SPECIFICATIONve: "SPECIFICATIONve",
+                                  SPECIFICATIONve: "SPECIFICATION",
                                   CALCULATE: "CALCULATE",
                                   UNIT: "UNIT",
                                   CONVERSE: "CONVERSE",
@@ -1944,20 +294,29 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                   PCS: "PCS",
                                   FREQUENCY: "FREQUENCY",
                                   REMARK: "REMARK",
-                                  SWreport: "SWreport",
+                                  SWreport: "SHOW REPORT",
                                   ACTION: "ACTION",
                                   isACTION: false,
                                 ),
                               ),
                               for (int i = 0; i < _Mdata.FINAL.length; i++) ...[
                                 Container(
-                                  constraints: BoxConstraints(minHeight: 100),
+                                  height: 40,
                                   child: PATTERNtable(
+                                    ShowCORStype: false,
+                                    ShowLOAD: false,
+                                    ShowGT: false,
+                                    ShowCONVERSE: false,
+                                    // ShowFORMULA: false,
                                     BGColorMain: i.isEven
                                         ? Colors.grey.shade50
                                         : Colors.grey.shade200,
                                     seq: _Mdata.FINAL[i].seq,
                                     ITEMs: _Mdata.FINAL[i].ITEMsname,
+
+                                    K1CALDATA: KSW(_Mdata.FINAL[i].K1b,
+                                        _Mdata.FINAL[i].K1v),
+                                    // "${_Mdata.FINAL[i].K1b}(${_Mdata.FINAL[i].K1v})",
                                     CORStype: "-",
                                     FORMULA: "-",
                                     SCMARK: _Mdata.FINAL[i].SCMARK,
@@ -1977,8 +336,9 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     PCS: _Mdata.FINAL[i].PCS,
                                     FREQUENCY: _Mdata.FINAL[i].FREQUENCY,
                                     REMARK: _Mdata.FINAL[i].REMARK,
-                                    SWreport: "-",
+                                    SWreport: _Mdata.FINAL[i].SWreport,
                                     ACTION: "ACTION",
+
                                     EditFN: (v) {
                                       //
                                       // print(_Mdata.FINAL[i].ITEMsname);
@@ -2274,6 +634,8 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
 
                                               INSPECTIONstdVAR.FINAL_METHOD =
                                                   _Mdata.FINAL[i].METHOD;
+
+                                              // print(response);
                                             }
 
                                             INSPECTIONstdVAR.FINAL_IMGreaddata =
@@ -2526,21 +888,26 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                 SizedBox(
                                   height: 40,
                                   child: PATTERNtable(
+                                    ShowCORStype: false,
+                                    ShowLOAD: false,
+                                    ShowGT: false,
+                                    ShowCONVERSE: false,
+                                    // ShowFORMULA: false,
                                     BGColorMain: Colors.grey.shade400,
                                     seq: "seq",
-                                    ITEMs: "ITEMs",
+                                    ITEMs: "ITEM",
+                                    K1CALDATA: "Constant",
                                     CORStype: "CORStype",
                                     FORMULA: "FORMULA",
-                                    SCMARK: "SCMARK",
+                                    SCMARK: "SC MARK",
                                     SCMARKtype: "SCMARKtype",
-                                    ShowSCMARKtype: false,
                                     DOCUMENT: "DOCUMENT",
                                     METHOD: "METHOD",
                                     IMGreaddata: "IMGreaddata",
                                     IMGno: "IMGno",
                                     LOAD: "LOAD",
                                     GT: "GT",
-                                    SPECIFICATIONve: "SPECIFICATIONve",
+                                    SPECIFICATIONve: "SPECIFICATION",
                                     CALCULATE: "CALCULATE",
                                     UNIT: "UNIT",
                                     CONVERSE: "CONVERSE",
@@ -2548,7 +915,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     PCS: "PCS",
                                     FREQUENCY: "FREQUENCY",
                                     REMARK: "REMARK",
-                                    SWreport: "SWreport",
+                                    SWreport: "SHOW REPORT",
                                     ACTION: "ACTION",
                                     isACTION: false,
                                   ),
@@ -2556,6 +923,11 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                 Container(
                                   constraints: BoxConstraints(minHeight: 80),
                                   child: PATTERNtable(
+                                    ShowCORStype: false,
+                                    ShowLOAD: false,
+                                    ShowGT: false,
+                                    ShowCONVERSE: false,
+                                    // ShowFORMULA: false,
                                     BGColorMain: Colors.white,
                                     seq: INSPECTIONstdVAR.FINAL_seq,
                                     ITEMs: "ITEMs",
@@ -2777,6 +1149,53 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                       height: 40,
                                       width: 400,
                                     ),
+                                    //   INSPECTIONstdVAR.FINAL_RESULTFORMAT ==
+                                    K1CALDATA: "Constant",
+                                    WIDGETK1CALDATA: Column(
+                                      children: [
+                                        AdvanceDropDown(
+                                          isEnable: INSPECTIONstdVAR
+                                                  .FINAL_RESULTFORMAT !=
+                                              'CAL1',
+                                          imgpath:
+                                              'assets/icons/icon-down_4@3x.png',
+                                          listdropdown: [
+                                            MapEntry("-", "-"),
+                                            MapEntry("Kcon.", "1"),
+                                            MapEntry("Kvar.", "2")
+                                          ],
+                                          onChangeinside: (d, k) {
+                                            setState(() {
+                                              INSPECTIONstdVAR.FINAL_K1b = d;
+                                            });
+                                          },
+                                          value: INSPECTIONstdVAR.FINAL_K1b,
+                                          height: 40,
+                                          width: 80,
+                                        ),
+                                        if (INSPECTIONstdVAR.FINAL_K1b ==
+                                            '1') ...[
+                                          ComInputText(
+                                            nLimitedChar: 100,
+                                            isNumberOnly: true,
+                                            height: 40,
+                                            width: 200,
+                                            isContr: INSPECTIONstdVAR.iscontrol,
+                                            // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                            fnContr: (input) {
+                                              setState(() {
+                                                INSPECTIONstdVAR.iscontrol =
+                                                    input;
+                                              });
+                                            },
+                                            sValue: INSPECTIONstdVAR.FINAL_K1v,
+                                            returnfunc: (String s) {
+                                              INSPECTIONstdVAR.FINAL_K1v = s;
+                                            },
+                                          ),
+                                        ]
+                                      ],
+                                    ),
                                     CORStype: "CORStype",
                                     WIDGETCORStype: AdvanceDropDown(
                                       imgpath:
@@ -2790,12 +1209,13 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                       height: 40,
                                       width: 400,
                                     ),
+
                                     FORMULA: "NO USE",
                                     //                   if (INSPECTIONstdVAR.FINAL_RESULTFORMATdata ==
                                     //  'Calculate')
                                     WIDGETFORMULA: INSPECTIONstdVAR
                                                 .FINAL_RESULTFORMATdata ==
-                                            'Calculate'
+                                            'CAL1'
                                         ? Column(
                                             children: [
                                               AdvanceDropDown(
@@ -2912,8 +1332,8 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                                 'assets/icons/icon-down_4@3x.png',
                                             listdropdown: [
                                               MapEntry("-", "-"),
-                                              MapEntry("1", "1"),
-                                              MapEntry("2", "2")
+                                              MapEntry("TYPE 1", "1"),
+                                              MapEntry("TYPE 2", "2")
                                             ],
                                             onChangeinside: (d, k) {
                                               INSPECTIONstdVAR
@@ -2954,8 +1374,26 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                               'assets/icons/icon-down_4@3x.png',
                                           listdropdown: INSPECTIONstdVAR
                                               .List_FINAL_METHOD,
-                                          onChangeinside: (d, k) {
+                                          onChangeinside: (d, k) async {
                                             INSPECTIONstdVAR.FINAL_METHOD = d;
+                                            print(d);
+                                            final response = await Dio().post(
+                                              serverGB + "GET_FINAL_DOCUMENT",
+                                              data: {
+                                                "METHODid": INSPECTIONstdVAR
+                                                    .FINAL_METHOD,
+                                              },
+                                            );
+
+                                            // print(response);
+                                            if (response.statusCode == 200) {
+                                              var databuff = response.data;
+
+                                              INSPECTIONstdVAR.iscontrol = true;
+                                              INSPECTIONstdVAR.FINAL_DOCUMENT =
+                                                  databuff['DOCUMENT'];
+                                              setState(() {});
+                                            }
                                           },
                                           value: INSPECTIONstdVAR.FINAL_METHOD,
                                           height: 40,
@@ -3067,9 +1505,9 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                                 const MapEntry("-", "-"),
                                                 const MapEntry("BTW", "BTW"),
                                                 const MapEntry(
-                                                    "LOL(<)", "LOL(<)"),
+                                                    "Lower", "LOL(<)"),
                                                 const MapEntry(
-                                                    "HIM(>)", "HIM(>)"),
+                                                    "Higher", "HIM(>)"),
                                                 const MapEntry(
                                                     "Actual", "Actual"),
                                               ],
@@ -3381,7 +1819,9 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                           INSPECTIONstdVAR.FINAL_RESULTFORMAT ==
                                               'Number' ||
                                           INSPECTIONstdVAR.FINAL_RESULTFORMAT ==
-                                              'Graph') {
+                                              'Graph' ||
+                                          INSPECTIONstdVAR.FINAL_RESULTFORMAT ==
+                                              'CAL1') {
                                         context
                                             .read<UPLOADSPEC_Bloc>()
                                             .add(UPLOADSPEC_FINAL_NUM());
@@ -3431,7 +1871,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
               height: 300,
-              width: 2000,
+              width: 2500,
               // width: 1000,
               child: Column(
                 children: [
@@ -3517,4 +1957,16 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
   }
 
   // FINALPOPUP(context);
+}
+
+String KSW(String type, String value) {
+  String output = '-';
+
+  if (type == '1') {
+    output = 'Kcon(${value})';
+  } else if (type == '2') {
+    output = 'Kvar';
+  }
+
+  return output;
 }

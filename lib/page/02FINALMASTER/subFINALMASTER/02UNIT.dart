@@ -245,7 +245,7 @@ class _UNITACTIONState extends State<UNITACTION> {
               height: 40,
               width: 400,
               isContr: FINALMASTERvar.iscontrol,
-              isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
+              // isEnabled: FINALMASTERvar.masterID_ACTION_isEnabled,
               fnContr: (input) {
                 setState(() {
                   FINALMASTERvar.iscontrol = input;

@@ -26,6 +26,8 @@ class PATTERNtable extends StatelessWidget {
     this.FREQUENCY,
     this.REMARK,
     this.SWreport,
+    this.K1CALDATA,
+
     //
     this.Showseq,
     this.ShowITEMs,
@@ -48,6 +50,7 @@ class PATTERNtable extends StatelessWidget {
     this.ShowFREQUENCY,
     this.ShowREMARK,
     this.ShowSWreport,
+    this.ShowK1CALDATA,
     //
     this.WIDGETseq,
     this.WIDGETITEMs,
@@ -70,6 +73,7 @@ class PATTERNtable extends StatelessWidget {
     this.WIDGETFREQUENCY,
     this.WIDGETREMARK,
     this.WIDGETSWreport,
+    this.WIDGETK1CALDATA,
     //
     this.ACTION,
     this.ACTIONMODE,
@@ -100,6 +104,8 @@ class PATTERNtable extends StatelessWidget {
   String? FREQUENCY;
   String? REMARK;
   String? SWreport;
+  String? K1CALDATA;
+
 //
   bool? Showseq;
   bool? ShowITEMs;
@@ -122,6 +128,7 @@ class PATTERNtable extends StatelessWidget {
   bool? ShowFREQUENCY;
   bool? ShowREMARK;
   bool? ShowSWreport;
+  bool? ShowK1CALDATA;
 //
   Widget? WIDGETseq;
   Widget? WIDGETITEMs;
@@ -144,6 +151,8 @@ class PATTERNtable extends StatelessWidget {
   Widget? WIDGETFREQUENCY;
   Widget? WIDGETREMARK;
   Widget? WIDGETSWreport;
+
+  Widget? WIDGETK1CALDATA;
 //
   String? ACTION;
   int? ACTIONMODE;
@@ -164,7 +173,7 @@ class PATTERNtable extends StatelessWidget {
             children: [
               if (Showseq ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: WIDGETseq == null
                       ? EACHCELL(
                           data: seq ?? "",
@@ -173,9 +182,10 @@ class PATTERNtable extends StatelessWidget {
                       : WIDGETseq ?? SizedBox(),
                 ),
               ],
+
               if (ShowITEMs ?? true) ...[
                 Expanded(
-                  flex: 2,
+                  flex: 20,
                   child: WIDGETITEMs == null
                       ? EACHCELL(
                           data: ITEMs ?? "",
@@ -184,10 +194,31 @@ class PATTERNtable extends StatelessWidget {
                       : WIDGETITEMs ?? SizedBox(),
                 ),
               ],
-
+              if (ShowK1CALDATA ?? true) ...[
+                Expanded(
+                  flex: 5,
+                  child: WIDGETK1CALDATA == null
+                      ? EACHCELL(
+                          data: K1CALDATA ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETK1CALDATA ?? SizedBox(),
+                ),
+              ],
+              if (ShowFORMULA ?? true) ...[
+                Expanded(
+                  flex: 20,
+                  child: WIDGETFORMULA == null
+                      ? EACHCELL(
+                          data: FORMULA ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETFORMULA ?? SizedBox(),
+                ),
+              ],
               if (ShowSCMARK ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: WIDGETSCMARK == null
                       ? EACHCELL(
                           data: SCMARK ?? "",
@@ -209,7 +240,7 @@ class PATTERNtable extends StatelessWidget {
               // ],
               if (ShowDOCUMENT ?? true) ...[
                 Expanded(
-                  flex: 2,
+                  flex: 8,
                   child: WIDGETDOCUMENT == null
                       ? EACHCELL(
                           data: DOCUMENT ?? "",
@@ -220,7 +251,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowMETHOD ?? true) ...[
                 Expanded(
-                  flex: 2,
+                  flex: 8,
                   child: WIDGETMETHOD == null
                       ? EACHCELL(
                           data: METHOD ?? "",
@@ -253,7 +284,7 @@ class PATTERNtable extends StatelessWidget {
               // ],
               if (ShowLOAD ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: WIDGETLOAD == null
                       ? EACHCELL(
                           data: LOAD ?? "",
@@ -264,7 +295,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowGT ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: WIDGETGT == null
                       ? EACHCELL(
                           data: GT ?? "",
@@ -275,7 +306,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowSPECIFICATIONve ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 8,
                   child: WIDGETSPECIFICATIONve == null
                       ? EACHCELL(
                           data: SPECIFICATIONve ?? "",
@@ -297,7 +328,7 @@ class PATTERNtable extends StatelessWidget {
               // ],
               if (ShowUNIT ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 4,
                   child: WIDGETUNIT == null
                       ? EACHCELL(
                           data: UNIT ?? "",
@@ -306,20 +337,10 @@ class PATTERNtable extends StatelessWidget {
                       : WIDGETUNIT ?? SizedBox(),
                 ),
               ],
-              if (ShowFORMULA ?? true) ...[
-                Expanded(
-                  flex: 2,
-                  child: WIDGETFORMULA == null
-                      ? EACHCELL(
-                          data: FORMULA ?? "",
-                          tapCell: (v) {},
-                        )
-                      : WIDGETFORMULA ?? SizedBox(),
-                ),
-              ],
+
               if (ShowCONVERSE ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: WIDGETCONVERSE == null
                       ? EACHCELL(
                           data: CONVERSE ?? "",
@@ -330,7 +351,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowPOSITION ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: WIDGETPOSITION == null
                       ? EACHCELL(
                           data: POSITION ?? "",
@@ -341,7 +362,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowPCS ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 4,
                   child: WIDGETPCS == null
                       ? EACHCELL(
                           data: PCS ?? "",
@@ -352,7 +373,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowFREQUENCY ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: WIDGETFREQUENCY == null
                       ? EACHCELL(
                           data: FREQUENCY ?? "",
@@ -363,7 +384,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowREMARK ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 20,
                   child: WIDGETREMARK == null
                       ? EACHCELL(
                           data: REMARK ?? "",
@@ -374,7 +395,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowCORStype ?? true) ...[
                 Expanded(
-                  flex: 2,
+                  flex: 20,
                   child: WIDGETCORStype == null
                       ? EACHCELL(
                           data: CORStype ?? "",
@@ -385,7 +406,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowSWreport ?? true) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: WIDGETSWreport == null
                       ? EACHCELL(
                           data: SWreport ?? "",
@@ -396,7 +417,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (_ACTIONMODE == 0) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: isACTION ?? false
                       ? ACTIONCELL(
                           DeleteFN: (v) {
@@ -417,7 +438,7 @@ class PATTERNtable extends StatelessWidget {
                 ),
               ] else if (_ACTIONMODE == 1) ...[
                 Expanded(
-                  flex: 1,
+                  flex: 10,
                   child: isACTION ?? false
                       ? ACTIONCELLs(
                           SaveFN: (v) {
