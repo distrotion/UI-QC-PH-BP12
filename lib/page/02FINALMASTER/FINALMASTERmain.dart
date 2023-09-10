@@ -11,6 +11,7 @@ import 'subFINALMASTER/04MACHINENAME.dart';
 import 'subFINALMASTER/05METHODE.dart';
 import 'subFINALMASTER/06SPECIALSPEC.dart';
 import 'subFINALMASTER/07CALCULATE.dart';
+import 'subFINALMASTER/08COMMENT.dart';
 
 late BuildContext FINALMASTERmainCONTEXT;
 
@@ -64,6 +65,9 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
     }
     if (_data.position == 'CALCULATEget') {
       FINALMASTERvar.CALCULATEget = _data.data;
+    }
+    if (_data.position == 'COMMENTget') {
+      FINALMASTERvar.COMMENTget = _data.data;
     }
     FINALMASTERvar.TYPEddBUFF = widget.DD!.TYPEdd;
     FINALMASTERvar.ITEMSddBUFF = widget.DD!.ITEMSdd;
@@ -164,6 +168,18 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
                     ? StepState.indexed
                     : StepState.indexed,
               ),
+              Step(
+                title: const Text(
+                  'COMMENT',
+                ),
+                content: COMMENTtable(
+                  data: FINALMASTERvar.COMMENTget,
+                ),
+                isActive: FINALMASTERvar.currentStep == 7,
+                state: FINALMASTERvar.currentStep == 7
+                    ? StepState.indexed
+                    : StepState.indexed,
+              ),
             ],
           ),
         ),
@@ -203,6 +219,8 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_SPECIALSPECget());
       } else if (step == 6) {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_CALCULATEget());
+      } else if (step == 7) {
+        context.read<FINALMASTER_Bloc>().add(FINALMASTER_COMMENTget());
       }
 
       //FINALMASTER_CALCULATEget

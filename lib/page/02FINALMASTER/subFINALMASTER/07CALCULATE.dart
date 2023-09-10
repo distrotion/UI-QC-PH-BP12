@@ -138,7 +138,7 @@ class CALCULATEtable extends StatelessWidget {
                 FINALMASTERvar.masterID_CALCULATE_ACTION = _data[i].f21;
                 CALCULATEPOPUP(context);
               },
-              masterIDtext: "masterID",
+              masterIDtext: _data[i].f21,
             ),
           )
       ],

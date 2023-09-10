@@ -407,12 +407,31 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
                   : '',
             },
           );
+
           String DOCUMENT = '';
           if (rest.statusCode == 200) {
             var databuff = rest.data;
             // print(databuff);
             DOCUMENT = databuff['DOCUMENT'] != null
                 ? databuff['DOCUMENT'].toString()
+                : "";
+          }
+
+          final rest2 = await Dio().post(
+            serverGB + "GET_FINAL_COMMENT",
+            data: {
+              "masterID": databuff[0]['FINAL'][i]['REMARK'] != null
+                  ? databuff[0]['FINAL'][i]['REMARK'].toString()
+                  : '',
+            },
+          );
+          String COMMENT = '';
+
+          if (rest2.statusCode == 200) {
+            var databuff = rest2.data;
+            // print(databuff);
+            COMMENT = databuff['COMMENT'] != null
+                ? databuff['COMMENT'].toString()
                 : "";
           }
           output.FINAL.add(
@@ -588,9 +607,10 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               MODE: databuff[0]['FINAL'][i]['MODE'] != null
                   ? databuff[0]['FINAL'][i]['MODE'].toString()
                   : '',
-              REMARK: databuff[0]['FINAL'][i]['REMARK'] != null
-                  ? databuff[0]['FINAL'][i]['REMARK'].toString()
-                  : '',
+              // REMARK: databuff[0]['FINAL'][i]['REMARK'] != null
+              //     ? databuff[0]['FINAL'][i]['REMARK'].toString()
+              //     : '',
+              REMARK: COMMENT,
               LOAD: databuff[0]['FINAL'][i]['LOAD'] != null
                   ? databuff[0]['FINAL'][i]['LOAD'].toString()
                   : '',

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 
+import '../../bloc/cubit/NotificationEvent.dart';
 import '../../data/global.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 //print(databuff[0]['FINAL']);
 
@@ -63,5 +65,33 @@ Future<dynamic> INSPECTION_INCOMING_GET_STEP2(String ITEMs) async {
     databuff = response.data;
   }
 
+  return databuff;
+}
+
+Future<dynamic> COPYDATA(String CP_MASTER, String CP_NEW) async {
+  final response = await Dio().post(
+    serverGB + "copy_cp",
+    data: {
+      "CP_MASTER": CP_MASTER,
+      "CP_NEW": CP_NEW,
+    },
+  );
+  var databuff;
+  if (response.statusCode == 200) {
+    databuff = response.data;
+    print(databuff);
+    if (databuff['msg'] != null) {
+      if (databuff['msg'].toString() == 'OK') {
+        BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+            "msg", "data update", enumNotificationlist.Success);
+      } else {
+        BlocProvider.of<BlocNotification>(contextGB)
+            .UpdateNotification("msg", "Error", enumNotificationlist.Error);
+      }
+    } else {
+      BlocProvider.of<BlocNotification>(contextGB)
+          .UpdateNotification("msg", "Error", enumNotificationlist.Error);
+    }
+  }
   return databuff;
 }

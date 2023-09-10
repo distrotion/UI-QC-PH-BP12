@@ -97,51 +97,127 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                 // color: Colors.orange,
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
-              height: 300,
+              height: 210,
               // width: 1000,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        // SizedBox(
+                        //   height: 28,
+                        //   child: Text("CUSTOMER :"),
+                        // ),
                         SizedBox(
-                          height: 40,
-                          child: Text(INSPECTIONstdVAR.CP),
+                          height: 28,
+                          child: Text("CUST :"),
                         ),
                         SizedBox(
-                          height: 40,
-                          child: Text(INSPECTIONstdVAR.FG),
+                          height: 28,
+                          child: Text("PART NO :"),
                         ),
                         SizedBox(
-                          height: 40,
-                          child: Text(INSPECTIONstdVAR.CUSTOMER),
+                          height: 28,
+                          child: Text("PARTNAME :"),
+                        ),
+                        SizedBox(
+                          height: 28,
+                          child: Text("MAT.CP :"),
+                        ),
+                        SizedBox(
+                          height: 28,
+                          child: Text("MAT.FG :"),
+                        ),
+                        SizedBox(
+                          height: 28,
+                          child: Text("MATERIAL :"),
                         ),
                       ],
                     ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        // SizedBox(
+                        //   height: 28,
+                        //   child: Text(INSPECTIONstdVAR.CUST_FULLNM),
+                        // ),
                         SizedBox(
-                          height: 40,
+                          height: 28,
+                          child: Text(INSPECTIONstdVAR.CUSTOMER),
+                        ),
+                        SizedBox(
+                          height: 28,
                           child: Text(INSPECTIONstdVAR.PART),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 28,
                           child: Text(INSPECTIONstdVAR.PARTNAME),
                         ),
                         SizedBox(
-                          height: 40,
-                          child: Text(INSPECTIONstdVAR.MATERIAL),
+                          height: 28,
+                          child: Text(INSPECTIONstdVAR.CP),
                         ),
                         SizedBox(
-                          height: 40,
-                          child: Text(INSPECTIONstdVAR.CUST_FULLNM),
+                          height: 28,
+                          child: Text(INSPECTIONstdVAR.FG),
+                        ),
+                        SizedBox(
+                          height: 28,
+                          child: Text(INSPECTIONstdVAR.MATERIAL),
                         ),
                       ],
                     ),
                   ],
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 40,
+              child: Row(
+                children: [
+                  ComInputText(
+                    nLimitedChar: 100,
+                    isNumberOnly: true,
+                    height: 40,
+                    width: 200,
+                    isContr: INSPECTIONstdVAR.iscontrol,
+                    // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                    fnContr: (input) {
+                      setState(() {
+                        INSPECTIONstdVAR.iscontrol = input;
+                      });
+                    },
+                    sValue: INSPECTIONstdVAR.copypo,
+                    returnfunc: (String s) {
+                      INSPECTIONstdVAR.copypo = s;
+                    },
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      //
+                      COPYDATA(INSPECTIONstdVAR.CP, INSPECTIONstdVAR.copypo);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 125,
+                      color: Colors.blue,
+                      child: Center(
+                        child: Text("COPY"),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             SizedBox(
@@ -271,7 +347,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                   ShowLOAD: false,
                                   ShowGT: false,
                                   ShowCONVERSE: false,
-                                  // ShowFORMULA: false,
+                                  ShowFORMULA: false,
                                   BGColorMain: Colors.grey.shade400,
                                   seq: "seq",
                                   ITEMs: "ITEM",
@@ -307,7 +383,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     ShowLOAD: false,
                                     ShowGT: false,
                                     ShowCONVERSE: false,
-                                    // ShowFORMULA: false,
+                                    ShowFORMULA: false,
                                     BGColorMain: i.isEven
                                         ? Colors.grey.shade50
                                         : Colors.grey.shade200,
@@ -612,6 +688,26 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                                               .toString()));
                                                 }
                                               }
+                                              print(result['COMMENT']);
+                                              if (result['COMMENT'] != null &&
+                                                  result['COMMENT'].length >
+                                                      0) {
+                                                for (int i = 0;
+                                                    i <
+                                                        result['COMMENT']
+                                                            .length;
+                                                    i++) {
+                                                  INSPECTIONstdVAR
+                                                          .List_FINAL_COMMENT
+                                                      .add(MapEntry(
+                                                          result['COMMENT'][i]
+                                                                  ['COMMENT']
+                                                              .toString(),
+                                                          result['COMMENT'][i]
+                                                                  ['masterID']
+                                                              .toString()));
+                                                }
+                                              }
                                             });
 
                                             INSPECTIONstdVAR.FINAL_COREtype =
@@ -737,6 +833,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                             }
                                             INSPECTIONstdVAR.FINAL_REMARK =
                                                 _Mdata.FINAL[i].REMARK;
+
                                             INSPECTIONstdVAR
                                                     .FINAL_RESULTFORMATdata =
                                                 _Mdata.FINAL[i].RESULTFORMAT;
@@ -892,7 +989,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     ShowLOAD: false,
                                     ShowGT: false,
                                     ShowCONVERSE: false,
-                                    // ShowFORMULA: false,
+                                    ShowFORMULA: false,
                                     BGColorMain: Colors.grey.shade400,
                                     seq: "seq",
                                     ITEMs: "ITEM",
@@ -927,7 +1024,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                     ShowLOAD: false,
                                     ShowGT: false,
                                     ShowCONVERSE: false,
-                                    // ShowFORMULA: false,
+                                    ShowFORMULA: false,
                                     BGColorMain: Colors.white,
                                     seq: INSPECTIONstdVAR.FINAL_seq,
                                     ITEMs: "ITEMs",
@@ -1137,6 +1234,26 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                                               .toString(),
                                                           result['SPECIFICATION']
                                                                       [i]
+                                                                  ['masterID']
+                                                              .toString()));
+                                                }
+                                              }
+                                              print(result['COMMENT']);
+                                              if (result['COMMENT'] != null &&
+                                                  result['COMMENT'].length >
+                                                      0) {
+                                                for (int i = 0;
+                                                    i <
+                                                        result['COMMENT']
+                                                            .length;
+                                                    i++) {
+                                                  INSPECTIONstdVAR
+                                                          .List_FINAL_COMMENT
+                                                      .add(MapEntry(
+                                                          result['COMMENT'][i]
+                                                                  ['COMMENT']
+                                                              .toString(),
+                                                          result['COMMENT'][i]
                                                                   ['masterID']
                                                               .toString()));
                                                 }
@@ -1770,23 +1887,36 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                       width: 400,
                                     ),
                                     REMARK: "REMARK",
-                                    WIDGETREMARK: ComInputText(
-                                      nLimitedChar: 100,
-
+                                    WIDGETREMARK: AdvanceDropDown(
+                                      imgpath:
+                                          'assets/icons/icon-down_4@3x.png',
+                                      listdropdown:
+                                          INSPECTIONstdVAR.List_FINAL_COMMENT,
+                                      onChangeinside: (d, k) {
+                                        INSPECTIONstdVAR.FINAL_REMARK = d;
+                                      },
+                                      value: INSPECTIONstdVAR.FINAL_REMARK,
                                       height: 40,
                                       width: 400,
-                                      isContr: INSPECTIONstdVAR.iscontrol,
-                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-                                      fnContr: (input) {
-                                        setState(() {
-                                          INSPECTIONstdVAR.iscontrol = input;
-                                        });
-                                      },
-                                      sValue: INSPECTIONstdVAR.FINAL_REMARK,
-                                      returnfunc: (String s) {
-                                        INSPECTIONstdVAR.FINAL_REMARK = s;
-                                      },
                                     ),
+
+                                    // ComInputText(
+                                    //   nLimitedChar: 100,
+
+                                    //   height: 40,
+                                    //   width: 400,
+                                    //   isContr: INSPECTIONstdVAR.iscontrol,
+                                    //   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                    //   fnContr: (input) {
+                                    //     setState(() {
+                                    //       INSPECTIONstdVAR.iscontrol = input;
+                                    //     });
+                                    //   },
+                                    //   sValue: INSPECTIONstdVAR.FINAL_REMARK,
+                                    //   returnfunc: (String s) {
+                                    //     INSPECTIONstdVAR.FINAL_REMARK = s;
+                                    //   },
+                                    // ),
                                     SWreport: "SWreport",
                                     WIDGETSWreport: AdvanceDropDown(
                                       imgpath:

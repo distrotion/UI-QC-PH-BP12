@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/LoginEvent.dart';
+import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../page/page1.dart';
 import '../../page/page2.dart';
@@ -52,6 +53,7 @@ class _Data_Menu_mainmenuState extends State<Data_Menu_mainmenu> {
   //const Data_Menu_mainmenu({Key? key},this.pagein) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // print(USERDATA.UserLV);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center, //Axis-Y
       crossAxisAlignment: CrossAxisAlignment.center, //Axis-X
@@ -84,72 +86,74 @@ class _Data_Menu_mainmenuState extends State<Data_Menu_mainmenu> {
         //   page: Page1(),
         //   Lv: 1,
         // ),
-        InkWell(
-          onTap: () {
-            setState(() {
-              if (menupop) {
-                menupop = false;
-              } else {
-                menupop = true;
-              }
-            });
-          },
-          child: SizedBox(
-            height: 50,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        right: 6.0, left: 6, top: 4.0, bottom: 4.0),
-                    child: Container(
-                      height: 24,
-                      width: 24,
-                      child: Icon(
-                        menupop
-                            ? Icons.arrow_drop_up_outlined
-                            : Icons.arrow_drop_down_outlined,
-                        color: Colors.white,
+        if (USERDATA.UserLV > 51) ...[
+          InkWell(
+            onTap: () {
+              setState(() {
+                if (menupop) {
+                  menupop = false;
+                } else {
+                  menupop = true;
+                }
+              });
+            },
+            child: SizedBox(
+              height: 50,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          right: 6.0, left: 6, top: 4.0, bottom: 4.0),
+                      child: Container(
+                        height: 24,
+                        width: 24,
+                        child: Icon(
+                          menupop
+                              ? Icons.arrow_drop_up_outlined
+                              : Icons.arrow_drop_down_outlined,
+                          color: Colors.white,
+                        ),
+                        // decoration: BoxDecoration(
+                        //     image: DecorationImage(
+                        //         image: AssetImage(getShowHidePassword_ImgPath()),
+                        //         fit: BoxFit.fitHeight))
                       ),
-                      // decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //         image: AssetImage(getShowHidePassword_ImgPath()),
-                      //         fit: BoxFit.fitHeight))
                     ),
-                  ),
-                  const Text(
-                    "MASTER MENU",
-                    style: TextStyle(
-                      fontFamily: 'Mitr',
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      fontStyle: FontStyle.normal,
-                      letterSpacing: 0,
+                    const Text(
+                      "MASTER MENU",
+                      style: TextStyle(
+                        fontFamily: 'Mitr',
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        fontStyle: FontStyle.normal,
+                        letterSpacing: 0,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        if (menupop) ...[
-          // menu_sub(
-          //   name: "INCOMMING",
-          //   page: Page2(),
-          //   Lv: 1,
-          // ),
-          // menu_sub(
-          //   name: "INPROCESS",
-          //   page: Page2(),
-          //   Lv: 1,
-          // ),
-          menu_sub(
-            name: "FINAL",
-            page: Page2(),
-            Lv: 1,
-          ),
+          if (menupop) ...[
+            // menu_sub(
+            //   name: "INCOMMING",
+            //   page: Page2(),
+            //   Lv: 1,
+            // ),
+            // menu_sub(
+            //   name: "INPROCESS",
+            //   page: Page2(),
+            //   Lv: 1,
+            // ),
+            menu_sub(
+              name: "FINAL",
+              page: Page2(),
+              Lv: 1,
+            ),
+          ],
         ],
         // menu_normal(
         //   name: "MASTER FINAL",

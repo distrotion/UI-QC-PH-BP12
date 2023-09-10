@@ -10,6 +10,9 @@ class INSPECTIONstdVAR {
   static String MATERIAL = "-";
   static String CUST_FULLNM = "-";
 
+  static String copypo = "-";
+  //copypo
+
   //----------------------------
   static List<MapEntry<String, String>> List_INCOMING_ITEMs = [
     MapEntry("-", "-")
@@ -71,6 +74,9 @@ class INSPECTIONstdVAR {
     MapEntry("-", "-")
   ];
   static List<MapEntry<String, String>> List_FINAL_SPECIFICATIONt = [
+    MapEntry("-", "-")
+  ];
+  static List<MapEntry<String, String>> List_FINAL_COMMENT = [
     MapEntry("-", "-")
   ];
   //------------------------------------------------------------------------------------ List_INCOMING_SPECIFICATIONt
@@ -269,6 +275,8 @@ clearFINAL() {
   INSPECTIONstdVAR.List_FINAL_CORETYPE = [MapEntry("-", "-")];
   INSPECTIONstdVAR.List_FINAL_CALCULATE = [MapEntry("-", "-")];
   INSPECTIONstdVAR.List_FINAL_SPECIFICATIONt = [MapEntry("-", "-")];
+
+  INSPECTIONstdVAR.List_FINAL_COMMENT = [MapEntry("-", "-")];
 }
 
 clearINCOMING() {

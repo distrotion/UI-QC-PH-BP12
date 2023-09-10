@@ -24,6 +24,9 @@ class FINALMASTER_SPECIALSPECget extends FINALMASTER_Event {}
 
 class FINALMASTER_CALCULATEget extends FINALMASTER_Event {}
 
+class FINALMASTER_COMMENTget extends FINALMASTER_Event {}
+
+//FINALMASTER_COMMENTget
 class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
   FINALMASTER_Bloc() : super(DatasetWithSatatus(data: [])) {
     on<FINALMASTER_TYPEget>((event, emit) {
@@ -51,6 +54,10 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
 
     on<FINALMASTER_CALCULATEget>((event, emit) {
       return _FINALMASTER_CALCULATEget(DatasetWithSatatus(data: []), emit);
+    });
+
+    on<FINALMASTER_COMMENTget>((event, emit) {
+      return _FINALMASTER_COMMENTget(DatasetWithSatatus(data: []), emit);
     });
   }
   Future<void> _FINALMASTER_TYPEget(
@@ -445,6 +452,48 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
 
     emit(output);
   }
+
+  Future<void> _FINALMASTER_COMMENTget(
+      DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
+    //--------------------------------------------------------
+    DatasetWithSatatus output = DatasetWithSatatus(
+      status: "",
+      position: "",
+      data: [],
+    );
+    //--------------------------------------------------------
+    final response = await Dio().post(
+      server + "GET_COMMENT_FINAL",
+      data: {},
+    );
+
+    if (response.statusCode == 200) {
+      // var databuff = jsonDecode(response.body);
+      var databuff = response.data;
+      // print(databuff);
+      output = DatasetWithSatatus(
+        status: "OK",
+        position: "COMMENTget",
+        data: [],
+      );
+      if (databuff.length > 0) {
+        for (int i = 0; i < databuff.length; i++) {
+          output.data.add(dataset(
+            id: i,
+            f01: databuff[i]['COMMENT'] != null
+                ? databuff[i]['COMMENT'].toString()
+                : "",
+            f21: databuff[i]['masterID'] != null
+                ? databuff[i]['masterID'].toString()
+                : "",
+          ));
+        }
+      }
+    } else {
+      //
+    }
+    emit(output);
+  }
 }
 
 class DatasetWithSatatus {
@@ -457,3 +506,5 @@ class DatasetWithSatatus {
   String position;
   List<dataset> data;
 }
+
+//_FINALMASTER_COMMENTget

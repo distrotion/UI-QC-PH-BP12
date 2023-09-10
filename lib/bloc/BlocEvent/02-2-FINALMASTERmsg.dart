@@ -12,6 +12,7 @@ import '../../page/02FINALMASTER/subFINALMASTER/04MACHINENAME.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/05METHODE.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/06SPECIALSPEC.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/07CALCULATE.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/08COMMENT.dart';
 import '02-1-FINALMASTERget.dart';
 
 //-------------------------------------------------
@@ -33,6 +34,8 @@ class FINALMASTERmsg_SPECIFICATION_DROP extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_CALCULATE_DROP extends FINALMASTERmsg_Event {}
 
+class FINALMASTERmsg_COMMENT_DROP extends FINALMASTERmsg_Event {}
+
 //----------------------------------------------------------------
 
 class FINALMASTERmsg_TYPE_EDIT extends FINALMASTERmsg_Event {}
@@ -48,6 +51,8 @@ class FINALMASTERmsg_METHODE_EDIT extends FINALMASTERmsg_Event {}
 class FINALMASTERmsg_SPECIFICATION_EDIT extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_CALCULATE_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_COMMENT_EDIT extends FINALMASTERmsg_Event {}
 
 //------------------------------------------------------------------
 
@@ -82,6 +87,10 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     on<FINALMASTERmsg_CALCULATE_DROP>((event, emit) {
       return _FINALMASTERmsg_CALCULATE_DROP('', emit);
     });
+
+    on<FINALMASTERmsg_COMMENT_DROP>((event, emit) {
+      return _FINALMASTERmsg_COMMENT_DROP('', emit);
+    });
     //----------------------------------------------
 
     on<FINALMASTERmsg_TYPE_EDIT>((event, emit) {
@@ -110,6 +119,10 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
 
     on<FINALMASTERmsg_CALCULATE_EDIT>((event, emit) {
       return _FINALMASTERmsg_CALCULATE_EDIT('', emit);
+    });
+
+    on<FINALMASTERmsg_COMMENT_EDIT>((event, emit) {
+      return _FINALMASTERmsg_COMMENT_EDIT('', emit);
     });
 
     //FINALMASTERmsg_CALCULATE_EDIT
@@ -221,6 +234,27 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     );
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_CALCULATEget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_COMMENT_DROP(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+
+    final response = await Dio().post(
+      server + "DROP_COMMENT_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_COMMENT,
+      },
+    );
+    if (response.statusCode == 200) {
+      // var databuff = jsonDecode(response.body);
+      var databuff = response.data;
+    } else {
+      //
+    }
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_COMMENTget());
     emit(output);
   }
 
@@ -360,6 +394,22 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_CALCULATEget());
     Navigator.pop(CALCULATEtablecontext);
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_COMMENT_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_COMMENT_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_COMMENT_ACTION,
+        "COMMENT": FINALMASTERvar.COMMENT_COMMENT_ACTION,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_COMMENTget());
+    Navigator.pop(COMMENTtableContext);
     emit(output);
   }
 

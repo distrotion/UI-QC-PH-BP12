@@ -9,6 +9,7 @@ class FINALMASTERvar {
   static List<dataset> METHODEget = [];
   static List<dataset> SPECIALSPECget = [];
   static List<dataset> CALCULATEget = [];
+  static List<dataset> COMMENTget = [];
   static String masterID_TYPE = '';
   static String masterID_UNIT = '';
   static String masterID_ITEMS = '';
@@ -16,6 +17,7 @@ class FINALMASTERvar {
   static String masterID_METHODE = '';
   static String masterID_SPECIALSPEC = '';
   static String masterID_CALCULATE = '';
+  static String masterID_COMMENT = '';
   //
   static List<MapEntry<String, String>> TYPEddBUFF = [];
   static List<MapEntry<String, String>> ITEMSddBUFF = [];
@@ -107,5 +109,13 @@ class FINALMASTERvar {
   static int CALCULATE_SORT_F = 0;
   static int CALCULATE_SORT_ST = 0;
 
-  //--------
+  //--------COMMENT
+
+  static String COMMENT_COMMENT_ACTION = '';
+  static String masterID_COMMENT_ACTION = '';
+
+  static int COMMENT_SORT_F = 0;
+  static int COMMENT_SORT_ST = 0;
+
+  static bool ischeck_COMMENT = false;
 }
