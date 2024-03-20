@@ -12,6 +12,8 @@ import 'subFINALMASTER/05METHODE.dart';
 import 'subFINALMASTER/06SPECIALSPEC.dart';
 import 'subFINALMASTER/07CALCULATE.dart';
 import 'subFINALMASTER/08COMMENT.dart';
+import 'subFINALMASTER/09DESIMAL.dart';
+import 'subFINALMASTER/10CALCULATECON.dart';
 
 late BuildContext FINALMASTERmainCONTEXT;
 
@@ -35,6 +37,7 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
   @override
   void initState() {
     super.initState();
+    FINALMASTERvar.UNITsBUFF = [MapEntry("", "-")];
     FINALMASTERvar.currentStep = 0;
     context.read<FINALMASTER_Bloc>().add(FINALMASTER_TYPEget());
     context.read<FINALMASTERdropdown_Bloc>().add(FINALMASTERdropdown_MASTER());
@@ -69,6 +72,13 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
     if (_data.position == 'COMMENTget') {
       FINALMASTERvar.COMMENTget = _data.data;
     }
+    if (_data.position == 'DESIMALget') {
+      FINALMASTERvar.DESIMALget = _data.data;
+    }
+    if (_data.position == 'CALCULATECONget') {
+      FINALMASTERvar.CALCULATECONget = _data.data;
+    }
+
     FINALMASTERvar.TYPEddBUFF = widget.DD!.TYPEdd;
     FINALMASTERvar.ITEMSddBUFF = widget.DD!.ITEMSdd;
     FINALMASTERvar.METHODddBUFF = widget.DD!.METHODdd;
@@ -76,6 +86,7 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
     FINALMASTERvar.GRAPHTYPEBUFF = widget.DD!.GRAPHTYPE;
     FINALMASTERvar.INSTRUMENTSBUFF = widget.DD!.INSTRUMENTS;
     FINALMASTERvar.CALCULATEBUFF = widget.DD!.CALCULATE;
+    FINALMASTERvar.UNITBUFF = widget.DD!.UNIT;
 
 //CALCULATE
     return Column(
@@ -180,6 +191,30 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
                     ? StepState.indexed
                     : StepState.indexed,
               ),
+              Step(
+                title: const Text(
+                  'DESIMAL',
+                ),
+                content: DESIMALtable(
+                  data: FINALMASTERvar.DESIMALget,
+                ),
+                isActive: FINALMASTERvar.currentStep == 8,
+                state: FINALMASTERvar.currentStep == 8
+                    ? StepState.indexed
+                    : StepState.indexed,
+              ),
+              Step(
+                title: const Text(
+                  'CAL2',
+                ),
+                content: CALCULATECONtable(
+                  data: FINALMASTERvar.CALCULATECONget,
+                ),
+                isActive: FINALMASTERvar.currentStep == 9,
+                state: FINALMASTERvar.currentStep == 9
+                    ? StepState.indexed
+                    : StepState.indexed,
+              ),
             ],
           ),
         ),
@@ -221,9 +256,12 @@ class _FINALMASTERmainState extends State<FINALMASTERmain> {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_CALCULATEget());
       } else if (step == 7) {
         context.read<FINALMASTER_Bloc>().add(FINALMASTER_COMMENTget());
+      } else if (step == 8) {
+        // context.read<FINALMASTER_Bloc>().add(FINALMASTER_UNITget());
+      } else if (step == 9) {
+        context.read<FINALMASTER_Bloc>().add(FINALMASTER_CALCULATECONget());
       }
 
-      //FINALMASTER_CALCULATEget
       FINALMASTERvar.currentStep = step;
     });
   }

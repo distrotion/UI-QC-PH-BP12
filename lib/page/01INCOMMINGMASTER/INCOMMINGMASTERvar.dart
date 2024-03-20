@@ -1,6 +1,6 @@
 import '../../model/model.dart';
 
-class FINALMASTERvar {
+class INCOMMINGMASTERvar {
   static int currentStep = 0;
   static List<dataset> TYPEget = [];
   static List<dataset> UNITget = [];
@@ -10,8 +10,6 @@ class FINALMASTERvar {
   static List<dataset> SPECIALSPECget = [];
   static List<dataset> CALCULATEget = [];
   static List<dataset> COMMENTget = [];
-  static List<dataset> DESIMALget = [];
-  static List<dataset> CALCULATECONget = [];
   static String masterID_TYPE = '';
   static String masterID_UNIT = '';
   static String masterID_ITEMS = '';
@@ -20,9 +18,6 @@ class FINALMASTERvar {
   static String masterID_SPECIALSPEC = '';
   static String masterID_CALCULATE = '';
   static String masterID_COMMENT = '';
-  static String masterID_DESIMAL = '';
-  static String masterID_CALCULATECON = '';
-
   //
   static List<MapEntry<String, String>> TYPEddBUFF = [];
   static List<MapEntry<String, String>> ITEMSddBUFF = [];
@@ -31,7 +26,6 @@ class FINALMASTERvar {
   static List<MapEntry<String, String>> GRAPHTYPEBUFF = [];
   static List<MapEntry<String, String>> INSTRUMENTSBUFF = [];
   static List<MapEntry<String, String>> CALCULATEBUFF = [];
-  static List<MapEntry<String, String>> UNITBUFF = [];
 //
   static bool masterID_ACTION_isEnabled = false;
   //--------TYPE
@@ -124,39 +118,4 @@ class FINALMASTERvar {
   static int COMMENT_SORT_ST = 0;
 
   static bool ischeck_COMMENT = false;
-  //--------COMMENT
-  static List<MapEntry<String, String>> UNITsBUFF = [];
-  static String DESIMAL_ITEMs_ACTION = '';
-  static String DESIMAL_UNITs_ACTION = '';
-  static String DESIMAL_DESIMAL_ACTION = '';
-  static String DESIMAL_NORMAL_ACTION = '';
-  static String DESIMAL_CONVERST_ACTION = '';
-  static String masterID_DESIMAL_ACTION = '';
-
-  static int DESIMAL_SORT_F = 0;
-  static int DESIMAL_SORT_ST = 0;
-
-  static bool ischeck_DESIMAL = false;
-
-  //--------CALCULATECON
-  static String CALCULATECON_CALCULATECON_ACTION = '';
-  static String FORMULA_CALCULATECON_ACTION = '';
-  static String X_CALCULATECON_ACTION = '';
-  static bool Xb_CALCULATECON_ACTION = false;
-  static String Y_CALCULATECON_ACTION = '';
-  static bool Yb_CALCULATECON_ACTION = false;
-  static String Z_CALCULATECON_ACTION = '';
-  static bool Zb_CALCULATECON_ACTION = false;
-  static String I_CALCULATECON_ACTION = '';
-  static bool Ib_CALCULATECON_ACTION = false;
-  static String K1_CALCULATECON_ACTION = '';
-  static bool K1b_CALCULATECON_ACTION = false;
-  static String K2_CALCULATECON_ACTION = '';
-  static bool K2b_CALCULATECON_ACTION = false;
-  static String K3_CALCULATECON_ACTION = '';
-  static bool K3b_CALCULATECON_ACTION = false;
-  static String masterID_CALCULATECON_ACTION = '';
-
-  static int CALCULATECON_SORT_F = 0;
-  static int CALCULATECON_SORT_ST = 0;
 }

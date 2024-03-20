@@ -48,11 +48,13 @@ class ACTIONCELL extends StatelessWidget {
     super.key,
     this.BGcolor,
     this.isdelete,
+    this.isEdit,
     required this.EditFN,
     required this.DeleteFN,
   });
   Color? BGcolor;
   bool? isdelete;
+  bool? isEdit;
   Function(String)? EditFN;
   Function(String)? DeleteFN;
 
@@ -63,12 +65,14 @@ class ACTIONCELL extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: () {
-              EditFN!("EditFN");
-            },
-            child: Icon(Icons.edit),
-          ),
+          if (isEdit ?? true) ...[
+            InkWell(
+              onTap: () {
+                EditFN!("EditFN");
+              },
+              child: Icon(Icons.edit),
+            ),
+          ],
           if (isdelete ?? true) ...[
             const SizedBox(
               width: 10,

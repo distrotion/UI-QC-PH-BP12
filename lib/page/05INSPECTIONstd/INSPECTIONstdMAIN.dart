@@ -26,6 +26,15 @@ import 'package:image/image.dart' as IMG;
 
 late BuildContext INSPECTIONstdMAINcontext;
 
+ScrollController controllerIN01 = ScrollController();
+ScrollController controllerIN02 = ScrollController();
+
+ScrollController controllerIN03 = ScrollController();
+ScrollController controllerIN04 = ScrollController();
+
+ScrollController controllerIN05 = ScrollController();
+ScrollController controllerIN06 = ScrollController();
+
 class INSPECTIONstdMAIN extends StatefulWidget {
   INSPECTIONstdMAIN({
     super.key,
@@ -48,11 +57,11 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
   @override
   Widget build(BuildContext context) {
     INSPECTIONstdMAINcontext = context;
-    ScrollController controllerIN01 = ScrollController();
-    ScrollController controllerIN02 = ScrollController();
+    // ScrollController controllerIN01 = ScrollController();
+    // ScrollController controllerIN02 = ScrollController();
     InspectionSTD _Mdata = widget.Mdata ??
         InspectionSTD(
-          INCOMING: [],
+          INCOMMING: [],
           INPROCESS: [],
           FINAL: [],
         );
@@ -75,6 +84,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                   child: InkWell(
                     onTap: () {
                       //
+
                       CuPage = Page4();
                       MainBodyContext.read<ChangePage_Bloc>()
                           .add(ChangePage_nodrower());
@@ -220,6 +230,11 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 15,
+            ),
+            tablemaster(_Mdata, controllerIN03, controllerIN04),
+            // //----->>>
             SizedBox(
               height: 15,
             ),
@@ -1497,6 +1512,8 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                             final response = await Dio().post(
                                               serverGB + "GET_FINAL_DOCUMENT",
                                               data: {
+                                                "ITEMs": INSPECTIONstdVAR
+                                                    .FINAL_ITEMs,
                                                 "METHODid": INSPECTIONstdVAR
                                                     .FINAL_METHOD,
                                               },
@@ -1525,8 +1542,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                           AdvanceDropDown(
                                             imgpath:
                                                 'assets/icons/icon-down_4@3x.png',
-                                            listdropdown: INSPECTIONstdVAR
-                                                .List_FINAL_IMGreaddata,
+                                            listdropdown: MethodePIC,
                                             onChangeinside: (d, k) {
                                               INSPECTIONstdVAR
                                                   .FINAL_IMGreaddata = d;
@@ -1856,23 +1872,71 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                                       },
                                     ),
                                     PCS: "PCS",
-                                    WIDGETPCS: ComInputText(
-                                      nLimitedChar: 100,
+                                    WIDGETPCS: (INSPECTIONstdVAR
+                                                .FINAL_RESULTFORMAT ==
+                                            'Text')
+                                        ? Column(
+                                            children: [
+                                              AdvanceDropDown(
+                                                isEnable: false,
+                                                imgpath:
+                                                    'assets/icons/icon-down_4@3x.png',
+                                                listdropdown: [
+                                                  MapEntry("-", "-"),
+                                                  MapEntry("AQL", "AQL"),
+                                                ],
+                                                onChangeinside: (d, k) {
+                                                  setState(() {
+                                                    INSPECTIONstdVAR.TEXTTYPE =
+                                                        d;
+                                                  });
+                                                },
+                                                value:
+                                                    INSPECTIONstdVAR.TEXTTYPE,
+                                                height: 40,
+                                                width: 80,
+                                              ),
+                                              ComInputText(
+                                                nLimitedChar: 100,
 
-                                      height: 40,
-                                      width: 400,
-                                      isContr: INSPECTIONstdVAR.iscontrol,
-                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
-                                      fnContr: (input) {
-                                        setState(() {
-                                          INSPECTIONstdVAR.iscontrol = input;
-                                        });
-                                      },
-                                      sValue: INSPECTIONstdVAR.FINAL_PCS,
-                                      returnfunc: (String s) {
-                                        INSPECTIONstdVAR.FINAL_PCS = s;
-                                      },
-                                    ),
+                                                height: 40,
+                                                width: 400,
+                                                isContr:
+                                                    INSPECTIONstdVAR.iscontrol,
+                                                // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                                fnContr: (input) {
+                                                  setState(() {
+                                                    INSPECTIONstdVAR.iscontrol =
+                                                        input;
+                                                  });
+                                                },
+                                                sValue:
+                                                    INSPECTIONstdVAR.FINAL_PCS,
+                                                returnfunc: (String s) {
+                                                  INSPECTIONstdVAR.FINAL_PCS =
+                                                      s;
+                                                },
+                                              ),
+                                            ],
+                                          )
+                                        : ComInputText(
+                                            nLimitedChar: 100,
+
+                                            height: 40,
+                                            width: 400,
+                                            isContr: INSPECTIONstdVAR.iscontrol,
+                                            // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                            fnContr: (input) {
+                                              setState(() {
+                                                INSPECTIONstdVAR.iscontrol =
+                                                    input;
+                                              });
+                                            },
+                                            sValue: INSPECTIONstdVAR.FINAL_PCS,
+                                            returnfunc: (String s) {
+                                              INSPECTIONstdVAR.FINAL_PCS = s;
+                                            },
+                                          ),
                                     FREQUENCY: "FREQUENCY",
                                     WIDGETFREQUENCY: AdvanceDropDown(
                                       imgpath:
@@ -1991,6 +2055,7 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
                 ],
               ),
             ),
+
             SizedBox(
               height: 15,
             ),
@@ -2086,7 +2151,1662 @@ class _INSPECTIONstdMAINState extends State<INSPECTIONstdMAIN> {
     );
   }
 
-  // FINALPOPUP(context);
+  Widget tablemaster(InspectionSTD _Mdata, ScrollController controllerINx1,
+      ScrollController controllerINx2) {
+    // InspectionSTD _Mdata = widget.Mdata ??
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+      ),
+      // height: 300,
+      // width: 1000,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 24,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 15,
+              ),
+              Text("INCOMMING PATTERN"),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  INSPECTION_INCOMMING_GET_STEP1(INSPECTIONstdVAR.CP)
+                      .then((dynamic result) {
+                    // print(result);
+                    clearINCOMMING();
+                    if (result['ITEMs'] != null) {
+                      if (result['ITEMs'].length > 0) {
+                        for (int i = 0; i < result['ITEMs'].length; i++) {
+                          INSPECTIONstdVAR.List_INCOMMING_ITEMs.add(MapEntry(
+                              result['ITEMs'][i]['ITEMs'].toString(),
+                              result['ITEMs'][i]['masterID'].toString()));
+
+                          INSPECTIONstdVAR.List_FINAL_ITEMs_set.add(
+                              List_FINAL_ITEMs_set_Class(
+                            ITEMs: result['ITEMs'][i]['ITEMs'] != null
+                                ? result['ITEMs'][i]['ITEMs'].toString()
+                                : '',
+                            RESULTFORMAT: result['ITEMs'][i]['RESULTFORMAT'] !=
+                                    null
+                                ? result['ITEMs'][i]['RESULTFORMAT'].toString()
+                                : '',
+                            TYPE: result['ITEMs'][i]['TYPE'] != null
+                                ? result['ITEMs'][i]['TYPE'].toString()
+                                : '',
+                            GRAPHTYPE: result['ITEMs'][i]['GRAPHTYPE'] != null
+                                ? result['ITEMs'][i]['GRAPHTYPE'].toString()
+                                : '',
+                            INTERSECTION: result['ITEMs'][i]['INTERSECTION'] !=
+                                    null
+                                ? result['ITEMs'][i]['INTERSECTION'].toString()
+                                : '',
+                            masterID: result['ITEMs'][i]['masterID'] != null
+                                ? result['ITEMs'][i]['masterID'].toString()
+                                : '',
+                          ));
+                        }
+                      }
+                    }
+
+                    setState(() {
+                      newdataINCOMMING();
+                    });
+                  });
+                },
+                child: Container(
+                  color: Colors.blue,
+                  height: 40,
+                  width: 100,
+                  child: Center(
+                    child: Text(
+                      "NEW",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Scrollbar(
+            controller: controllerINx1,
+            thumbVisibility: true,
+            interactive: true,
+            thickness: 10,
+            radius: Radius.circular(20),
+            child: SingleChildScrollView(
+              controller: controllerINx1,
+              // keyboardDismissBehavior:
+              //     ScrollViewKeyboardDismissBehavior.manual,
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                // height: 40,
+                width: 2500,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        child: PATTERNtable(
+                          ShowCORStype: false,
+                          ShowLOAD: false,
+                          ShowGT: false,
+                          ShowCONVERSE: false,
+                          ShowFORMULA: false,
+                          BGColorMain: Colors.grey.shade400,
+                          seq: "seq",
+                          ITEMs: "ITEM",
+                          K1CALDATA: "Constant",
+                          CORStype: "CORStype",
+                          FORMULA: "FORMULA",
+                          SCMARK: "SC MARK",
+                          SCMARKtype: "SCMARKtype",
+                          DOCUMENT: "DOCUMENT",
+                          METHOD: "METHOD",
+                          IMGreaddata: "IMGreaddata",
+                          IMGno: "IMGno",
+                          LOAD: "LOAD",
+                          GT: "GT",
+                          SPECIFICATIONve: "SPECIFICATION",
+                          CALCULATE: "CALCULATE",
+                          UNIT: "UNIT",
+                          CONVERSE: "CONVERSE",
+                          POSITION: "POSITION",
+                          PCS: "PCS",
+                          FREQUENCY: "FREQUENCY",
+                          REMARK: "REMARK",
+                          SWreport: "SHOW REPORT",
+                          ACTION: "ACTION",
+                          isACTION: false,
+                        ),
+                      ),
+                      for (int i = 0; i < _Mdata.INCOMMING.length; i++) ...[
+                        Container(
+                          height: 40,
+                          child: PATTERNtable(
+                            ShowCORStype: false,
+                            ShowLOAD: false,
+                            ShowGT: false,
+                            ShowCONVERSE: false,
+                            ShowFORMULA: false,
+                            BGColorMain: i.isEven
+                                ? Colors.grey.shade50
+                                : Colors.grey.shade200,
+                            seq: _Mdata.INCOMMING[i].seq,
+                            ITEMs: _Mdata.INCOMMING[i].ITEMsname,
+
+                            K1CALDATA: KSW(_Mdata.INCOMMING[i].K1b,
+                                _Mdata.INCOMMING[i].K1v),
+                            // "${_Mdata.FINAL[i].K1b}(${_Mdata.FINAL[i].K1v})",
+                            CORStype: "-",
+                            FORMULA: "-",
+                            SCMARK: _Mdata.INCOMMING[i].SCMARK,
+                            SCMARKtype: "-",
+                            DOCUMENT: _Mdata.INCOMMING[i].DOCUMENT,
+                            METHOD: _Mdata.INCOMMING[i].METHODname,
+                            IMGreaddata: "-",
+                            IMGno: "-",
+                            LOAD: _Mdata.INCOMMING[i].LOAD,
+                            GT: "-",
+                            SPECIFICATIONve:
+                                _Mdata.INCOMMING[i].SPECIFICATIONvename,
+                            CALCULATE: "-",
+                            UNIT: _Mdata.INCOMMING[i].UNITname,
+                            CONVERSE: _Mdata.INCOMMING[i].CONVERSEname,
+                            POSITION: _Mdata.INCOMMING[i].POINT,
+                            PCS: _Mdata.INCOMMING[i].PCS,
+                            FREQUENCY: _Mdata.INCOMMING[i].FREQUENCY,
+                            REMARK: _Mdata.INCOMMING[i].REMARK,
+                            SWreport: _Mdata.INCOMMING[i].SWreport,
+                            ACTION: "ACTION",
+
+                            EditFN: (v) {
+                              //
+                              // print(_Mdata.INCOMMING[i].ITEMsname);
+
+                              clearFINAL();
+                              INSPECTIONstdVAR.INCOMMING_seq =
+                                  _Mdata.INCOMMING[i].seq;
+                              //---------------------
+                              // INSPECTIONstdVAR.List_INCOMMING_ITEMs = [
+                              //   MapEntry("-", "-")
+                              // ];
+                              // INSPECTIONstdVAR.List_INCOMMING_ITEMs.add(
+                              //     MapEntry(_Mdata.INCOMMING[i].ITEMsname,
+                              //         _Mdata.INCOMMING[i].ITEMs));
+
+                              INSPECTION_FINAL_GET_STEP1(INSPECTIONstdVAR.CP)
+                                  .then((dynamic result) {
+                                // print(result);
+
+                                if (result['ITEMs'] != null) {
+                                  if (result['ITEMs'].length > 0) {
+                                    for (int i = 0;
+                                        i < result['ITEMs'].length;
+                                        i++) {
+                                      INSPECTIONstdVAR.List_FINAL_ITEMs.add(
+                                          MapEntry(
+                                              result['ITEMs'][i]['ITEMs']
+                                                  .toString(),
+                                              result['ITEMs'][i]['masterID']
+                                                  .toString()));
+
+                                      INSPECTIONstdVAR.List_INCOMMING_ITEMs_set
+                                          .add(List_INCOMMING_ITEMs_set_Class(
+                                        ITEMs:
+                                            result['ITEMs'][i]['ITEMs'] != null
+                                                ? result['ITEMs'][i]['ITEMs']
+                                                    .toString()
+                                                : '',
+                                        RESULTFORMAT: result['ITEMs'][i]
+                                                    ['RESULTFORMAT'] !=
+                                                null
+                                            ? result['ITEMs'][i]['RESULTFORMAT']
+                                                .toString()
+                                            : '',
+                                        TYPE: result['ITEMs'][i]['TYPE'] != null
+                                            ? result['ITEMs'][i]['TYPE']
+                                                .toString()
+                                            : '',
+                                        masterID: result['ITEMs'][i]
+                                                    ['masterID'] !=
+                                                null
+                                            ? result['ITEMs'][i]['masterID']
+                                                .toString()
+                                            : '',
+                                      ));
+                                    }
+                                  }
+                                }
+                                //
+                                INSPECTIONstdVAR.INCOMMING_ITEMs =
+                                    _Mdata.INCOMMING[i].ITEMs;
+
+                                for (int j = 0;
+                                    j <
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set.length;
+                                    j++) {
+                                  if (INSPECTIONstdVAR
+                                          .List_INCOMMING_ITEMs_set[j]
+                                          .masterID ==
+                                      _Mdata.INCOMMING[i].ITEMs) {
+                                    INSPECTIONstdVAR.INCOMMING_TYPE =
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set[j].TYPE;
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata =
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set[j]
+                                            .RESULTFORMAT;
+                                    break;
+                                  }
+                                }
+
+                                if (_Mdata.INCOMMING[i].ITEMs != '-') {
+                                  INSPECTION_INCOMMING_GET_STEP2(
+                                          _Mdata.INCOMMING[i].ITEMs)
+                                      .then((dynamic result) {
+                                    setState(() {
+                                      INSPECTIONstdVAR
+                                              .INCOMMING_RESULTFORMATdata =
+                                          result['RESULTFORMATdata'] != null
+                                              ? result['RESULTFORMATdata']
+                                                  .toString()
+                                              : '-';
+                                      if (result['METHOD'] != null &&
+                                          result['METHOD'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['METHOD'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_METHOD
+                                              .add(MapEntry(
+                                                  result['METHOD'][i]['METHOD']
+                                                      .toString(),
+                                                  result['METHOD'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['LOAD'] != null &&
+                                          result['LOAD'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['LOAD'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_LOAD
+                                              .add(MapEntry(
+                                                  result['LOAD'][i]['LOAD']
+                                                      .toString(),
+                                                  result['LOAD'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['CORETYPE'] != null &&
+                                          result['CORETYPE'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['CORETYPE'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_CORETYPE
+                                              .add(MapEntry(
+                                                  result['CORETYPE'][i]
+                                                          ['CORETYPE']
+                                                      .toString(),
+                                                  result['CORETYPE'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      if (result['GT'] != null &&
+                                          result['GT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['GT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_GT
+                                              .add(MapEntry(
+                                                  result['GT'][i]['GT']
+                                                      .toString(),
+                                                  result['GT'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['UNIT'] != null &&
+                                          result['UNIT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['UNIT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_UNIT
+                                              .add(MapEntry(
+                                                  result['UNIT'][i]['UNIT']
+                                                      .toString(),
+                                                  result['UNIT'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['UNIT'] != null &&
+                                          result['UNIT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['UNIT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_UNIT_CONVERST
+                                              .add(
+                                                  MapEntry(
+                                                      result['UNIT'][i]['UNIT']
+                                                          .toString(),
+                                                      result['UNIT'][i]
+                                                              ['masterID']
+                                                          .toString()));
+                                        }
+                                      }
+
+                                      if (result['FREQUENCY'] != null &&
+                                          result['FREQUENCY'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['FREQUENCY'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_FREQUENCY
+                                              .add(MapEntry(
+                                                  result['FREQUENCY'][i]
+                                                          ['FREQUENCY']
+                                                      .toString(),
+                                                  result['FREQUENCY'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      if (result['CALCULATE'] != null &&
+                                          result['CALCULATE'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['CALCULATE'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_CALCULATE
+                                              .add(MapEntry(
+                                                  result['CALCULATE'][i]
+                                                          ['CALCULATE']
+                                                      .toString(),
+                                                  result['CALCULATE'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['SPECIFICATION'] != null &&
+                                          result['SPECIFICATION'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['SPECIFICATION'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_SPECIFICATIONt
+                                              .add(MapEntry(
+                                                  result['SPECIFICATION'][i]
+                                                          ['SPECIFICATION']
+                                                      .toString(),
+                                                  result['SPECIFICATION'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      print(result['COMMENT']);
+                                      if (result['COMMENT'] != null &&
+                                          result['COMMENT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['COMMENT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_COMMENT
+                                              .add(MapEntry(
+                                                  result['COMMENT'][i]
+                                                          ['COMMENT']
+                                                      .toString(),
+                                                  result['COMMENT'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                    });
+
+                                    INSPECTIONstdVAR.INCOMMING_COREtype = "-";
+                                    INSPECTIONstdVAR.INCOMMING_FORMULA = "-";
+                                    INSPECTIONstdVAR.INCOMMING_SCMARK =
+                                        _Mdata.INCOMMING[i].SCMARK;
+                                    INSPECTIONstdVAR.INCOMMING_SCMARKtype = "-";
+                                    INSPECTIONstdVAR.INCOMMING_DOCUMENT =
+                                        _Mdata.INCOMMING[i].DOCUMENT;
+
+                                    if (_Mdata.INCOMMING[i].METHOD != '-') {
+                                      // INSPECTIONstdVAR.List_INCOMMING_METHOD = [
+                                      //   MapEntry("-", "-"),
+                                      //   MapEntry(_Mdata.INCOMMING[i].METHODname,
+                                      //       _Mdata.INCOMMING[i].METHOD)
+                                      // ];
+
+                                      INSPECTIONstdVAR.INCOMMING_METHOD =
+                                          _Mdata.INCOMMING[i].METHOD;
+
+                                      // print(response);
+                                    }
+
+                                    INSPECTIONstdVAR.INCOMMING_IMGreaddata =
+                                        "-";
+                                    INSPECTIONstdVAR.INCOMMING_IMGno = "-";
+
+                                    INSPECTIONstdVAR.INCOMMING_LOAD =
+                                        _Mdata.INCOMMING[i].LOAD;
+
+                                    INSPECTIONstdVAR.INCOMMING_GT = "-";
+                                    INSPECTIONstdVAR.INCOMMING_SPECIFICATION =
+                                        _Mdata.INCOMMING[i].SPECIFICATION;
+
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONstr =
+                                        _Mdata.INCOMMING[i].SPECIFICATIONstr;
+
+                                    INSPECTIONstdVAR.INCOMMING_SPECIFICATIONve =
+                                        "-";
+                                    INSPECTIONstdVAR
+                                        .INCOMMING_SPECIFICATIONveOB = veOB();
+
+                                    // INSPECTIONstdVAR
+                                    //         .FINAL_SPECIFICATIONveOB
+                                    //         .condition =
+                                    //     _Mdata.FINAL[i]
+                                    //         .SPECIFICATIONcondition;
+
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB =
+                                        veOB(
+                                            condition: _Mdata.INCOMMING[i]
+                                                .SPECIFICATIONcondition,
+                                            BTW_HI: _Mdata.INCOMMING[i]
+                                                .SPECIFICATIONBTW_HI,
+                                            BTW_LOW:
+                                                _Mdata.INCOMMING[i]
+                                                    .SPECIFICATIONBTW_LOW,
+                                            HIM_L: _Mdata.INCOMMING[i]
+                                                .SPECIFICATIONHIM_L,
+                                            LOL_H: _Mdata.INCOMMING[i]
+                                                .SPECIFICATIONLOL_H,
+                                            TARGET: _Mdata.INCOMMING[i]
+                                                .SPECIFICATIONTARGET);
+                                    if (_Mdata.INCOMMING[i].UNIT != '-') {
+                                      // INSPECTIONstdVAR.List_INCOMMING_UNIT = [
+                                      //   MapEntry("-", "-"),
+                                      //   MapEntry(_Mdata.INCOMMING[i].UNITname,
+                                      //       _Mdata.INCOMMING[i].UNIT)
+                                      // ];
+
+                                      INSPECTIONstdVAR.INCOMMING_UNIT =
+                                          _Mdata.INCOMMING[i].UNIT;
+                                    } else {
+                                      INSPECTIONstdVAR.INCOMMING_UNIT = "-";
+                                    }
+
+                                    if (_Mdata.INCOMMING[i].CONVERSE != '-') {
+                                      // INSPECTIONstdVAR
+                                      //     .List_INCOMMING_UNIT_CONVERST = [
+                                      //   MapEntry("-", "-"),
+                                      //   MapEntry(_Mdata.INCOMMING[i].CONVERSEname,
+                                      //       _Mdata.INCOMMING[i].CONVERSE)
+                                      // ];
+
+                                      INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST =
+                                          _Mdata.INCOMMING[i].CONVERSE;
+                                    } else {
+                                      INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST =
+                                          "-";
+                                    }
+
+                                    INSPECTIONstdVAR.INCOMMING_POINT = "-";
+                                    INSPECTIONstdVAR.INCOMMING_POINT =
+                                        _Mdata.INCOMMING[i].POINT;
+                                    INSPECTIONstdVAR.FINAL_PCS =
+                                        _Mdata.INCOMMING[i].PCS;
+                                    // INSPECTIONstdVAR.INCOMMING_FREQUENCY =
+                                    //     _Mdata.INCOMMING[i].FREQUENCY;
+
+                                    if (_Mdata.INCOMMING[i].FREQUENCY != '-') {
+                                      // INSPECTIONstdVAR.List_INCOMMING_FREQUENCY =
+                                      //     [
+                                      //   MapEntry("-", "-"),
+                                      //   MapEntry(_Mdata.INCOMMING[i].FREQUENCY,
+                                      //       _Mdata.INCOMMING[i].FREQUENCY)
+                                      // ];
+
+                                      INSPECTIONstdVAR.INCOMMING_FREQUENCY =
+                                          _Mdata.INCOMMING[i].FREQUENCY;
+                                    } else {
+                                      INSPECTIONstdVAR.INCOMMING_FREQUENCY =
+                                          "-";
+                                    }
+                                    INSPECTIONstdVAR.INCOMMING_REMARK =
+                                        _Mdata.INCOMMING[i].REMARK;
+
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata =
+                                        _Mdata.INCOMMING[i].RESULTFORMAT;
+                                    INSPECTIONstdVAR.INCOMMING_SWreport = "-";
+
+                                    INSPECTIONstdVAR.INCOMMING_CALCULATE = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K1 = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K2 = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K3 = "-";
+
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K1_N = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K2_N = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K3_N = "-";
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K1b = false;
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K2b = false;
+                                    INSPECTIONstdVAR.INCOMMING_CAL_K3b = false;
+                                  });
+                                }
+
+                                if (INSPECTIONstdVAR.INCOMMING_POP) {
+                                  setState(() {
+                                    INSPECTIONstdVAR.INCOMMING_POP = false;
+                                  });
+                                } else {
+                                  setState(() {
+                                    INSPECTIONstdVAR.INCOMMING_POP = true;
+                                  });
+                                }
+                              });
+
+                              //
+                            },
+                            DeleteFN: (s) {
+                              INSPECTIONstdVAR.INCOMMING_ITEMs =
+                                  _Mdata.INCOMMING[i].ITEMs;
+                              context
+                                  .read<UPLOADSPEC_Bloc>()
+                                  .add(DELETESPEC_INCOMMING());
+                            },
+                            isACTION: true,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (INSPECTIONstdVAR.INCOMMING_POP) ...[
+            Scrollbar(
+              controller: controllerINx2,
+              thumbVisibility: true,
+              interactive: true,
+              thickness: 10,
+              radius: Radius.circular(20),
+              child: SingleChildScrollView(
+                controller: controllerINx2,
+                // keyboardDismissBehavior:
+                //     ScrollViewKeyboardDismissBehavior.manual,
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  // height: 40,
+                  width: 2500,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onLongPress: () {
+                            clearINCOMMING();
+                            INSPECTION_INCOMMING_GET_STEP1(INSPECTIONstdVAR.CP)
+                                .then((dynamic result) {
+                              // print(result);
+
+                              if (result['ITEMs'] != null) {
+                                if (result['ITEMs'].length > 0) {
+                                  for (int i = 0;
+                                      i < result['ITEMs'].length;
+                                      i++) {
+                                    INSPECTIONstdVAR.List_INCOMMING_ITEMs.add(
+                                      MapEntry(
+                                          result['ITEMs'][i]['ITEMs']
+                                              .toString(),
+                                          result['ITEMs'][i]['masterID']
+                                              .toString()),
+                                    );
+                                    INSPECTIONstdVAR.List_INCOMMING_ITEMs_set
+                                        .add(List_INCOMMING_ITEMs_set_Class(
+                                      ITEMs: result['ITEMs'][i]['ITEMs'] != null
+                                          ? result['ITEMs'][i]['ITEMs']
+                                              .toString()
+                                          : '',
+                                      RESULTFORMAT: result['ITEMs'][i]
+                                                  ['RESULTFORMAT'] !=
+                                              null
+                                          ? result['ITEMs'][i]['RESULTFORMAT']
+                                              .toString()
+                                          : '',
+                                      TYPE: result['ITEMs'][i]['TYPE'] != null
+                                          ? result['ITEMs'][i]['TYPE']
+                                              .toString()
+                                          : '',
+                                      masterID:
+                                          result['ITEMs'][i]['masterID'] != null
+                                              ? result['ITEMs'][i]['masterID']
+                                                  .toString()
+                                              : '',
+                                    ));
+                                  }
+                                }
+                              }
+
+                              setState(() {});
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            color: Colors.red,
+                            child: Center(
+                              child: Text(
+                                "CLEAR",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: PATTERNtable(
+                            ShowCORStype: false,
+                            ShowLOAD: false,
+                            ShowGT: false,
+                            ShowCONVERSE: false,
+                            ShowFORMULA: false,
+                            BGColorMain: Colors.grey.shade400,
+                            seq: "seq",
+                            ITEMs: "ITEM",
+                            K1CALDATA: "Constant",
+                            CORStype: "CORStype",
+                            FORMULA: "FORMULA",
+                            SCMARK: "SC MARK",
+                            SCMARKtype: "SCMARKtype",
+                            DOCUMENT: "DOCUMENT",
+                            METHOD: "METHOD",
+                            IMGreaddata: "IMGreaddata",
+                            IMGno: "IMGno",
+                            LOAD: "LOAD",
+                            GT: "GT",
+                            SPECIFICATIONve: "SPECIFICATION",
+                            CALCULATE: "CALCULATE",
+                            UNIT: "UNIT",
+                            CONVERSE: "CONVERSE",
+                            POSITION: "POSITION",
+                            PCS: "PCS",
+                            FREQUENCY: "FREQUENCY",
+                            REMARK: "REMARK",
+                            SWreport: "SHOW REPORT",
+                            ACTION: "ACTION",
+                            isACTION: false,
+                          ),
+                        ),
+                        Container(
+                          constraints: BoxConstraints(minHeight: 80),
+                          child: PATTERNtable(
+                            ShowCORStype: false,
+                            ShowLOAD: false,
+                            ShowGT: false,
+                            ShowCONVERSE: false,
+                            ShowFORMULA: false,
+                            BGColorMain: Colors.white,
+                            seq: INSPECTIONstdVAR.INCOMMING_seq,
+                            ITEMs: "ITEMs",
+                            WIDGETITEMs: AdvanceDropDown(
+                              isEnable: INSPECTIONstdVAR.INCOMMING_ITEMs != '-',
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_ITEMs,
+                              onChangeinside: (d, k) {
+                                // print(d);
+                                INSPECTIONstdVAR.INCOMMING_ITEMs = d;
+                                for (var i = 0;
+                                    i <
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set.length;
+                                    i++) {
+                                  if (INSPECTIONstdVAR
+                                          .List_INCOMMING_ITEMs_set[i]
+                                          .masterID ==
+                                      d) {
+                                    INSPECTIONstdVAR.INCOMMING_TYPE =
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set[i].TYPE;
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata =
+                                        INSPECTIONstdVAR
+                                            .List_INCOMMING_ITEMs_set[i]
+                                            .RESULTFORMAT;
+                                    break;
+                                  }
+                                }
+
+                                if (d != '-') {
+                                  INSPECTION_INCOMMING_GET_STEP2(d)
+                                      .then((dynamic result) {
+                                    print("------------>>>");
+                                    print(result['RESULTFORMATdata']);
+                                    print("------------>>>-");
+
+                                    setState(() {
+                                      INSPECTIONstdVAR
+                                              .INCOMMING_RESULTFORMATdata =
+                                          result['RESULTFORMATdata'] != null
+                                              ? result['RESULTFORMATdata']
+                                                  .toString()
+                                              : '-';
+                                      if (result['METHOD'] != null &&
+                                          result['METHOD'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['METHOD'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_METHOD
+                                              .add(MapEntry(
+                                                  result['METHOD'][i]['METHOD']
+                                                      .toString(),
+                                                  result['METHOD'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['LOAD'] != null &&
+                                          result['LOAD'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['LOAD'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_LOAD
+                                              .add(MapEntry(
+                                                  result['LOAD'][i]['LOAD']
+                                                      .toString(),
+                                                  result['LOAD'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['CORETYPE'] != null &&
+                                          result['CORETYPE'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['CORETYPE'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_CORETYPE
+                                              .add(MapEntry(
+                                                  result['CORETYPE'][i]
+                                                          ['CORETYPE']
+                                                      .toString(),
+                                                  result['CORETYPE'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      if (result['GT'] != null &&
+                                          result['GT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['GT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_FINAL_GT.add(
+                                              MapEntry(
+                                                  result['GT'][i]['GT']
+                                                      .toString(),
+                                                  result['GT'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['UNIT'] != null &&
+                                          result['UNIT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['UNIT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR.List_INCOMMING_UNIT
+                                              .add(MapEntry(
+                                                  result['UNIT'][i]['UNIT']
+                                                      .toString(),
+                                                  result['UNIT'][i]['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+
+                                      if (result['UNIT'] != null &&
+                                          result['UNIT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['UNIT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_UNIT_CONVERST
+                                              .add(
+                                                  MapEntry(
+                                                      result['UNIT'][i]['UNIT']
+                                                          .toString(),
+                                                      result['UNIT'][i]
+                                                              ['masterID']
+                                                          .toString()));
+                                        }
+                                      }
+
+                                      if (result['FREQUENCY'] != null &&
+                                          result['FREQUENCY'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['FREQUENCY'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_FREQUENCY
+                                              .add(MapEntry(
+                                                  result['FREQUENCY'][i]
+                                                          ['FREQUENCY']
+                                                      .toString(),
+                                                  result['FREQUENCY'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      if (result['CALCULATE'] != null &&
+                                          result['CALCULATE'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['CALCULATE'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_CALCULATE
+                                              .add(MapEntry(
+                                                  result['CALCULATE'][i]
+                                                          ['CALCULATE']
+                                                      .toString(),
+                                                  result['CALCULATE'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      if (result['SPECIFICATION'] != null &&
+                                          result['SPECIFICATION'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['SPECIFICATION'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_SPECIFICATIONt
+                                              .add(MapEntry(
+                                                  result['SPECIFICATION'][i]
+                                                          ['SPECIFICATION']
+                                                      .toString(),
+                                                  result['SPECIFICATION'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                      print(result['COMMENT']);
+                                      if (result['COMMENT'] != null &&
+                                          result['COMMENT'].length > 0) {
+                                        for (int i = 0;
+                                            i < result['COMMENT'].length;
+                                            i++) {
+                                          INSPECTIONstdVAR
+                                                  .List_INCOMMING_COMMENT
+                                              .add(MapEntry(
+                                                  result['COMMENT'][i]
+                                                          ['COMMENT']
+                                                      .toString(),
+                                                  result['COMMENT'][i]
+                                                          ['masterID']
+                                                      .toString()));
+                                        }
+                                      }
+                                    });
+                                  });
+                                }
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_ITEMs,
+                              height: 40,
+                              width: 400,
+                            ),
+                            //   INSPECTIONstdVAR.INCOMMING_RESULTFORMAT ==
+                            K1CALDATA: "Constant",
+                            WIDGETK1CALDATA: Column(
+                              children: [
+                                AdvanceDropDown(
+                                  isEnable: INSPECTIONstdVAR
+                                          .INCOMMING_RESULTFORMATdata !=
+                                      'CAL1',
+                                  imgpath: 'assets/icons/icon-down_4@3x.png',
+                                  listdropdown: [
+                                    MapEntry("-", "-"),
+                                    MapEntry("Kcon.", "1"),
+                                    MapEntry("Kvar.", "2")
+                                  ],
+                                  onChangeinside: (d, k) {
+                                    setState(() {
+                                      INSPECTIONstdVAR.INCOMMING_K1b = d;
+                                    });
+                                  },
+                                  value: INSPECTIONstdVAR.INCOMMING_K1b,
+                                  height: 40,
+                                  width: 80,
+                                ),
+                                if (INSPECTIONstdVAR.INCOMMING_K1b == '1') ...[
+                                  ComInputText(
+                                    nLimitedChar: 100,
+                                    isNumberOnly: true,
+                                    height: 40,
+                                    width: 200,
+                                    isContr: INSPECTIONstdVAR.iscontrol,
+                                    // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                    fnContr: (input) {
+                                      setState(() {
+                                        INSPECTIONstdVAR.iscontrol = input;
+                                      });
+                                    },
+                                    sValue: INSPECTIONstdVAR.INCOMMING_K1v,
+                                    returnfunc: (String s) {
+                                      INSPECTIONstdVAR.INCOMMING_K1v = s;
+                                    },
+                                  ),
+                                ]
+                              ],
+                            ),
+                            CORStype: "CORStype",
+                            WIDGETCORStype: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_CORETYPE,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_COREtype = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_COREtype,
+                              height: 40,
+                              width: 400,
+                            ),
+
+                            FORMULA: "NO USE",
+                            //                   if (INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                            //  'Calculate')
+                            WIDGETFORMULA: INSPECTIONstdVAR
+                                        .INCOMMING_RESULTFORMATdata ==
+                                    'CAL1'
+                                ? Column(
+                                    children: [
+                                      AdvanceDropDown(
+                                        imgpath:
+                                            'assets/icons/icon-down_4@3x.png',
+                                        listdropdown: INSPECTIONstdVAR
+                                            .List_INCOMMING_CALCULATE,
+                                        onChangeinside: (d, k) {
+                                          INSPECTIONstdVAR.INCOMMING_CALCULATE =
+                                              d;
+                                        },
+                                        value: INSPECTIONstdVAR
+                                            .INCOMMING_CALCULATE,
+                                        height: 40,
+                                        width: 400,
+                                      ),
+                                      if (INSPECTIONstdVAR.INCOMMING_CAL_K1b)
+                                        ComInputText(
+                                          nLimitedChar: 100,
+                                          sLabel: INSPECTIONstdVAR
+                                              .INCOMMING_CAL_K1_N,
+
+                                          height: 40,
+                                          width: 200,
+                                          isContr: INSPECTIONstdVAR.iscontrol,
+                                          // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                          fnContr: (input) {
+                                            setState(() {
+                                              INSPECTIONstdVAR.iscontrol =
+                                                  input;
+                                            });
+                                          },
+                                          sValue:
+                                              INSPECTIONstdVAR.INCOMMING_CAL_K1,
+                                          returnfunc: (String s) {
+                                            INSPECTIONstdVAR.INCOMMING_CAL_K1 =
+                                                s;
+                                          },
+                                        ),
+                                      if (INSPECTIONstdVAR.INCOMMING_CAL_K2b)
+                                        ComInputText(
+                                          nLimitedChar: 100,
+                                          sLabel: INSPECTIONstdVAR
+                                              .INCOMMING_CAL_K2_N,
+                                          height: 40,
+                                          width: 200,
+                                          isContr: INSPECTIONstdVAR.iscontrol,
+                                          // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                          fnContr: (input) {
+                                            setState(() {
+                                              INSPECTIONstdVAR.iscontrol =
+                                                  input;
+                                            });
+                                          },
+                                          sValue:
+                                              INSPECTIONstdVAR.INCOMMING_CAL_K2,
+                                          returnfunc: (String s) {
+                                            INSPECTIONstdVAR.INCOMMING_CAL_K2 =
+                                                s;
+                                          },
+                                        ),
+                                      if (INSPECTIONstdVAR.INCOMMING_CAL_K3b)
+                                        ComInputText(
+                                          nLimitedChar: 100,
+                                          sLabel: INSPECTIONstdVAR
+                                              .INCOMMING_CAL_K3_N,
+                                          height: 40,
+                                          width: 200,
+                                          isContr: INSPECTIONstdVAR.iscontrol,
+                                          // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                          fnContr: (input) {
+                                            setState(() {
+                                              INSPECTIONstdVAR.iscontrol =
+                                                  input;
+                                            });
+                                          },
+                                          sValue:
+                                              INSPECTIONstdVAR.INCOMMING_CAL_K3,
+                                          returnfunc: (String s) {
+                                            INSPECTIONstdVAR.INCOMMING_CAL_K3 =
+                                                s;
+                                          },
+                                        ),
+                                    ],
+                                  )
+                                : null,
+                            SCMARK: "SCMARK",
+                            WIDGETSCMARK: Column(
+                              children: [
+                                AdvanceDropDown(
+                                  imgpath: 'assets/icons/icon-down_4@3x.png',
+                                  listdropdown:
+                                      INSPECTIONstdVAR.List_INCOMMING_SCMARK,
+                                  onChangeinside: (d, k) {
+                                    setState(() {
+                                      INSPECTIONstdVAR.INCOMMING_SCMARK = d;
+                                    });
+                                  },
+                                  value: INSPECTIONstdVAR.INCOMMING_SCMARK,
+                                  height: 40,
+                                  width: 400,
+                                ),
+                                if (INSPECTIONstdVAR.INCOMMING_SCMARK == 'YES')
+                                  AdvanceDropDown(
+                                    imgpath: 'assets/icons/icon-down_4@3x.png',
+                                    listdropdown: [
+                                      MapEntry("-", "-"),
+                                      MapEntry("TYPE 1", "1"),
+                                      MapEntry("TYPE 2", "2")
+                                    ],
+                                    onChangeinside: (d, k) {
+                                      INSPECTIONstdVAR.INCOMMING_SCMARKtype = d;
+                                    },
+                                    value:
+                                        INSPECTIONstdVAR.INCOMMING_SCMARKtype,
+                                    height: 40,
+                                    width: 400,
+                                  ),
+                              ],
+                            ),
+                            SCMARKtype: "SCMARKtype",
+                            ShowSCMARKtype: false,
+                            DOCUMENT: "DOCUMENT",
+                            WIDGETDOCUMENT: ComInputText(
+                              nLimitedChar: 100,
+                              height: 40,
+                              width: 400,
+                              isContr: INSPECTIONstdVAR.iscontrol,
+                              isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                              fnContr: (input) {
+                                setState(() {
+                                  INSPECTIONstdVAR.iscontrol = input;
+                                });
+                              },
+                              sValue: INSPECTIONstdVAR.INCOMMING_DOCUMENT,
+                              returnfunc: (String s) {
+                                INSPECTIONstdVAR.INCOMMING_DOCUMENT = s;
+                              },
+                            ),
+                            METHOD: "METHOD",
+                            WIDGETMETHOD: Column(
+                              children: [
+                                AdvanceDropDown(
+                                  imgpath: 'assets/icons/icon-down_4@3x.png',
+                                  listdropdown:
+                                      INSPECTIONstdVAR.List_INCOMMING_METHOD,
+                                  onChangeinside: (d, k) async {
+                                    INSPECTIONstdVAR.INCOMMING_METHOD = d;
+                                    print(d);
+                                    final response = await Dio().post(
+                                      serverGB + "GET_INCOMMING_DOCUMENT",
+                                      data: {
+                                        "ITEMs":
+                                            INSPECTIONstdVAR.INCOMMING_ITEMs,
+                                        "METHODid":
+                                            INSPECTIONstdVAR.INCOMMING_METHOD,
+                                      },
+                                    );
+
+                                    // print(response);
+                                    if (response.statusCode == 200) {
+                                      var databuff = response.data;
+
+                                      INSPECTIONstdVAR.iscontrol = true;
+                                      INSPECTIONstdVAR.INCOMMING_DOCUMENT =
+                                          databuff['DOCUMENT'];
+                                      setState(() {});
+                                    }
+                                  },
+                                  value: INSPECTIONstdVAR.INCOMMING_METHOD,
+                                  height: 40,
+                                  width: 400,
+                                ),
+                                if (INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata ==
+                                        'Picture' ||
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata ==
+                                        'OCR') ...[
+                                  AdvanceDropDown(
+                                    imgpath: 'assets/icons/icon-down_4@3x.png',
+                                    listdropdown: INSPECTIONstdVAR
+                                        .List_INCOMMING_IMGreaddata,
+                                    onChangeinside: (d, k) {
+                                      INSPECTIONstdVAR.INCOMMING_IMGreaddata =
+                                          d;
+                                    },
+                                    value:
+                                        INSPECTIONstdVAR.INCOMMING_IMGreaddata,
+                                    height: 40,
+                                    width: 400,
+                                  ),
+                                  AdvanceDropDown(
+                                    imgpath: 'assets/icons/icon-down_4@3x.png',
+                                    listdropdown:
+                                        INSPECTIONstdVAR.List_INCOMMING_IMGno,
+                                    onChangeinside: (d, k) {
+                                      INSPECTIONstdVAR.INCOMMING_IMGno = d;
+                                    },
+                                    value: INSPECTIONstdVAR.INCOMMING_IMGno,
+                                    height: 40,
+                                    width: 400,
+                                  )
+                                ],
+                              ],
+                            ),
+                            IMGreaddata: "IMGreaddata",
+                            WIDGETIMGreaddata: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_IMGreaddata,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_IMGreaddata = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_IMGreaddata,
+                              height: 40,
+                              width: 400,
+                            ),
+                            IMGno: "IMGno",
+                            WIDGETIMGno: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_IMGno,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_IMGno = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_IMGno,
+                              height: 40,
+                              width: 400,
+                            ),
+                            LOAD: "LOAD",
+                            WIDGETLOAD: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_LOAD,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_LOAD = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_LOAD,
+                              height: 40,
+                              width: 400,
+                            ),
+                            GT: "GT",
+                            WIDGETGT: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown: INSPECTIONstdVAR.List_INCOMMING_GT,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_GT = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_GT,
+                              height: 40,
+                              width: 400,
+                            ),
+                            CALCULATE: "CALCULATE",
+                            SPECIFICATIONve: "SPECIFICATIONve",
+                            WIDGETSPECIFICATIONve: Column(
+                              children: [
+                                if (INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata !=
+                                        'Text' &&
+                                    INSPECTIONstdVAR
+                                            .INCOMMING_RESULTFORMATdata !=
+                                        'Picture') ...[
+                                  SizedBox(
+                                    width: 200,
+                                    child: AdvanceDropDown(
+                                      imgpath:
+                                          'assets/icons/icon-down_4@3x.png',
+                                      listdropdown: [
+                                        const MapEntry("-", "-"),
+                                        const MapEntry("BTW", "BTW"),
+                                        const MapEntry("Lower", "LOL(<)"),
+                                        const MapEntry("Higher", "HIM(>)"),
+                                        const MapEntry("Actual", "Actual"),
+                                      ],
+                                      onChangeinside: (d, k) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .condition = d;
+                                        context
+                                            .read<BlocPageRebuild>()
+                                            .rebuildPage();
+                                      },
+                                      value: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB
+                                          .condition,
+                                      height: 40,
+                                      width: 200,
+                                    ),
+                                  ),
+                                  if (INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB
+                                          .condition ==
+                                      'BTW') ...[
+                                    ComInputText(
+                                      nLimitedChar: 100,
+                                      sLabel: "BTW_HI",
+                                      height: 40,
+                                      width: 200,
+                                      isContr: INSPECTIONstdVAR.iscontrol,
+                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          INSPECTIONstdVAR.iscontrol = input;
+                                        });
+                                      },
+                                      sValue: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB.BTW_HI,
+                                      returnfunc: (String s) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .BTW_HI = s;
+                                      },
+                                    ),
+                                    ComInputText(
+                                      nLimitedChar: 100,
+                                      sLabel: "BTW_LOW",
+                                      height: 40,
+                                      width: 200,
+                                      isContr: INSPECTIONstdVAR.iscontrol,
+                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          INSPECTIONstdVAR.iscontrol = input;
+                                        });
+                                      },
+                                      sValue: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB.BTW_LOW,
+                                      returnfunc: (String s) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .BTW_LOW = s;
+                                      },
+                                    ),
+                                  ],
+                                  if (INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB
+                                          .condition ==
+                                      'HIM(>)') ...[
+                                    ComInputText(
+                                      nLimitedChar: 100,
+                                      sLabel: "HIM_L",
+                                      height: 40,
+                                      width: 200,
+                                      isContr: INSPECTIONstdVAR.iscontrol,
+                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          INSPECTIONstdVAR.iscontrol = input;
+                                        });
+                                      },
+                                      sValue: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB.HIM_L,
+                                      returnfunc: (String s) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .HIM_L = s;
+                                      },
+                                    ),
+                                  ],
+                                  if (INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB
+                                          .condition ==
+                                      'LOL(<)') ...[
+                                    ComInputText(
+                                      nLimitedChar: 100,
+                                      sLabel: "LOL_H",
+                                      height: 40,
+                                      width: 200,
+                                      isContr: INSPECTIONstdVAR.iscontrol,
+                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          INSPECTIONstdVAR.iscontrol = input;
+                                        });
+                                      },
+                                      sValue: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB.LOL_H,
+                                      returnfunc: (String s) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .LOL_H = s;
+                                      },
+                                    ),
+                                  ],
+                                  if (INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.condition == 'HIM(>)' ||
+                                      INSPECTIONstdVAR
+                                              .INCOMMING_SPECIFICATIONveOB
+                                              .condition ==
+                                          'LOL(<)' ||
+                                      INSPECTIONstdVAR
+                                              .INCOMMING_SPECIFICATIONveOB
+                                              .condition ==
+                                          'BTW') ...[
+                                    ComInputText(
+                                      nLimitedChar: 100,
+                                      sLabel: "TARGET",
+                                      height: 40,
+                                      width: 200,
+                                      isContr: INSPECTIONstdVAR.iscontrol,
+                                      // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                      fnContr: (input) {
+                                        setState(() {
+                                          INSPECTIONstdVAR.iscontrol = input;
+                                        });
+                                      },
+                                      sValue: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATIONveOB.TARGET,
+                                      returnfunc: (String s) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONveOB
+                                            .TARGET = s;
+                                      },
+                                    ),
+                                  ],
+                                ] else ...[
+                                  SizedBox(
+                                    width: 200,
+                                    child: AdvanceDropDown(
+                                      imgpath:
+                                          'assets/icons/icon-down_4@3x.png',
+                                      listdropdown: INSPECTIONstdVAR
+                                          .List_INCOMMING_SPECIFICATIONt,
+                                      onChangeinside: (d, k) {
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATION = d;
+                                        INSPECTIONstdVAR
+                                            .INCOMMING_SPECIFICATIONstr = k;
+                                      },
+                                      value: INSPECTIONstdVAR
+                                          .INCOMMING_SPECIFICATION,
+                                      height: 40,
+                                      width: 200,
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                            UNIT: "UNIT",
+                            WIDGETUNIT: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_UNIT,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_UNIT = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_UNIT,
+                              height: 40,
+                              width: 400,
+                            ),
+                            CONVERSE: "CONVERSE",
+                            WIDGETCONVERSE: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_UNIT_CONVERST,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST,
+                              height: 40,
+                              width: 400,
+                            ),
+                            POSITION: "POSITION",
+                            WIDGETPOSITION: ComInputText(
+                              nLimitedChar: 100,
+
+                              height: 40,
+                              width: 400,
+                              isContr: INSPECTIONstdVAR.iscontrol,
+                              // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                              fnContr: (input) {
+                                print(input);
+                                setState(() {
+                                  setState(() {
+                                    INSPECTIONstdVAR.iscontrol = input;
+                                  });
+                                });
+                              },
+                              sValue: INSPECTIONstdVAR.INCOMMING_POINT,
+                              returnfunc: (String s) {
+                                INSPECTIONstdVAR.INCOMMING_POINT = s;
+                              },
+                            ),
+                            PCS: "PCS",
+                            WIDGETPCS: (INSPECTIONstdVAR
+                                        .INCOMMING_RESULTFORMATdata ==
+                                    'Text')
+                                ? Column(
+                                    children: [
+                                      AdvanceDropDown(
+                                        isEnable: false,
+                                        imgpath:
+                                            'assets/icons/icon-down_4@3x.png',
+                                        listdropdown: [
+                                          MapEntry("-", "-"),
+                                          MapEntry("AQL", "AQL"),
+                                        ],
+                                        onChangeinside: (d, k) {
+                                          setState(() {
+                                            INSPECTIONstdVAR.TEXTTYPE = d;
+                                          });
+                                        },
+                                        value: INSPECTIONstdVAR.TEXTTYPE,
+                                        height: 40,
+                                        width: 80,
+                                      ),
+                                      ComInputText(
+                                        nLimitedChar: 100,
+
+                                        height: 40,
+                                        width: 400,
+                                        isContr: INSPECTIONstdVAR.iscontrol,
+                                        // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                        fnContr: (input) {
+                                          setState(() {
+                                            INSPECTIONstdVAR.iscontrol = input;
+                                          });
+                                        },
+                                        sValue: INSPECTIONstdVAR.INCOMMING_PCS,
+                                        returnfunc: (String s) {
+                                          INSPECTIONstdVAR.INCOMMING_PCS = s;
+                                        },
+                                      ),
+                                    ],
+                                  )
+                                : ComInputText(
+                                    nLimitedChar: 100,
+
+                                    height: 40,
+                                    width: 400,
+                                    isContr: INSPECTIONstdVAR.iscontrol,
+                                    // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                                    fnContr: (input) {
+                                      setState(() {
+                                        INSPECTIONstdVAR.iscontrol = input;
+                                      });
+                                    },
+                                    sValue: INSPECTIONstdVAR.INCOMMING_PCS,
+                                    returnfunc: (String s) {
+                                      INSPECTIONstdVAR.INCOMMING_PCS = s;
+                                    },
+                                  ),
+                            FREQUENCY: "FREQUENCY",
+                            WIDGETFREQUENCY: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_FREQUENCY,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_FREQUENCY = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_FREQUENCY,
+                              height: 40,
+                              width: 400,
+                            ),
+                            REMARK: "REMARK",
+                            WIDGETREMARK: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_COMMENT,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_REMARK = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_REMARK,
+                              height: 40,
+                              width: 400,
+                            ),
+
+                            // ComInputText(
+                            //   nLimitedChar: 100,
+
+                            //   height: 40,
+                            //   width: 400,
+                            //   isContr: INSPECTIONstdVAR.iscontrol,
+                            //   // isEnabled: INSPECTIONstdVAR.ACTION_isEnabled,
+                            //   fnContr: (input) {
+                            //     setState(() {
+                            //       INSPECTIONstdVAR.iscontrol = input;
+                            //     });
+                            //   },
+                            //   sValue: INSPECTIONstdVAR.INCOMMING_REMARK,
+                            //   returnfunc: (String s) {
+                            //     INSPECTIONstdVAR.INCOMMING_REMARK = s;
+                            //   },
+                            // ),
+                            SWreport: "SWreport",
+                            WIDGETSWreport: AdvanceDropDown(
+                              imgpath: 'assets/icons/icon-down_4@3x.png',
+                              listdropdown:
+                                  INSPECTIONstdVAR.List_INCOMMING_SWreport,
+                              onChangeinside: (d, k) {
+                                INSPECTIONstdVAR.INCOMMING_SWreport = d;
+                              },
+                              value: INSPECTIONstdVAR.INCOMMING_SWreport,
+                              height: 40,
+                              width: 400,
+                            ),
+                            ACTION: "ACTION",
+                            isACTION: true,
+                            ACTIONMODE: 1,
+                            SAVEFN: (v) {
+                              print(
+                                  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata);
+                              print("------------------->");
+                              if (INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                                      'Text' ||
+                                  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                                      'Picture') {
+                                context
+                                    .read<UPLOADSPEC_Bloc>()
+                                    .add(UPLOADSPEC_INCOMMING_TEXT());
+                              } else if (INSPECTIONstdVAR
+                                          .INCOMMING_RESULTFORMATdata ==
+                                      'OCR' ||
+                                  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                                      'Number' ||
+                                  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                                      'Graph' ||
+                                  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata ==
+                                      'CAL1') {
+                                context
+                                    .read<UPLOADSPEC_Bloc>()
+                                    .add(UPLOADSPEC_INCOMMING_NUM());
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ] else ...[
+            // InkWell(
+            //   onTap: () {
+            //     newdata();
+            //   },
+            //   child: Container(
+            //     color: Colors.blue,
+            //     height: 40,
+            //     // width: 100,
+            //     child: Center(
+            //       child: Text(
+            //         "NEW",
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+          ],
+          SizedBox(
+            height: 24,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // INCOMMINGPOPUP(context);
 }
 
 String KSW(String type, String value) {

@@ -5,6 +5,7 @@ import '../../bloc/BlocEvent/LoginEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../page/page1.dart';
+import '../../page/page10.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
 import '../../page/page4.dart';
@@ -138,16 +139,16 @@ class _Data_Menu_mainmenuState extends State<Data_Menu_mainmenu> {
             ),
           ),
           if (menupop) ...[
-            // menu_sub(
-            //   name: "INCOMMING",
-            //   page: Page2(),
-            //   Lv: 1,
-            // ),
-            // menu_sub(
-            //   name: "INPROCESS",
-            //   page: Page2(),
-            //   Lv: 1,
-            // ),
+            menu_sub(
+              name: "INCOMMING",
+              page: Page1(),
+              Lv: 1,
+            ),
+            menu_sub(
+              name: "INPROCESS",
+              page: Page3(),
+              Lv: 1,
+            ),
             menu_sub(
               name: "FINAL",
               page: Page2(),
@@ -178,6 +179,18 @@ class _Data_Menu_mainmenuState extends State<Data_Menu_mainmenu> {
         menu_normal(
           name: "INSPECTION STD",
           page: Page5(),
+          Lv: 1,
+        ),
+        menu_normal(
+          colorsetup: Colors.blue,
+          name: "SC MARK SETUP",
+          page: Page10(),
+          Lv: 1,
+        ),
+        menu_normal(
+          colorsetup: Colors.blue,
+          name: "Frequency control",
+          page: Page10(),
           Lv: 1,
         ),
         menu_logout(

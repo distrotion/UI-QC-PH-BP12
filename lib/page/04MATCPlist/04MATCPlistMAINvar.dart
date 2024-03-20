@@ -9,4 +9,9 @@ class MATCPlistMAINvar {
   // static String PARTNAME = 'HUB,TC TUR';
   // static String MATERIAL = 'SCM415H';
   // static String CUST_FULLNM = 'YS TECH (THAILAND) CO., LTD.';
+
+  static int FPint = 0;
+  static int LPint = 0;
+  static int pagelist = 0;
+  static int pageselect = 0;
 }

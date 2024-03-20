@@ -8,7 +8,9 @@ import '../../mainBody.dart';
 import '../../widget/TABLE/12-SEARCHMATCP.dart';
 import '../../widget/common/ComInputText.dart';
 import '../05INSPECTIONstd/INSPECTIONstdVAR.dart';
+import '../06INSPECTIONstdN/P6INSPECTIONstdNvar.dart';
 import '../page5.dart';
+import '../page6.dart';
 import '04MATCPlistMAINvar.dart';
 
 class MATCPlistMAIN extends StatefulWidget {
@@ -29,11 +31,11 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
     context.read<MATCPlistGET_Bloc>().add(MATCPlistGET_MATCP());
   }
 
-  int pagelist = 0;
-  int pageselect = 0;
+  // int pagelist = 0;
+  // int pageselect = 0;
 
-  int FPint = 0;
-  int LPint = 0;
+  // int FPint = 0;
+  // int LPint = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -65,27 +67,33 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
 
     if (_data.length != 0) {
       if (_data.length <= 20) {
-        FPint = 0;
-        LPint = _data.length;
+        MATCPlistMAINvar.FPint = 0;
+        MATCPlistMAINvar.LPint = _data.length;
       } else {
         if (_data.length > 0) {
-          pagelist = (_data.length ~/ 20);
+          MATCPlistMAINvar.pagelist = (_data.length ~/ 20);
 
-          if (20 * pagelist > _data.length) {
-            pagelist = pagelist - 2;
+          if (20 * MATCPlistMAINvar.pagelist > _data.length) {
+            MATCPlistMAINvar.pagelist = MATCPlistMAINvar.pagelist - 1;
           } else {
-            pagelist = pagelist - 1;
+            MATCPlistMAINvar.pagelist = MATCPlistMAINvar.pagelist;
           }
-
-          FPint = 20 * pageselect;
-          if (pageselect == pagelist) {
-            LPint = FPint + (_data.length - 20 * pagelist);
+          MATCPlistMAINvar.FPint = 20 * MATCPlistMAINvar.pageselect;
+          if (MATCPlistMAINvar.pageselect == MATCPlistMAINvar.pagelist) {
+            // LPint = FPint + (_data.length - 20 * pagelist);
+            MATCPlistMAINvar.LPint = _data.length;
           } else {
-            LPint = 20 * pageselect + 19;
+            MATCPlistMAINvar.LPint = 20 * MATCPlistMAINvar.pageselect + 19;
+            // LPint = _data.length;
           }
         }
       }
     }
+
+    // print("----------------");
+    // print(FPint);
+    // print(LPint);
+    // print("----------------");
 
     return SingleChildScrollView(
       child: SizedBox(
@@ -116,7 +124,7 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                         sValue: MATCPlistMAINvar.Search,
                         returnfunc: (String s) {
                           setState(() {
-                            pageselect = 0;
+                            MATCPlistMAINvar.pageselect = 0;
                             MATCPlistMAINvar.Search = s;
                           });
                         },
@@ -130,6 +138,11 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                         setState(() {
                           MATCPlistMAINvar.iscontrol = true;
                           MATCPlistMAINvar.Search = '';
+
+                          MATCPlistMAINvar.FPint = 0;
+                          MATCPlistMAINvar.LPint = 0;
+                          MATCPlistMAINvar.pagelist = 0;
+                          MATCPlistMAINvar.pageselect = 0;
                         });
                       },
                       child: Container(
@@ -174,7 +187,10 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                                   BGColorMain: Colors.grey.shade600,
                                 ),
                               ),
-                              for (int i = FPint; i < LPint; i++) ...[
+                              for (int i = MATCPlistMAINvar.FPint;
+                                  i < MATCPlistMAINvar.LPint;
+                                  i++) ...[
+                                // for (int i = 0; i < _data.length; i++) ...[
                                 SizedBox(
                                   height: 40,
                                   child: MATCPlistTABLE(
@@ -190,21 +206,51 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                                         : Colors.grey.shade200,
                                     isACTION: true,
                                     EditFN: (v) {
-                                      MATCPlistMAINvar.Search = _data[i].CP;
+                                      // MATCPlistMAINvar.Search = _data[i].CP;
 
-                                      INSPECTIONstdVAR.CP = _data[i].CP;
-                                      INSPECTIONstdVAR.FG = _data[i].FG;
-                                      INSPECTIONstdVAR.CUSTOMER =
+                                      // INSPECTIONstdVAR.CP = _data[i].CP;
+                                      // INSPECTIONstdVAR.FG = _data[i].FG;
+                                      // INSPECTIONstdVAR.CUSTOMER =
+                                      //     _data[i].CUSTOMER;
+                                      // INSPECTIONstdVAR.PART = _data[i].PART;
+                                      // INSPECTIONstdVAR.PARTNAME =
+                                      //     _data[i].PARTNAME;
+                                      // INSPECTIONstdVAR.MATERIAL =
+                                      //     _data[i].MATERIAL;
+                                      // INSPECTIONstdVAR.CUST_FULLNM =
+                                      //     _data[i].CUST_FULLNM;
+
+                                      // INSPECTIONstdVAR.FPint =
+                                      //     MATCPlistMAINvar.FPint;
+                                      // INSPECTIONstdVAR.LPint =
+                                      //     MATCPlistMAINvar.LPint;
+
+                                      // CuPage = Page5();
+                                      // MainBodyContext.read<ChangePage_Bloc>()
+                                      //     .add(ChangePage_nodrower());
+                                      //-----------------------------------------------------------------------------------
+                                      P6INSPECTIONstdNvar_BASIC.CP =
+                                          _data[i].CP;
+                                      P6INSPECTIONstdNvar_BASIC.FG =
+                                          _data[i].FG;
+                                      P6INSPECTIONstdNvar_BASIC.CUSTOMER =
                                           _data[i].CUSTOMER;
-                                      INSPECTIONstdVAR.PART = _data[i].PART;
-                                      INSPECTIONstdVAR.PARTNAME =
+                                      P6INSPECTIONstdNvar_BASIC.PART =
+                                          _data[i].PART;
+                                      P6INSPECTIONstdNvar_BASIC.PARTNAME =
                                           _data[i].PARTNAME;
-                                      INSPECTIONstdVAR.MATERIAL =
+                                      P6INSPECTIONstdNvar_BASIC.MATERIAL =
                                           _data[i].MATERIAL;
-                                      INSPECTIONstdVAR.CUST_FULLNM =
+                                      P6INSPECTIONstdNvar_BASIC.CUST_FULLNM =
                                           _data[i].CUST_FULLNM;
 
-                                      CuPage = Page5();
+                                      P6INSPECTIONstdNvar_BASIC.FPint =
+                                          MATCPlistMAINvar.FPint;
+                                      P6INSPECTIONstdNvar_BASIC.LPint =
+                                          MATCPlistMAINvar.LPint;
+
+                                      CuPage = Page6();
+
                                       MainBodyContext.read<ChangePage_Bloc>()
                                           .add(ChangePage_nodrower());
                                     },
@@ -224,9 +270,9 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                                 child: InkWell(
                                   onTap: () {
                                     //
-                                    if (pageselect > 0) {
+                                    if (MATCPlistMAINvar.pageselect > 0) {
                                       setState(() {
-                                        pageselect--;
+                                        MATCPlistMAINvar.pageselect--;
                                       });
                                     }
                                   },
@@ -242,18 +288,20 @@ class _MATCPlistMAINState extends State<MATCPlistMAIN> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 16),
-                                child: Text(pageselect.toString() +
-                                    " / " +
-                                    pagelist.toString()),
+                                child: Text(
+                                    MATCPlistMAINvar.pageselect.toString() +
+                                        " / " +
+                                        MATCPlistMAINvar.pagelist.toString()),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 30),
                                 child: InkWell(
                                   onTap: () {
                                     //
-                                    if (pageselect < pagelist) {
+                                    if (MATCPlistMAINvar.pageselect <
+                                        MATCPlistMAINvar.pagelist) {
                                       setState(() {
-                                        pageselect++;
+                                        MATCPlistMAINvar.pageselect++;
                                       });
                                     }
                                   },

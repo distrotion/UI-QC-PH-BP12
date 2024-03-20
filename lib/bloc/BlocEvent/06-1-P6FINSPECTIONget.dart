@@ -1,41 +1,45 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/global.dart';
 import '../../page/04MATCPlist/04MATCPlistMAINvar.dart';
-import '../../page/05INSPECTIONstd/INSPECTIONstdVAR.dart';
+import '../../page/06INSPECTIONstdN/P6INSPECTIONstdNmain.dart';
+import '../../page/06INSPECTIONstdN/P6INSPECTIONstdNvar.dart';
+import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
 
 String server = serverGB;
 
-abstract class FINSPECTIONget_Event {}
+abstract class P6FINSPECTIONget_Event {}
 
-class FINSPECTIONget_MATCP extends FINSPECTIONget_Event {}
+class P6FINSPECTIONget_MATCP extends P6FINSPECTIONget_Event {}
 
-class FINSPECTIONget_FLUSH extends FINSPECTIONget_Event {}
+class P6FINSPECTIONget_FLUSH extends P6FINSPECTIONget_Event {}
 
-class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
-  FINSPECTIONget_Bloc()
-      : super(InspectionSTD(
+class P6FINSPECTIONget_Bloc
+    extends Bloc<P6FINSPECTIONget_Event, P6InspectionSTD> {
+  P6FINSPECTIONget_Bloc()
+      : super(P6InspectionSTD(
           INCOMMING: [],
           INPROCESS: [],
           FINAL: [],
         )) {
-    on<FINSPECTIONget_MATCP>((event, emit) {
-      return _FINSPECTIONget_MATCP(
-          InspectionSTD(
+    on<P6FINSPECTIONget_MATCP>((event, emit) {
+      return _P6FINSPECTIONget_MATCP(
+          P6InspectionSTD(
             INCOMMING: [],
             INPROCESS: [],
             FINAL: [],
           ),
           emit);
     });
-    on<FINSPECTIONget_FLUSH>((event, emit) {
-      return _FINSPECTIONget_FLUSH(
-          InspectionSTD(
+    on<P6FINSPECTIONget_FLUSH>((event, emit) {
+      return _P6FINSPECTIONget_FLUSH(
+          P6InspectionSTD(
             INCOMMING: [],
             INPROCESS: [],
             FINAL: [],
@@ -43,25 +47,28 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
           emit);
     });
   }
-  Future<void> _FINSPECTIONget_MATCP(
-      InspectionSTD toAdd, Emitter<InspectionSTD> emit) async {
-    InspectionSTD output = InspectionSTD(
+  Future<void> _P6FINSPECTIONget_MATCP(
+      P6InspectionSTD toAdd, Emitter<P6InspectionSTD> emit) async {
+    FreeLoading(P6P6InspectionSTDNmaincontext);
+    P6InspectionSTD output = P6InspectionSTD(
       INCOMMING: [],
       INPROCESS: [],
       FINAL: [],
     );
-    // INSPECTIONstdVAR.CP = MATCPlistMAINvar.CP;
-    // INSPECTIONstdVAR.FG = MATCPlistMAINvar.FG;
-    // INSPECTIONstdVAR.CUSTOMER = MATCPlistMAINvar.CUSTOMER;
-    // INSPECTIONstdVAR.PART = MATCPlistMAINvar.PART;
-    // INSPECTIONstdVAR.PARTNAME = MATCPlistMAINvar.PARTNAME;
-    // INSPECTIONstdVAR.MATERIAL = MATCPlistMAINvar.MATERIAL;
-    // INSPECTIONstdVAR.CUST_FULLNM = MATCPlistMAINvar.CUST_FULLNM;
-
+    // P6INSPECTIONstdNvar_BASIC.CP = MATCPlistMAINvar.CP;
+    // P6INSPECTIONstdNvar_BASIC.FG = MATCPlistMAINvar.FG;
+    // P6INSPECTIONstdNvar_BASIC.CUSTOMER = MATCPlistMAINvar.CUSTOMER;
+    // P6INSPECTIONstdNvar_BASIC.PART = MATCPlistMAINvar.PART;
+    // P6INSPECTIONstdNvar_BASIC.PARTNAME = MATCPlistMAINvar.PARTNAME;
+    // P6INSPECTIONstdNvar_BASIC.MATERIAL = MATCPlistMAINvar.MATERIAL;
+    // P6INSPECTIONstdNvar_BASIC.CUST_FULLNM = MATCPlistMAINvar.CUST_FULLNM;
+    // P6INSPECTIONstdNvar_BASIC.CP = "24010177";
+    // P6INSPECTIONstdNvar_BASIC.CP = "24000002";
     final response = await Dio().post(
       server + "GET_MATCP_DATA",
       data: {
-        "MATCP": INSPECTIONstdVAR.CP,
+        "MATCP": P6INSPECTIONstdNvar_BASIC.CP,
+        // "MATCP": "24010177",
       },
     );
     if (response.statusCode == 200) {
@@ -628,14 +635,80 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               K1v: databuff[0]['FINAL'][i]['K1v'] != null
                   ? databuff[0]['FINAL'][i]['K1v'].toString()
                   : '',
+
+              CONVERSEDATA: databuff[0]['FINAL'][i]['CONVERSEDATA'] != null
+                  ? databuff[0]['FINAL'][i]['CONVERSEDATA'].toString()
+                  : '',
+              SUMdata: databuff[0]['FINAL'][i]['SUMDATA'] != null
+                  ? databuff[0]['FINAL'][i]['SUMDATA'].toString()
+                  : '',
+
+              SUMdataTable: databuff[0]['FINAL'][i]['SUMdataTable'] != null
+                  ? databuff[0]['FINAL'][i]['SUMdataTable'].toString()
+                  : '',
+              SUMdataResult: databuff[0]['FINAL'][i]['SUMdataResult'] != null
+                  ? databuff[0]['FINAL'][i]['SUMdataResult'].toString()
+                  : '',
+              SUMdataDetail: databuff[0]['FINAL'][i]['SUMdataDetail'] != null
+                  ? databuff[0]['FINAL'][i]['SUMdataDetail'].toString()
+                  : '',
+
+              SRAWDATA: databuff[0]['FINAL'][i]['SRAWDATA'] != null
+                  ? databuff[0]['FINAL'][i]['SRAWDATA'].toString()
+                  : '',
+
+              AQL: databuff[0]['FINAL'][i]['AQL'] != null
+                  ? databuff[0]['FINAL'][i]['AQL'].toString()
+                  : '',
+              AQLV: databuff[0]['FINAL'][i]['AQLV'] != null
+                  ? databuff[0]['FINAL'][i]['AQLV'].toString()
+                  : '',
             ),
           );
         }
       }
 
       if (databuff[0]['INCOMMING'] != null) {
-        print(databuff[0]['INCOMMING']);
+        // print(databuff[0]['INCOMMING']);
         for (var i = 0; i < databuff[0]['INCOMMING'].length; i++) {
+          final rest3 = await Dio().post(
+            serverGB + "GET_INCOMMING_DOCUMENT",
+            data: {
+              "METHODid": databuff[0]['INCOMMING'][i]['METHOD'] != null
+                  ? databuff[0]['INCOMMING'][i]['METHOD'].toString()
+                  : '',
+              "ITEMs": databuff[0]['INCOMMING'][i]['ITEMs'] != null
+                  ? databuff[0]['INCOMMING'][i]['ITEMs'].toString()
+                  : '',
+            },
+          );
+
+          String DOCUMENT = '';
+          if (rest3.statusCode == 200) {
+            var databuff = rest3.data;
+            // print(databuff);
+            DOCUMENT = databuff['DOCUMENT'] != null
+                ? databuff['DOCUMENT'].toString()
+                : "";
+          }
+
+          final rest4 = await Dio().post(
+            serverGB + "GET_INCOMMING_COMMENT",
+            data: {
+              "masterID": databuff[0]['INCOMMING'][i]['REMARK'] != null
+                  ? databuff[0]['INCOMMING'][i]['REMARK'].toString()
+                  : '',
+            },
+          );
+          String COMMENT = '';
+
+          if (rest4.statusCode == 200) {
+            var databuff = rest4.data;
+
+            COMMENT = databuff['COMMENT'] != null
+                ? databuff['COMMENT'].toString()
+                : "";
+          }
           //
           output.INCOMMING.add(
             speckSTD(
@@ -665,9 +738,11 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               INTERSECTION: databuff[0]['INCOMMING'][i]['INTERSECTION'] != null
                   ? databuff[0]['INCOMMING'][i]['INTERSECTION'].toString()
                   : '',
-              DOCUMENT: databuff[0]['INCOMMING'][i]['DOCUMENT'] != null
-                  ? databuff[0]['INCOMMING'][i]['DOCUMENT'].toString()
-                  : '',
+              // DOCUMENT: databuff[0]['INCOMMING'][i]['DOCUMENT'] != null
+              //     ? databuff[0]['INCOMMING'][i]['DOCUMENT'].toString()
+              //     : '',
+
+              DOCUMENT: DOCUMENT,
               SCMARK: databuff[0]['INCOMMING'][i]['SCMARK'] != null
                   ? databuff[0]['INCOMMING'][i]['SCMARK'].toString()
                   : '',
@@ -838,11 +913,52 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
               MODE: databuff[0]['INCOMMING'][i]['MODE'] != null
                   ? databuff[0]['INCOMMING'][i]['MODE'].toString()
                   : '',
-              REMARK: databuff[0]['INCOMMING'][i]['REMARK'] != null
-                  ? databuff[0]['INCOMMING'][i]['REMARK'].toString()
-                  : '',
+              // REMARK: databuff[0]['INCOMMING'][i]['REMARK'] != null
+              //     ? databuff[0]['INCOMMING'][i]['REMARK'].toString()
+              //     : '',
+              REMARK: COMMENT,
               LOAD: databuff[0]['INCOMMING'][i]['LOAD'] != null
                   ? databuff[0]['INCOMMING'][i]['LOAD'].toString()
+                  : '',
+
+              SWreport: databuff[0]['INCOMMING'][i]['SWreport'] != null
+                  ? databuff[0]['INCOMMING'][i]['SWreport'].toString()
+                  : '',
+              K1b: databuff[0]['INCOMMING'][i]['K1b'] != null
+                  ? databuff[0]['INCOMMING'][i]['K1b'].toString()
+                  : '',
+              K1v: databuff[0]['INCOMMING'][i]['K1v'] != null
+                  ? databuff[0]['INCOMMING'][i]['K1v'].toString()
+                  : '',
+
+              CONVERSEDATA: databuff[0]['INCOMMING'][i]['CONVERSEDATA'] != null
+                  ? databuff[0]['INCOMMING'][i]['CONVERSEDATA'].toString()
+                  : '',
+              SUMdata: databuff[0]['INCOMMING'][i]['SUMDATA'] != null
+                  ? databuff[0]['INCOMMING'][i]['SUMDATA'].toString()
+                  : '',
+
+              SUMdataTable: databuff[0]['INCOMMING'][i]['SUMdataTable'] != null
+                  ? databuff[0]['INCOMMING'][i]['SUMdataTable'].toString()
+                  : '',
+              SUMdataResult:
+                  databuff[0]['INCOMMING'][i]['SUMdataResult'] != null
+                      ? databuff[0]['INCOMMING'][i]['SUMdataResult'].toString()
+                      : '',
+              SUMdataDetail:
+                  databuff[0]['INCOMMING'][i]['SUMdataDetail'] != null
+                      ? databuff[0]['INCOMMING'][i]['SUMdataDetail'].toString()
+                      : '',
+
+              SRAWDATA: databuff[0]['INCOMMING'][i]['SRAWDATA'] != null
+                  ? databuff[0]['INCOMMING'][i]['SRAWDATA'].toString()
+                  : '',
+
+              AQL: databuff[0]['INCOMMING'][i]['AQL'] != null
+                  ? databuff[0]['INCOMMING'][i]['AQL'].toString()
+                  : '',
+              AQLV: databuff[0]['INCOMMING'][i]['AQLV'] != null
+                  ? databuff[0]['INCOMMING'][i]['AQLV'].toString()
                   : '',
             ),
           );
@@ -859,12 +975,14 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
         output.Pimg = picHoldList[1];
       }
     }
+
+    Navigator.pop(P6P6InspectionSTDNmaincontext);
     emit(output);
   }
 
-  Future<void> _FINSPECTIONget_FLUSH(
-      InspectionSTD toAdd, Emitter<InspectionSTD> emit) async {
-    InspectionSTD output = InspectionSTD(
+  Future<void> _P6FINSPECTIONget_FLUSH(
+      P6InspectionSTD toAdd, Emitter<P6InspectionSTD> emit) async {
+    P6InspectionSTD output = P6InspectionSTD(
       INCOMMING: [],
       INPROCESS: [],
       FINAL: [],
@@ -873,8 +991,8 @@ class FINSPECTIONget_Bloc extends Bloc<FINSPECTIONget_Event, InspectionSTD> {
   }
 }
 
-class InspectionSTD {
-  InspectionSTD({
+class P6InspectionSTD {
+  P6InspectionSTD({
     this.status = '',
     this.MATCP = '',
     this.FG = '',
@@ -947,6 +1065,14 @@ class speckSTD {
     this.SWreport = '',
     this.K1b = '',
     this.K1v = '',
+    this.CONVERSEDATA = '',
+    this.SUMdata = '',
+    this.SUMdataTable = '',
+    this.SUMdataResult = '',
+    this.SUMdataDetail = '',
+    this.SRAWDATA = '',
+    this.AQL = '',
+    this.AQLV = '',
   });
 
   String seq;
@@ -989,6 +1115,16 @@ class speckSTD {
   String SWreport;
   String K1b;
   String K1v;
+
+  String CONVERSEDATA;
+  String SUMdata;
+  String SUMdataTable;
+  String SUMdataResult;
+  String SUMdataDetail;
+  String SRAWDATA;
+
+  String AQL;
+  String AQLV;
 }
 
 class BasicBodyData {

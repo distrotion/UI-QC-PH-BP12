@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 //--------------------
 
-Future<dynamic> INSPECTION_FINAL_GET_STEP1(String CP) async {
+Future<dynamic> P6INSPECTION_FINAL_GET_STEP1(String CP) async {
   final response = await Dio().post(
     serverGB + "INSPECTION_FINAL_GET_STEP1",
     data: {
@@ -23,7 +23,7 @@ Future<dynamic> INSPECTION_FINAL_GET_STEP1(String CP) async {
   return databuff;
 }
 
-Future<dynamic> INSPECTION_FINAL_GET_STEP2(String ITEMs) async {
+Future<dynamic> P6INSPECTION_FINAL_GET_STEP2(String ITEMs) async {
   var databuff;
 
   final response = await Dio().post(
@@ -40,7 +40,7 @@ Future<dynamic> INSPECTION_FINAL_GET_STEP2(String ITEMs) async {
   return databuff;
 }
 
-Future<dynamic> INSPECTION_INCOMMING_GET_STEP1(String CP) async {
+Future<dynamic> P6INSPECTION_INCOMMING_GET_STEP1(String CP) async {
   final response = await Dio().post(
     serverGB + "INSPECTION_INCOMMING_GET_STEP1",
     data: {
@@ -54,7 +54,7 @@ Future<dynamic> INSPECTION_INCOMMING_GET_STEP1(String CP) async {
   return databuff;
 }
 
-Future<dynamic> INSPECTION_INCOMMING_GET_STEP2(String ITEMs) async {
+Future<dynamic> P6INSPECTION_INCOMMING_GET_STEP2(String ITEMs) async {
   var databuff;
 
   final response = await Dio().post(
@@ -71,7 +71,7 @@ Future<dynamic> INSPECTION_INCOMMING_GET_STEP2(String ITEMs) async {
   return databuff;
 }
 
-Future<dynamic> COPYDATA(String CP_MASTER, String CP_NEW) async {
+Future<dynamic> P6COPYDATA(String CP_MASTER, String CP_NEW) async {
   final response = await Dio().post(
     serverGB + "copy_cp",
     data: {

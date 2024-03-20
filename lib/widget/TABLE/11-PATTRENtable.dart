@@ -27,7 +27,9 @@ class PATTERNtable extends StatelessWidget {
     this.REMARK,
     this.SWreport,
     this.K1CALDATA,
-
+    this.CONVERSEDATA,
+    this.SUMdata,
+    this.SRAWDATA,
     //
     this.Showseq,
     this.ShowITEMs,
@@ -51,6 +53,10 @@ class PATTERNtable extends StatelessWidget {
     this.ShowREMARK,
     this.ShowSWreport,
     this.ShowK1CALDATA,
+    this.ShowCONVERSEDATA,
+    this.ShowSUMdata,
+    this.ShowSRAWDATA,
+
     //
     this.WIDGETseq,
     this.WIDGETITEMs,
@@ -74,6 +80,10 @@ class PATTERNtable extends StatelessWidget {
     this.WIDGETREMARK,
     this.WIDGETSWreport,
     this.WIDGETK1CALDATA,
+    this.WIDGETCONVERSEDATA,
+    this.WIDGETSUMdata,
+    this.WIDGETSRAWDATA,
+
     //
     this.ACTION,
     this.ACTIONMODE,
@@ -106,6 +116,10 @@ class PATTERNtable extends StatelessWidget {
   String? SWreport;
   String? K1CALDATA;
 
+  String? CONVERSEDATA;
+  String? SUMdata;
+  String? SRAWDATA;
+
 //
   bool? Showseq;
   bool? ShowITEMs;
@@ -129,6 +143,10 @@ class PATTERNtable extends StatelessWidget {
   bool? ShowREMARK;
   bool? ShowSWreport;
   bool? ShowK1CALDATA;
+
+  bool? ShowCONVERSEDATA;
+  bool? ShowSUMdata;
+  bool? ShowSRAWDATA;
 //
   Widget? WIDGETseq;
   Widget? WIDGETITEMs;
@@ -153,6 +171,10 @@ class PATTERNtable extends StatelessWidget {
   Widget? WIDGETSWreport;
 
   Widget? WIDGETK1CALDATA;
+
+  Widget? WIDGETCONVERSEDATA;
+  Widget? WIDGETSUMdata;
+  Widget? WIDGETSRAWDATA;
 //
   String? ACTION;
   int? ACTIONMODE;
@@ -218,7 +240,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowSCMARK ?? true) ...[
                 Expanded(
-                  flex: 3,
+                  flex: 5,
                   child: WIDGETSCMARK == null
                       ? EACHCELL(
                           data: SCMARK ?? "",
@@ -349,6 +371,18 @@ class PATTERNtable extends StatelessWidget {
                       : WIDGETCONVERSE ?? SizedBox(),
                 ),
               ],
+              if (ShowCONVERSEDATA ?? true) ...[
+                Expanded(
+                  flex: 10,
+                  child: WIDGETCONVERSEDATA == null
+                      ? EACHCELL(
+                          data: CONVERSEDATA ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETCONVERSEDATA ?? SizedBox(),
+                ),
+              ],
+
               if (ShowPOSITION ?? true) ...[
                 Expanded(
                   flex: 3,
@@ -406,7 +440,7 @@ class PATTERNtable extends StatelessWidget {
               ],
               if (ShowSWreport ?? true) ...[
                 Expanded(
-                  flex: 3,
+                  flex: 5,
                   child: WIDGETSWreport == null
                       ? EACHCELL(
                           data: SWreport ?? "",
@@ -415,11 +449,35 @@ class PATTERNtable extends StatelessWidget {
                       : WIDGETSWreport ?? SizedBox(),
                 ),
               ],
+              if (ShowSUMdata ?? true) ...[
+                Expanded(
+                  flex: 5,
+                  child: WIDGETSUMdata == null
+                      ? EACHCELL(
+                          data: SUMdata ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSUMdata ?? SizedBox(),
+                ),
+              ],
+              if (ShowSRAWDATA ?? true) ...[
+                Expanded(
+                  flex: 5,
+                  child: WIDGETSRAWDATA == null
+                      ? EACHCELL(
+                          data: SRAWDATA ?? "",
+                          tapCell: (v) {},
+                        )
+                      : WIDGETSRAWDATA ?? SizedBox(),
+                ),
+              ],
+
               if (_ACTIONMODE == 0) ...[
                 Expanded(
                   flex: 10,
                   child: isACTION ?? false
                       ? ACTIONCELL(
+                          isEdit: false,
                           DeleteFN: (v) {
                             if (DeleteFN != null) {
                               DeleteFN!("DeleteFN");

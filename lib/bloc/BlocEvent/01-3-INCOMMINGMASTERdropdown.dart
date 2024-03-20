@@ -6,13 +6,13 @@ import '../../data/global.dart';
 //-------------------------------------------------
 String server = serverGB;
 
-abstract class FINALMASTERdropdown_Event {}
+abstract class INCOMMINGMASTERdropdown_Event {}
 
-class FINALMASTERdropdown_MASTER extends FINALMASTERdropdown_Event {}
+class INCOMMINGMASTERdropdown_MASTER extends INCOMMINGMASTERdropdown_Event {}
 
-class FINALMASTERdropdown_Bloc
-    extends Bloc<FINALMASTERdropdown_Event, DROPDOWNset> {
-  FINALMASTERdropdown_Bloc()
+class INCOMMINGMASTERdropdown_Bloc
+    extends Bloc<INCOMMINGMASTERdropdown_Event, DROPDOWNset> {
+  INCOMMINGMASTERdropdown_Bloc()
       : super(DROPDOWNset(
           TYPEdd: [],
           ITEMSdd: [],
@@ -21,10 +21,9 @@ class FINALMASTERdropdown_Bloc
           GRAPHTYPE: [],
           INSTRUMENTS: [],
           CALCULATE: [],
-          UNIT: [],
         )) {
-    on<FINALMASTERdropdown_MASTER>((event, emit) {
-      return _FINALMASTERdropdown_MASTER(
+    on<INCOMMINGMASTERdropdown_MASTER>((event, emit) {
+      return _INCOMMINGMASTERdropdown_MASTER(
           DROPDOWNset(
             TYPEdd: [],
             ITEMSdd: [],
@@ -33,12 +32,11 @@ class FINALMASTERdropdown_Bloc
             GRAPHTYPE: [],
             INSTRUMENTS: [],
             CALCULATE: [],
-            UNIT: [],
           ),
           emit);
     });
   }
-  Future<void> _FINALMASTERdropdown_MASTER(
+  Future<void> _INCOMMINGMASTERdropdown_MASTER(
       DROPDOWNset toAdd, Emitter<DROPDOWNset> emit) async {
     DROPDOWNset output = DROPDOWNset(
       TYPEdd: [const MapEntry("", "")],
@@ -48,11 +46,10 @@ class FINALMASTERdropdown_Bloc
       GRAPHTYPE: [const MapEntry("", "")],
       INSTRUMENTS: [const MapEntry("", "")],
       CALCULATE: [const MapEntry("", "")],
-      UNIT: [const MapEntry("", "")],
     );
     //------------------------------------------------------------------------
     final response = await Dio().post(
-      server + "DROPDOWN_MASTER_FINAL",
+      server + "DROPDOWN_MASTER_INCOMMING",
       data: {},
     );
 
@@ -107,13 +104,6 @@ class FINALMASTERdropdown_Bloc
               databuff['CALCULATE'][i]['masterID'].toString()));
         }
       }
-
-      if (databuff['UNIT'] != null) {
-        for (int i = 0; i < databuff['UNIT'].length; i++) {
-          output.UNIT.add(MapEntry(databuff['UNIT'][i]['UNIT'].toString(),
-              databuff['UNIT'][i]['masterID'].toString()));
-        }
-      }
     } else {
       //
     }
@@ -130,7 +120,6 @@ class DROPDOWNset {
     required this.GRAPHTYPE,
     required this.INSTRUMENTS,
     required this.CALCULATE,
-    required this.UNIT,
   });
   List<MapEntry<String, String>> TYPEdd = [];
   List<MapEntry<String, String>> ITEMSdd = [];
@@ -139,7 +128,6 @@ class DROPDOWNset {
   List<MapEntry<String, String>> GRAPHTYPE = [];
   List<MapEntry<String, String>> INSTRUMENTS = [];
   List<MapEntry<String, String>> CALCULATE = [];
-  List<MapEntry<String, String>> UNIT = [];
 }
 
 //GRAPHTYPE

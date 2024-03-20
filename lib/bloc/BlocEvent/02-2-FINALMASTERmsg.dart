@@ -13,6 +13,7 @@ import '../../page/02FINALMASTER/subFINALMASTER/05METHODE.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/06SPECIALSPEC.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/07CALCULATE.dart';
 import '../../page/02FINALMASTER/subFINALMASTER/08COMMENT.dart';
+import '../../page/02FINALMASTER/subFINALMASTER/10CALCULATECON.dart';
 import '02-1-FINALMASTERget.dart';
 
 //-------------------------------------------------
@@ -36,6 +37,8 @@ class FINALMASTERmsg_CALCULATE_DROP extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_COMMENT_DROP extends FINALMASTERmsg_Event {}
 
+class FINALMASTERmsg_CALCULATECON_DROP extends FINALMASTERmsg_Event {}
+
 //----------------------------------------------------------------
 
 class FINALMASTERmsg_TYPE_EDIT extends FINALMASTERmsg_Event {}
@@ -53,6 +56,8 @@ class FINALMASTERmsg_SPECIFICATION_EDIT extends FINALMASTERmsg_Event {}
 class FINALMASTERmsg_CALCULATE_EDIT extends FINALMASTERmsg_Event {}
 
 class FINALMASTERmsg_COMMENT_EDIT extends FINALMASTERmsg_Event {}
+
+class FINALMASTERmsg_CALCULATECON_EDIT extends FINALMASTERmsg_Event {}
 
 //------------------------------------------------------------------
 
@@ -91,6 +96,10 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     on<FINALMASTERmsg_COMMENT_DROP>((event, emit) {
       return _FINALMASTERmsg_COMMENT_DROP('', emit);
     });
+
+    on<FINALMASTERmsg_CALCULATECON_DROP>((event, emit) {
+      return _FINALMASTERmsg_CALCULATECON_DROP('', emit);
+    });
     //----------------------------------------------
 
     on<FINALMASTERmsg_TYPE_EDIT>((event, emit) {
@@ -125,9 +134,9 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
       return _FINALMASTERmsg_COMMENT_EDIT('', emit);
     });
 
-    //FINALMASTERmsg_CALCULATE_EDIT
-
-    //
+    on<FINALMASTERmsg_CALCULATECON_EDIT>((event, emit) {
+      return _FINALMASTERmsg_CALCULATECON_EDIT('', emit);
+    });
 
     on<FINALMASTERmsg_FULSH>((event, emit) {
       return _FINALMASTERmsg_FULSH('', emit);
@@ -255,6 +264,20 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     }
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_COMMENTget());
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_CALCULATECON_DROP(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "DROP_CALCULATECON_FINAL",
+      data: {
+        "masterID": FINALMASTERvar.masterID_CALCULATE,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_CALCULATECONget());
     emit(output);
   }
 
@@ -410,6 +433,37 @@ class FINALMASTERmsg_Bloc extends Bloc<FINALMASTERmsg_Event, String> {
     FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
         .add(FINALMASTER_COMMENTget());
     Navigator.pop(COMMENTtableContext);
+    emit(output);
+  }
+
+  Future<void> _FINALMASTERmsg_CALCULATECON_EDIT(
+      String toAdd, Emitter<String> emit) async {
+    String output = '';
+    final response = await Dio().post(
+      server + "EDIT_CALCULATECON_FINAL",
+      data: {
+        "CALCULATE": FINALMASTERvar.CALCULATECON_CALCULATECON_ACTION,
+        "FORMULA": FINALMASTERvar.FORMULA_CALCULATECON_ACTION,
+        "X": FINALMASTERvar.X_CALCULATECON_ACTION,
+        "Xb": FINALMASTERvar.Xb_CALCULATECON_ACTION,
+        "Y": FINALMASTERvar.Y_CALCULATECON_ACTION,
+        "Yb": FINALMASTERvar.Yb_CALCULATECON_ACTION,
+        "Z": FINALMASTERvar.Z_CALCULATECON_ACTION,
+        "Zb": FINALMASTERvar.Zb_CALCULATECON_ACTION,
+        "I": FINALMASTERvar.I_CALCULATECON_ACTION,
+        "Ib": FINALMASTERvar.Ib_CALCULATECON_ACTION,
+        "K1": FINALMASTERvar.K1_CALCULATECON_ACTION,
+        "K1b": FINALMASTERvar.K1b_CALCULATECON_ACTION,
+        "K2": FINALMASTERvar.K2_CALCULATECON_ACTION,
+        "K2b": FINALMASTERvar.K2b_CALCULATECON_ACTION,
+        "K3": FINALMASTERvar.K3_CALCULATECON_ACTION,
+        "K3b": FINALMASTERvar.K3b_CALCULATECON_ACTION,
+        "masterID": FINALMASTERvar.masterID_CALCULATECON_ACTION,
+      },
+    );
+    FINALMASTERmainCONTEXT.read<FINALMASTER_Bloc>()
+        .add(FINALMASTER_CALCULATECONget());
+    Navigator.pop(CALCULATECONtablecontext);
     emit(output);
   }
 

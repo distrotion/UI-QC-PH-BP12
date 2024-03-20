@@ -4,6 +4,7 @@ import 'TEST.dart';
 import 'page2.dart';
 import 'page4.dart';
 import 'page5.dart';
+import 'page6.dart';
 
 bool isChecked = false;
 

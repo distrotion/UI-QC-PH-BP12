@@ -8,65 +8,62 @@ import '../../model/model.dart';
 
 String server = serverGB;
 
-abstract class FINALMASTER_Event {}
+abstract class INCOMMINGMASTER_Event {}
 
-class FINALMASTER_TYPEget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_TYPEget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_UNITget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_UNITget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_ITEMSget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_ITEMSget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_MACHINENAMEget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_MACHINENAMEget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_METHODEget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_METHODEget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_SPECIALSPECget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_SPECIALSPECget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_CALCULATEget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_CALCULATEget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_COMMENTget extends FINALMASTER_Event {}
+class INCOMMINGMASTER_COMMENTget extends INCOMMINGMASTER_Event {}
 
-class FINALMASTER_CALCULATECONget extends FINALMASTER_Event {}
-
-//FINALMASTER_COMMENTget
-class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
-  FINALMASTER_Bloc() : super(DatasetWithSatatus(data: [])) {
-    on<FINALMASTER_TYPEget>((event, emit) {
-      return _FINALMASTER_TYPEget(DatasetWithSatatus(data: []), emit);
+//INCOMMINGMASTER_COMMENTget
+class INCOMMINGMASTER_Bloc
+    extends Bloc<INCOMMINGMASTER_Event, DatasetWithSatatus> {
+  INCOMMINGMASTER_Bloc() : super(DatasetWithSatatus(data: [])) {
+    on<INCOMMINGMASTER_TYPEget>((event, emit) {
+      return _INCOMMINGMASTER_TYPEget(DatasetWithSatatus(data: []), emit);
     });
-    on<FINALMASTER_UNITget>((event, emit) {
-      return _FINALMASTER_UNITget(DatasetWithSatatus(data: []), emit);
-    });
-
-    on<FINALMASTER_ITEMSget>((event, emit) {
-      return _FINALMASTER_ITEMSget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_UNITget>((event, emit) {
+      return _INCOMMINGMASTER_UNITget(DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_MACHINENAMEget>((event, emit) {
-      return _FINALMASTER_MACHINENAMEget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_ITEMSget>((event, emit) {
+      return _INCOMMINGMASTER_ITEMSget(DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_METHODEget>((event, emit) {
-      return _FINALMASTER_METHODEget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_MACHINENAMEget>((event, emit) {
+      return _INCOMMINGMASTER_MACHINENAMEget(
+          DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_SPECIALSPECget>((event, emit) {
-      return _FINALMASTER_SPECIALSPECget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_METHODEget>((event, emit) {
+      return _INCOMMINGMASTER_METHODEget(DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_CALCULATEget>((event, emit) {
-      return _FINALMASTER_CALCULATEget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_SPECIALSPECget>((event, emit) {
+      return _INCOMMINGMASTER_SPECIALSPECget(
+          DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_COMMENTget>((event, emit) {
-      return _FINALMASTER_COMMENTget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_CALCULATEget>((event, emit) {
+      return _INCOMMINGMASTER_CALCULATEget(DatasetWithSatatus(data: []), emit);
     });
 
-    on<FINALMASTER_CALCULATECONget>((event, emit) {
-      return _FINALMASTER_CALCULATECONget(DatasetWithSatatus(data: []), emit);
+    on<INCOMMINGMASTER_COMMENTget>((event, emit) {
+      return _INCOMMINGMASTER_COMMENTget(DatasetWithSatatus(data: []), emit);
     });
   }
-  Future<void> _FINALMASTER_TYPEget(
+  Future<void> _INCOMMINGMASTER_TYPEget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -76,7 +73,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_TYPE_FINAL",
+      server + "GET_TYPE_INCOMMING",
       data: {},
     );
 
@@ -108,7 +105,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_UNITget(
+  Future<void> _INCOMMINGMASTER_UNITget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -118,7 +115,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_UNIT_FINAL",
+      server + "GET_UNIT_INCOMMING",
       data: {},
     );
 
@@ -159,7 +156,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_ITEMSget(
+  Future<void> _INCOMMINGMASTER_ITEMSget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -169,7 +166,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_ITEMSget_FINAL",
+      server + "GET_ITEMSget_INCOMMING",
       data: {},
     );
 
@@ -226,7 +223,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_MACHINENAMEget(
+  Future<void> _INCOMMINGMASTER_MACHINENAMEget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -236,7 +233,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_MACHINENAMEget_FINAL",
+      server + "GET_MACHINENAMEget_INCOMMING",
       data: {},
     );
 
@@ -286,7 +283,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_METHODEget(
+  Future<void> _INCOMMINGMASTER_METHODEget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -296,7 +293,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_METHODEget_FINAL",
+      server + "GET_METHODEget_INCOMMING",
       data: {},
     );
 
@@ -341,7 +338,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_SPECIALSPECget(
+  Future<void> _INCOMMINGMASTER_SPECIALSPECget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -351,7 +348,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_SPECIALSPECget_FINAL",
+      server + "GET_SPECIALSPECget_INCOMMING",
       data: {},
     );
 
@@ -390,7 +387,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_CALCULATEget(
+  Future<void> _INCOMMINGMASTER_CALCULATEget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -400,7 +397,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
 
     final response = await Dio().post(
-      server + "GET_CALCULATEget_FINAL",
+      server + "GET_CALCULATEget_INCOMMING",
       data: {},
     );
 
@@ -459,7 +456,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     emit(output);
   }
 
-  Future<void> _FINALMASTER_COMMENTget(
+  Future<void> _INCOMMINGMASTER_COMMENTget(
       DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
     //--------------------------------------------------------
     DatasetWithSatatus output = DatasetWithSatatus(
@@ -469,7 +466,7 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     );
     //--------------------------------------------------------
     final response = await Dio().post(
-      server + "GET_COMMENT_FINAL",
+      server + "GET_COMMENT_INCOMMING",
       data: {},
     );
 
@@ -500,76 +497,6 @@ class FINALMASTER_Bloc extends Bloc<FINALMASTER_Event, DatasetWithSatatus> {
     }
     emit(output);
   }
-
-  Future<void> _FINALMASTER_CALCULATECONget(
-      DatasetWithSatatus toAdd, Emitter<DatasetWithSatatus> emit) async {
-    //--------------------------------------------------------
-    DatasetWithSatatus output = DatasetWithSatatus(
-      status: "",
-      position: "",
-      data: [],
-    );
-
-    final response = await Dio().post(
-      server + "GET_CALCULATECONget_FINAL",
-      data: {},
-    );
-
-    print("------>");
-    if (response.statusCode == 200) {
-      // var databuff = jsonDecode(response.body);
-      var databuff = response.data;
-      // print(databuff);
-      output = DatasetWithSatatus(
-        status: "OK",
-        position: "CALCULATECONget",
-        data: [],
-      );
-
-      if (databuff.length > 0) {
-        for (int i = 0; i < databuff.length; i++) {
-          output.data.add(dataset(
-            id: i,
-            f01: databuff[i]['CALCULATE'] != null
-                ? databuff[i]['CALCULATE'].toString()
-                : "",
-            f02: databuff[i]['FORMULA'] != null
-                ? databuff[i]['FORMULA'].toString()
-                : "",
-
-            //
-            f41: databuff[i]['X'] != null ? databuff[i]['X'].toString() : "",
-            f42: databuff[i]['Y'] != null ? databuff[i]['Y'].toString() : "",
-            f43: databuff[i]['Z'] != null ? databuff[i]['Z'].toString() : "",
-            f44: databuff[i]['I'] != null ? databuff[i]['I'].toString() : "",
-            f45: databuff[i]['K1'] != null ? databuff[i]['K1'].toString() : "",
-            f46: databuff[i]['K2'] != null ? databuff[i]['K2'].toString() : "",
-            f47: databuff[i]['K3'] != null ? databuff[i]['K3'].toString() : "",
-            //
-            f51: databuff[i]['Xb'] != null ? databuff[i]['Xb'].toString() : "",
-            f52: databuff[i]['Yb'] != null ? databuff[i]['Yb'].toString() : "",
-            f53: databuff[i]['Zb'] != null ? databuff[i]['Zb'].toString() : "",
-            f54: databuff[i]['Ib'] != null ? databuff[i]['Ib'].toString() : "",
-            f55:
-                databuff[i]['K1b'] != null ? databuff[i]['K1b'].toString() : "",
-            f56:
-                databuff[i]['K2b'] != null ? databuff[i]['K2b'].toString() : "",
-            f57:
-                databuff[i]['K3b'] != null ? databuff[i]['K4b'].toString() : "",
-            //
-
-            f21: databuff[i]['masterID'] != null
-                ? databuff[i]['masterID'].toString()
-                : "",
-          ));
-        }
-      }
-    } else {
-      //
-    }
-
-    emit(output);
-  }
 }
 
 class DatasetWithSatatus {
@@ -583,4 +510,4 @@ class DatasetWithSatatus {
   List<dataset> data;
 }
 
-//_FINALMASTER_COMMENTget
+//_INCOMMINGMASTER_COMMENTget

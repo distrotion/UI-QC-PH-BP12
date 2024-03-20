@@ -14,40 +14,45 @@ class INSPECTIONstdVAR {
   //copypo
 
   //----------------------------
-  static List<MapEntry<String, String>> List_INCOMING_ITEMs = [
+  static List<MapEntry<String, String>> List_INCOMMING_ITEMs = [
     MapEntry("-", "-")
   ];
-  static List<List_INCOMING_ITEMs_set_Class> List_INCOMING_ITEMs_set = [];
-  static List<MapEntry<String, String>> List_INCOMING_SCMARK = YESNO;
-  static List<MapEntry<String, String>> List_INCOMING_METHOD = [
+  static List<List_INCOMMING_ITEMs_set_Class> List_INCOMMING_ITEMs_set = [];
+  static List<MapEntry<String, String>> List_INCOMMING_SCMARK = YESNO;
+  static List<MapEntry<String, String>> List_INCOMMING_METHOD = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_LOAD = [
+  static List<MapEntry<String, String>> List_INCOMMING_LOAD = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_GT = [MapEntry("-", "-")];
-  static List<MapEntry<String, String>> List_INCOMING_UNIT = [
+  static List<MapEntry<String, String>> List_INCOMMING_GT = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_UNIT_CONVERST = [
+  static List<MapEntry<String, String>> List_INCOMMING_UNIT = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_FREQUENCY = [
+  static List<MapEntry<String, String>> List_INCOMMING_UNIT_CONVERST = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_IMGreaddata = YESNO;
-  static List<MapEntry<String, String>> List_INCOMING_SWreport = YESNO;
-  static List<MapEntry<String, String>> List_INCOMING_IMGno = NUM14;
-  static List<MapEntry<String, String>> List_INCOMING_CORETYPE = [
+  static List<MapEntry<String, String>> List_INCOMMING_FREQUENCY = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_CALCULATE = [
+  static List<MapEntry<String, String>> List_INCOMMING_IMGreaddata = YESNO;
+  static List<MapEntry<String, String>> List_INCOMMING_SWreport = YESNO;
+  static List<MapEntry<String, String>> List_INCOMMING_IMGno = NUM14;
+  static List<MapEntry<String, String>> List_INCOMMING_CORETYPE = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_INCOMING_SPECIFICATIONt = [
+  static List<MapEntry<String, String>> List_INCOMMING_CALCULATE = [
+    MapEntry("-", "-")
+  ];
+  static List<MapEntry<String, String>> List_INCOMMING_SPECIFICATIONt = [
     MapEntry("-", "-")
   ];
 
+  static List<MapEntry<String, String>> List_INCOMMING_COMMENT = [
+    MapEntry("-", "-")
+  ];
   //----------------------------
   static List<MapEntry<String, String>> List_FINAL_ITEMs = [MapEntry("-", "-")];
   static List<List_FINAL_ITEMs_set_Class> List_FINAL_ITEMs_set = [];
@@ -64,7 +69,7 @@ class INSPECTIONstdVAR {
   static List<MapEntry<String, String>> List_FINAL_FREQUENCY = [
     MapEntry("-", "-")
   ];
-  static List<MapEntry<String, String>> List_FINAL_IMGreaddata = YESNO;
+  static List<MapEntry<String, String>> List_FINAL_IMGreaddata = MethodePIC;
   static List<MapEntry<String, String>> List_FINAL_SWreport = YESNO;
   static List<MapEntry<String, String>> List_FINAL_IMGno = NUM14;
   static List<MapEntry<String, String>> List_FINAL_CORETYPE = [
@@ -79,51 +84,55 @@ class INSPECTIONstdVAR {
   static List<MapEntry<String, String>> List_FINAL_COMMENT = [
     MapEntry("-", "-")
   ];
-  //------------------------------------------------------------------------------------ List_INCOMING_SPECIFICATIONt
+  //------------------------------------------------------------------------------------ List_INCOMMING_SPECIFICATIONt
 
-  static String INCOMING_seq = "-";
-  static String INCOMING_ITEMs = "-";
-  static String INCOMING_TYPE = "";
-  static String INCOMING_RESULTFORMAT = "";
-  static String INCOMING_GRAPHTYPE = "";
-  static String INCOMING_INTERSECTION = "";
-  static String INCOMING_COREtype = "-";
-  static String INCOMING_FORMULA = "-";
-  static String INCOMING_SCMARK = "-";
-  static String INCOMING_SCMARKtype = "-";
-  static String INCOMING_DOCUMENT = "-";
-  static String INCOMING_METHOD = "-";
-  static String INCOMING_IMGreaddata = "-";
-  static String INCOMING_IMGno = "-";
-  static String INCOMING_LOAD = "-";
-  static String INCOMING_GT = "-";
-  static String INCOMING_SPECIFICATION = "-";
-  static String INCOMING_SPECIFICATIONstr = "-";
-  static String INCOMING_SPECIFICATIONve = "-";
-  static veOB INCOMING_SPECIFICATIONveOB = veOB();
-  static String INCOMING_UNIT = "-";
-  static String INCOMING_UNIT_CONVERST = "-";
-  // static String INCOMING_POINTPCS = "-";
-  static String INCOMING_POINT = "";
-  static String INCOMING_PCS = "";
-  static String INCOMING_FREQUENCY = "-";
-  static String INCOMING_REMARK = "-";
-  static String INCOMING_RESULTFORMATdata = "-";
-  static String INCOMING_SWreport = "-";
+  static String INCOMMING_seq = "-";
+  static String INCOMMING_ITEMs = "-";
+  static String INCOMMING_TYPE = "";
+  static String INCOMMING_RESULTFORMAT = "";
+  static String INCOMMING_GRAPHTYPE = "";
+  static String INCOMMING_INTERSECTION = "";
+  static String INCOMMING_COREtype = "-";
+  static String INCOMMING_FORMULA = "-";
+  static String INCOMMING_SCMARK = "-";
+  static String INCOMMING_SCMARKtype = "-";
+  static String INCOMMING_DOCUMENT = "-";
+  static String INCOMMING_METHOD = "-";
+  static String INCOMMING_IMGreaddata = "-";
+  static String INCOMMING_IMGno = "-";
+  static String INCOMMING_LOAD = "-";
+  static String INCOMMING_GT = "-";
+  static String INCOMMING_SPECIFICATION = "-";
+  static String INCOMMING_SPECIFICATIONstr = "-";
+  static String INCOMMING_SPECIFICATIONve = "-";
+  static veOB INCOMMING_SPECIFICATIONveOB = veOB();
+  static String INCOMMING_UNIT = "-";
+  static String INCOMMING_UNIT_CONVERST = "-";
+  // static String INCOMMING_POINTPCS = "-";
+  static String INCOMMING_POINT = "";
+  static String INCOMMING_PCS = "";
+  static String INCOMMING_FREQUENCY = "-";
+  static String INCOMMING_REMARK = "-";
+  static String INCOMMING_RESULTFORMATdata = "-";
+  static String INCOMMING_SWreport = "-";
 
-  static String INCOMING_CALCULATE = "-";
-  static String INCOMING_CAL_K1 = "-";
-  static String INCOMING_CAL_K2 = "-";
-  static String INCOMING_CAL_K3 = "-";
+  static String INCOMMING_CALCULATE = "-";
+  static String INCOMMING_CAL_K1 = "-";
+  static String INCOMMING_CAL_K2 = "-";
+  static String INCOMMING_CAL_K3 = "-";
 
-  static String INCOMING_CAL_K1_N = "-";
-  static String INCOMING_CAL_K2_N = "-";
-  static String INCOMING_CAL_K3_N = "-";
-  static bool INCOMING_CAL_K1b = false;
-  static bool INCOMING_CAL_K2b = false;
-  static bool INCOMING_CAL_K3b = false;
+  static String INCOMMING_CAL_K1_N = "-";
+  static String INCOMMING_CAL_K2_N = "-";
+  static String INCOMMING_CAL_K3_N = "-";
+  static bool INCOMMING_CAL_K1b = false;
+  static bool INCOMMING_CAL_K2b = false;
+  static bool INCOMMING_CAL_K3b = false;
 
-  static bool INCOMING_POP = false;
+  static bool INCOMMING_POP = false;
+
+  static String INCOMMING_K1b = "-";
+  static String INCOMMING_K1v = "-";
+
   //------------------------------------------------------------------------------------ List_FINAL_SPECIFICATIONt
 
   static String FINAL_seq = "-";
@@ -156,7 +165,7 @@ class INSPECTIONstdVAR {
   static String FINAL_FREQUENCY = "-";
   static String FINAL_REMARK = "-";
   static String FINAL_RESULTFORMATdata = "-";
-  static String FINAL_SWreport = "-";
+  static String FINAL_SWreport = "YES";
 
   static String FINAL_CALCULATE = "-";
   static String FINAL_CAL_K1 = "-";
@@ -176,7 +185,15 @@ class INSPECTIONstdVAR {
 
   static String PICUPLOAD = "";
 
+  static String TEXTTYPE = "-";
+
   //------------------------------------------------------------------------------------
+
+  //  print(FPint);
+  //   print(LPint);
+
+  static int FPint = 0;
+  static int LPint = 0;
 }
 
 class veOB {
@@ -208,6 +225,12 @@ const List<MapEntry<String, String>> YESNO = [
   MapEntry("-", "-"),
   MapEntry("YES", "YES"),
   MapEntry("NO", "NO"),
+];
+
+const List<MapEntry<String, String>> MethodePIC = [
+  MapEntry("-", "-"),
+  MapEntry("Attack Pic.", "YES"),
+  MapEntry("NO Picture", "NO"),
 ];
 
 const List<MapEntry<String, String>> specset = [
@@ -279,61 +302,61 @@ clearFINAL() {
   INSPECTIONstdVAR.List_FINAL_COMMENT = [MapEntry("-", "-")];
 }
 
-clearINCOMING() {
+clearINCOMMING() {
   INSPECTIONstdVAR.iscontrol = true;
   //
-  INSPECTIONstdVAR.INCOMING_seq = "0";
-  INSPECTIONstdVAR.INCOMING_ITEMs = "-";
-  INSPECTIONstdVAR.INCOMING_TYPE = "";
-  INSPECTIONstdVAR.INCOMING_RESULTFORMAT = "";
-  INSPECTIONstdVAR.INCOMING_GRAPHTYPE = "";
-  INSPECTIONstdVAR.INCOMING_INTERSECTION = "";
-  INSPECTIONstdVAR.INCOMING_COREtype = "-";
-  INSPECTIONstdVAR.INCOMING_FORMULA = "-";
-  INSPECTIONstdVAR.INCOMING_SCMARK = "-";
-  INSPECTIONstdVAR.INCOMING_SCMARKtype = "-";
-  INSPECTIONstdVAR.INCOMING_DOCUMENT = "-";
-  INSPECTIONstdVAR.INCOMING_METHOD = "-";
-  INSPECTIONstdVAR.INCOMING_IMGreaddata = "-";
-  INSPECTIONstdVAR.INCOMING_IMGno = "-";
-  INSPECTIONstdVAR.INCOMING_LOAD = "-";
-  INSPECTIONstdVAR.INCOMING_GT = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATION = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONstr = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONve = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB = veOB();
-  INSPECTIONstdVAR.INCOMING_UNIT = "-";
-  INSPECTIONstdVAR.INCOMING_UNIT_CONVERST = "-";
-  // INSPECTIONstdVAR.INCOMING_POINTPCS = "-";
-  INSPECTIONstdVAR.INCOMING_POINT = "";
-  INSPECTIONstdVAR.INCOMING_PCS = "";
-  INSPECTIONstdVAR.INCOMING_FREQUENCY = "-";
-  INSPECTIONstdVAR.INCOMING_REMARK = "-";
-  INSPECTIONstdVAR.INCOMING_RESULTFORMATdata = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.condition = "-";
+  INSPECTIONstdVAR.INCOMMING_seq = "0";
+  INSPECTIONstdVAR.INCOMMING_ITEMs = "-";
+  INSPECTIONstdVAR.INCOMMING_TYPE = "";
+  INSPECTIONstdVAR.INCOMMING_RESULTFORMAT = "";
+  INSPECTIONstdVAR.INCOMMING_GRAPHTYPE = "";
+  INSPECTIONstdVAR.INCOMMING_INTERSECTION = "";
+  INSPECTIONstdVAR.INCOMMING_COREtype = "-";
+  INSPECTIONstdVAR.INCOMMING_FORMULA = "-";
+  INSPECTIONstdVAR.INCOMMING_SCMARK = "-";
+  INSPECTIONstdVAR.INCOMMING_SCMARKtype = "-";
+  INSPECTIONstdVAR.INCOMMING_DOCUMENT = "-";
+  INSPECTIONstdVAR.INCOMMING_METHOD = "-";
+  INSPECTIONstdVAR.INCOMMING_IMGreaddata = "-";
+  INSPECTIONstdVAR.INCOMMING_IMGno = "-";
+  INSPECTIONstdVAR.INCOMMING_LOAD = "-";
+  INSPECTIONstdVAR.INCOMMING_GT = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATION = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONstr = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONve = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB = veOB();
+  INSPECTIONstdVAR.INCOMMING_UNIT = "-";
+  INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST = "-";
+  // INSPECTIONstdVAR.INCOMMING_POINTPCS = "-";
+  INSPECTIONstdVAR.INCOMMING_POINT = "";
+  INSPECTIONstdVAR.INCOMMING_PCS = "";
+  INSPECTIONstdVAR.INCOMMING_FREQUENCY = "-";
+  INSPECTIONstdVAR.INCOMMING_REMARK = "-";
+  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.condition = "-";
 
-  INSPECTIONstdVAR.INCOMING_CAL_K1_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K2_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K3_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K1b = false;
-  INSPECTIONstdVAR.INCOMING_CAL_K2b = false;
-  INSPECTIONstdVAR.INCOMING_CAL_K3b = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K1_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K2_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K3_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K1b = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K2b = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K3b = false;
   //--------------------------------------------------
-  INSPECTIONstdVAR.List_INCOMING_ITEMs = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_ITEMs_set = [];
-  INSPECTIONstdVAR.List_INCOMING_SCMARK = YESNO;
-  INSPECTIONstdVAR.List_INCOMING_METHOD = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_LOAD = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_GT = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_UNIT = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_UNIT_CONVERST = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_FREQUENCY = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_IMGreaddata = YESNO;
-  INSPECTIONstdVAR.List_INCOMING_SWreport = YESNO;
-  INSPECTIONstdVAR.List_INCOMING_IMGno = NUM14;
-  INSPECTIONstdVAR.List_INCOMING_CORETYPE = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_CALCULATE = [MapEntry("-", "-")];
-  INSPECTIONstdVAR.List_INCOMING_SPECIFICATIONt = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_ITEMs = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_ITEMs_set = [];
+  INSPECTIONstdVAR.List_INCOMMING_SCMARK = YESNO;
+  INSPECTIONstdVAR.List_INCOMMING_METHOD = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_LOAD = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_GT = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_UNIT = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_UNIT_CONVERST = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_FREQUENCY = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_IMGreaddata = YESNO;
+  INSPECTIONstdVAR.List_INCOMMING_SWreport = YESNO;
+  INSPECTIONstdVAR.List_INCOMMING_IMGno = NUM14;
+  INSPECTIONstdVAR.List_INCOMMING_CORETYPE = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_CALCULATE = [MapEntry("-", "-")];
+  INSPECTIONstdVAR.List_INCOMMING_SPECIFICATIONt = [MapEntry("-", "-")];
 }
 
 newdataFINAL() {
@@ -385,52 +408,52 @@ newdataFINAL() {
   }
 }
 
-newdataINCOMING() {
-  INSPECTIONstdVAR.INCOMING_seq = "0";
-  INSPECTIONstdVAR.INCOMING_ITEMs = "-";
-  INSPECTIONstdVAR.INCOMING_TYPE = "";
-  INSPECTIONstdVAR.INCOMING_RESULTFORMAT = "";
-  INSPECTIONstdVAR.INCOMING_GRAPHTYPE = "";
-  INSPECTIONstdVAR.INCOMING_INTERSECTION = "";
-  INSPECTIONstdVAR.INCOMING_COREtype = "-";
-  INSPECTIONstdVAR.INCOMING_FORMULA = "-";
-  INSPECTIONstdVAR.INCOMING_SCMARK = "-";
-  INSPECTIONstdVAR.INCOMING_SCMARKtype = "-";
-  INSPECTIONstdVAR.INCOMING_DOCUMENT = "-";
-  INSPECTIONstdVAR.INCOMING_METHOD = "-";
-  INSPECTIONstdVAR.INCOMING_IMGreaddata = "-";
-  INSPECTIONstdVAR.INCOMING_IMGno = "-";
-  INSPECTIONstdVAR.INCOMING_LOAD = "-";
-  INSPECTIONstdVAR.INCOMING_GT = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATION = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONve = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONstr = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB = veOB();
-  INSPECTIONstdVAR.INCOMING_UNIT = "-";
-  INSPECTIONstdVAR.INCOMING_UNIT_CONVERST = "-";
-  // INSPECTIONstdVAR.INCOMING_POINTPCS = "-";
-  INSPECTIONstdVAR.INCOMING_POINT = "";
-  INSPECTIONstdVAR.INCOMING_PCS = "";
-  INSPECTIONstdVAR.INCOMING_FREQUENCY = "-";
-  INSPECTIONstdVAR.INCOMING_REMARK = "-";
-  INSPECTIONstdVAR.INCOMING_RESULTFORMATdata = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.condition = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.BTW_HI = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.BTW_LOW = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.HIM_L = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.LOL_H = "-";
-  INSPECTIONstdVAR.INCOMING_SPECIFICATIONveOB.TARGET = "-";
+newdataINCOMMING() {
+  INSPECTIONstdVAR.INCOMMING_seq = "0";
+  INSPECTIONstdVAR.INCOMMING_ITEMs = "-";
+  INSPECTIONstdVAR.INCOMMING_TYPE = "";
+  INSPECTIONstdVAR.INCOMMING_RESULTFORMAT = "";
+  INSPECTIONstdVAR.INCOMMING_GRAPHTYPE = "";
+  INSPECTIONstdVAR.INCOMMING_INTERSECTION = "";
+  INSPECTIONstdVAR.INCOMMING_COREtype = "-";
+  INSPECTIONstdVAR.INCOMMING_FORMULA = "-";
+  INSPECTIONstdVAR.INCOMMING_SCMARK = "-";
+  INSPECTIONstdVAR.INCOMMING_SCMARKtype = "-";
+  INSPECTIONstdVAR.INCOMMING_DOCUMENT = "-";
+  INSPECTIONstdVAR.INCOMMING_METHOD = "-";
+  INSPECTIONstdVAR.INCOMMING_IMGreaddata = "-";
+  INSPECTIONstdVAR.INCOMMING_IMGno = "-";
+  INSPECTIONstdVAR.INCOMMING_LOAD = "-";
+  INSPECTIONstdVAR.INCOMMING_GT = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATION = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONve = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONstr = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB = veOB();
+  INSPECTIONstdVAR.INCOMMING_UNIT = "-";
+  INSPECTIONstdVAR.INCOMMING_UNIT_CONVERST = "-";
+  // INSPECTIONstdVAR.INCOMMING_POINTPCS = "-";
+  INSPECTIONstdVAR.INCOMMING_POINT = "";
+  INSPECTIONstdVAR.INCOMMING_PCS = "";
+  INSPECTIONstdVAR.INCOMMING_FREQUENCY = "-";
+  INSPECTIONstdVAR.INCOMMING_REMARK = "-";
+  INSPECTIONstdVAR.INCOMMING_RESULTFORMATdata = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.condition = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.BTW_HI = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.BTW_LOW = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.HIM_L = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.LOL_H = "-";
+  INSPECTIONstdVAR.INCOMMING_SPECIFICATIONveOB.TARGET = "-";
 
-  INSPECTIONstdVAR.INCOMING_CAL_K1_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K2_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K3_N = "-";
-  INSPECTIONstdVAR.INCOMING_CAL_K1b = false;
-  INSPECTIONstdVAR.INCOMING_CAL_K2b = false;
-  INSPECTIONstdVAR.INCOMING_CAL_K3b = false;
-  if (INSPECTIONstdVAR.INCOMING_POP) {
-    INSPECTIONstdVAR.INCOMING_POP = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K1_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K2_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K3_N = "-";
+  INSPECTIONstdVAR.INCOMMING_CAL_K1b = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K2b = false;
+  INSPECTIONstdVAR.INCOMMING_CAL_K3b = false;
+  if (INSPECTIONstdVAR.INCOMMING_POP) {
+    INSPECTIONstdVAR.INCOMMING_POP = false;
   } else {
-    INSPECTIONstdVAR.INCOMING_POP = true;
+    INSPECTIONstdVAR.INCOMMING_POP = true;
   }
 }
 
@@ -513,8 +536,8 @@ class List_FINAL_ITEMs_set_Class {
   String masterID;
 }
 
-class List_INCOMING_ITEMs_set_Class {
-  List_INCOMING_ITEMs_set_Class({
+class List_INCOMMING_ITEMs_set_Class {
+  List_INCOMMING_ITEMs_set_Class({
     this.ITEMs = '',
     this.RESULTFORMAT = '',
     this.TYPE = '',
